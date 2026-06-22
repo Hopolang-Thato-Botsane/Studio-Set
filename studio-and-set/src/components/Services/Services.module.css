@@ -1,0 +1,146 @@
+.services-wrapper {
+  background-color: var(--color-mutegold);
+  padding: 6rem 4rem;
+  position: relative;
+  width: 100%;
+}
+
+.section-label {
+  font-family: var(--font-main);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-bg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 3rem;
+}
+
+.services-container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 8%;
+  width: 100%;
+  position: relative;
+  align-items: start;
+}
+
+.left-sticky-canvas {
+  position: sticky;
+  top: 10vh; 
+  height: 80vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.canvas-image-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(1.03);
+  transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), 
+              transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), 
+              visibility 0.7s;
+  z-index: 1;
+}
+
+.active-layer {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  z-index: 2;
+}
+
+.right-scroll-content {
+  width: 100%;
+}
+
+.service-text-block {
+  min-height: 80vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 0;
+  box-sizing: border-box;
+}
+
+.service-title {
+  font-family: var(--font-main);
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--color-bg);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.service-description {
+  font-family: var(--font-main);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--color-bg);
+  opacity: 0.85;
+  margin-bottom: 2.5rem;
+  max-width: 520px;
+}
+
+.service-tags-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.service-tag {
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--color-bg);
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+@media (max-width: 992px) {
+
+  .services-wrapper {
+    padding: 4rem 2rem;
+  }
+
+  .services-container {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .left-sticky-canvas {
+    display: none;
+  }
+
+  .right-scroll-content {
+    height: auto;
+    overflow-y: visible;
+    scroll-snap-type: none;
+    padding-bottom: 0;
+  }
+  
+  .service-text-block {
+    min-height: auto;
+    padding: 2.5rem 0;
+    scroll-snap-align: none;
+  }
+  
+  .service-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .service-description {
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+  }
+}

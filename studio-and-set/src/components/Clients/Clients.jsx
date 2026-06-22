@@ -32,16 +32,37 @@ export default function Clients() {
     <section className={styles['clients-container']}>
       <h2 className={styles['clients-main-title']}>CLIENTS</h2>
       
-      <div className={styles['clients-grid']}>
-        {CLIENTS.map((client) => (
-          <div key={client.id} className={styles['client-logo-box']}>
-            
-            {/* <img src={client.logoSrc} alt={`${client.name} Logo`} className={styles['client-logo-img']} /> */}
-            
-            <span className={styles['client-logo-text']}>{client.fallbackText}</span>
-
+      <div className={styles['clients-marquee-wrapper']}>
+        <div className={styles['marquee-track']}>
+          
+          {/* TRACK ORIGINAL */}
+          <div className={styles['marquee-group']}>
+            {CLIENTS.map((client) => (
+              <div key={`orig-${client.id}`} className={styles['client-logo-box']}>
+                <img 
+                  src={client.logoSrc} 
+                  alt={`${client.name} Logo`} 
+                  className={styles['client-logo-img']} 
+                />
+                <span className={styles['client-logo-text']}>{client.fallbackText}</span>
+              </div>
+            ))}
           </div>
-        ))}
+
+          <div className={styles['marquee-group']} aria-hidden="true">
+            {CLIENTS.map((client) => (
+              <div key={`clone-${client.id}`} className={styles['client-logo-box']}>
+                {/* <img 
+                  src={client.logoSrc} 
+                  alt={`${client.name} Logo`} 
+                  className={styles['client-logo-img']} 
+                /> */}
+                <span className={styles['client-logo-text']}>{client.fallbackText}</span>
+              </div>
+            ))}
+          </div>
+
+        </div>
       </div>
     </section>
   );

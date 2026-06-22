@@ -1,7 +1,8 @@
 .clients-container {
   background-color: var(--color-mutegold);
-  padding: 6rem 2rem;
+  padding: 6rem 0;
   width: 100%;
+  overflow: hidden;
 }
 
 .clients-main-title {
@@ -12,24 +13,52 @@
   margin-bottom: 2.5rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  padding-left: 4rem;
 }
 
-.clients-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+.clients-marquee-wrapper {
+  overflow: hidden;
   width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2rem;
+  padding-right: 2rem;
+  animation: scrollMarquee 25s linear infinite;
 }
 
 .client-logo-box {
   background-color: var(--color-bg);
   height: 140px;
+  width: 280px;
+  flex-shrink: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 2rem;
   position: relative;
-  transition: opacity 0.3s ease;
+}
+
+.client-logo-img {
+  max-width: 80%;
+  max-height: 50px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  position: absolute;
+  z-index: 2;
 }
 
 .client-logo-text {
@@ -40,43 +69,41 @@
   letter-spacing: 0.1em;
   font-weight: 500;
   text-align: center;
+  transition: color 0.3s ease;
+  z-index: 1;
 }
 
-.client-logo-img {
-  max-width: 80%;
-  max-height: 50px;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+.marquee-track:hover .marquee-group {
+  animation-play-state: paused;
 }
 
 .client-logo-box:hover .client-logo-img {
   opacity: 1;
+  transform: scale(1.02);
 }
 
-.client-logo-box:hover .client-logo-text {
-  color: var(--color-text-main);
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 @media (max-width: 900px) {
   .clients-container {
-    padding: 4rem 1.5rem;
+    padding: 4rem 0;
   }
-
-  .clients-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+  .clients-main-title {
+    padding-left: 2rem;
   }
-
+  .marquee-group {
+    gap: 1.5rem;
+    padding-right: 1.5rem;
+  }
   .client-logo-box {
-    height: 120px;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .clients-grid {
-    grid-template-columns: repeat(1, 1fr);
+    height: 110px;
+    width: 220px;
   }
 }
