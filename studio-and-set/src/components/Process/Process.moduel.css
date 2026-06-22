@@ -1,0 +1,155 @@
+.process-container {
+  background-color: var(--color-mutegold);
+  padding: 6rem 2rem;
+  width: 100%;
+}
+
+.process-main-title {
+  font-family: var(--font-main);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-bg);
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.process-card {
+  background-color: var(--color-bg);
+  min-height: 400px;
+  padding: 3rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.process-act-badge {
+  font-family: var(--font-main);
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--color-mutegold);
+  position: absolute;
+  left: 3rem;
+  bottom: 5.5rem;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.process-default-label {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.process-tagline {
+  font-family: var(--font-support);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-mutegold);
+}
+
+/* Hidden Content Phase (Activates on Hover) */
+.process-hover-content {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+  right: 3rem;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Hover Content Typography */
+.process-headline {
+  font-family: var(--font-main);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--color-mutegold);
+  margin-bottom: 1rem;
+}
+
+.process-description {
+  font-family: var(--font-support);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.process-card:hover .process-act-badge {
+  top: 3rem;
+  bottom: auto;
+  color: var(--color-gold);
+}
+
+.process-card:hover .process-default-label {
+  opacity: 0;
+}
+
+.process-card:hover .process-hover-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.process-card:hover {
+  background-color: #1e2127;
+}
+
+@media (max-width: 900px) {
+    
+  .process-container {
+    padding: 4rem 1.5rem;
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 12px;
+  }
+
+  .process-card {
+    min-height: 320px;
+    padding: 2rem;
+  }
+
+  .process-act-badge {
+    left: 2rem;
+    bottom: 4.5rem;
+    font-size: 1.5rem;
+  }
+
+  .process-default-label {
+    left: 2rem;
+    bottom: 2.2rem;
+  }
+
+  .process-hover-content {
+    left: 2rem;
+    right: 2rem;
+    bottom: 2.2rem;
+  }
+
+  .process-headline {
+    font-size: 1.6rem;
+  }
+
+  .process-description {
+    font-size: 0.9rem;
+  }
+
+  .process-card:hover .process-act-badge {
+    top: 2rem;
+  }
+}
