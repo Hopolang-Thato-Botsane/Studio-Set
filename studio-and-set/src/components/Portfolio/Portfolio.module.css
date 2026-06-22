@@ -1,0 +1,175 @@
+/* ==========================================================================
+   EXECUTION COMPLEX STACK ENGINE
+   ========================================================================== */
+
+.execution-wrapper {
+  background-color: var(--color-mutegold);
+  position: relative;
+  width: 100%;
+}
+
+/* Creates the track window required to anchor our sticky display frame */
+.sticky-window {
+  position: relative;
+  width: 100%;
+  padding: 6rem 4rem;
+  box-sizing: border-box;
+}
+
+/* Pinned Text Frame: Anchored completely underneath the passing video elements */
+.fixed-text-layer {
+  position: sticky;
+  top: 40vh;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1; /* Sits completely behind moving cards */
+  pointer-events: none; /* Allows natural scrolling directly through letters */
+  text-align: center;
+}
+
+.main-headline {
+  font-family: var(--font-main);
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 500;
+  color: var(--color-bg);
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.sub-headline {
+  font-family: var(--font-main);
+  font-size: 1.25rem;
+  color: var(--color-bg);
+  margin-top: 1rem;
+  opacity: 0.9;
+}
+
+/* Dynamic Multi-Column Staggered Grid Flow */
+.cards-scroll-grid {
+  position: relative;
+  z-index: 2; /* Forces cards over the sticky text layout layer */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12rem 6rem; /* Wide vertical spacing gap matching reference frames */
+  width: 100%;
+  pointer-events: auto;
+}
+
+/* Alternating Card Size Class Assignments */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transition: transform 0.4s ease;
+}
+
+.large {
+  max-width: 540px;
+}
+
+.small {
+  max-width: 420px;
+  margin-top: 15vh; /* Offsets height alignment dynamically to match mockup frames */
+}
+
+/* Push every second card down slightly to expand staggered spatial separation */
+.project-card:nth-child(even) {
+  justify-self: end;
+}
+
+.video-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 5; /* Clean editorial vertical frame scale proportions */
+  background-color: #16181D; /* Primary project block rendering color */
+  overflow: hidden;
+  position: relative;
+}
+
+.fallback-box {
+  width: 100%;
+  height: 100%;
+}
+
+.meta-data {
+  margin-top: 1.25rem;
+}
+
+.movie-title {
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-bg);
+  text-transform: uppercase;
+  margin: 0 0 0.25rem 0;
+  letter-spacing: 0.02em;
+}
+
+.movie-year {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  color: var(--color-bg);
+  opacity: 0.7;
+  margin: 0;
+}
+
+/* ==========================================================================
+   MOBILE ECOMMERCE SHOP HORIZONTAL SLIDER 
+   ========================================================================== */
+@media (max-width: 992px) {
+  .sticky-window {
+    padding: 4rem 2rem;
+  }
+
+  /* Unpins background frame and formats it like a clean modular title */
+  .fixed-text-layer {
+    position: relative;
+    top: 0;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 3rem;
+  }
+
+  .main-headline {
+    font-size: 2.5rem;
+  }
+
+  .sub-headline {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Transforms the complex grid layout instantly into a snappy slider track */
+  .cards-scroll-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Hides horizontal system scrollbars completely */
+    gap: 1.5rem;
+    width: calc(100% + 4rem); /* Extends viewport tracking smoothly to edge boundaries */
+    margin-left: -2rem;
+    padding: 0 2rem;
+  }
+
+  .cards-scroll-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Forces mobile normalization over the randomized sizing modules */
+  .project-card.large,
+  .project-card.small {
+    flex-shrink: 0;
+    width: 75vw; /* Perfectly reveals a trailing card preview to prompt user sliding */
+    max-width: 320px;
+    margin-top: 0;
+    scroll-snap-align: start;
+  }
+
+  .video-placeholder {
+    aspect-ratio: 1 / 1; /* Squares up aspect frames tightly on mobile screens */
+  }
+}
