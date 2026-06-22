@@ -15,6 +15,17 @@
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+main > section, 
+main > header {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--color-text-main);
@@ -25,3 +36,4 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-main);
 }
+
