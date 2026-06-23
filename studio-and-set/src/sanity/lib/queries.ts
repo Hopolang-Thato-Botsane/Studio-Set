@@ -12,3 +12,17 @@ export async function getServices() {
   const services = await client.fetch(query);
   return services;
 }
+
+export async function getProjects() {
+  const query = `*[_type == "project"] | order(sortOrder asc)[0...4] {
+    _id,
+    title,
+    productionName,
+    productionYear,
+    projectUrl,
+    "imageUrl": projectImage.asset->url
+  }`;
+
+  const projects = await client.fetch(query);
+  return projects;
+}
