@@ -1,5 +1,16 @@
 import { client } from './client';
 
+export async function getProcessSteps() {
+  const query = `*[_type == "processStep"] | order(stepNumber asc) {
+    "id": _id,
+    "act": "ACT " + string(stepNumber),
+    tagline,
+    headline,
+    description
+  }`;
+  return await client.fetch(query);
+}
+
 export async function getServices() {
   const query = `*[_type == "service"] | order(displayOrder asc) {
     _id,

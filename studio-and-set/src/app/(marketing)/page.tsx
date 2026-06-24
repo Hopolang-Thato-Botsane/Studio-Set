@@ -5,10 +5,11 @@ import Portfolio from "@/components/Portfolio/Portfolio";
 import StorePreview from "@/components/StorePreivew/StorePreview";
 import Footer from "@/components/Footer/Footer";
 
-import { getServices, getStorefrontPreview ,getProjects } from '@/sanity/lib/queries';
+import { getProcessSteps, getServices, getStorefrontPreview ,getProjects } from '@/sanity/lib/queries';
 
 export default async function Home() {
 
+  const processData = await getProcessSteps();
   const servicesData = await getServices();
   const storefrontData = await getStorefrontPreview();
   const projectsData = await getProjects();
@@ -18,7 +19,7 @@ export default async function Home() {
   return (
     <main>
       <Clients />
-      <Process />
+      <Process steps={processData || []} />
       
       <Services initialServices={servicesData} /> 
       <Portfolio initialProjects={projectsData} />
