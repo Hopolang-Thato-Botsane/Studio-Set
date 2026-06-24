@@ -6,12 +6,10 @@
   padding: 0 2rem; 
 }
 
-/* --- Upper Image/CTA Block --- */
 .ctaSection {
   width: 100%;
   max-width: 1400px;
   margin: 2rem auto 0 auto;
-  /* 🛠️ Frame height matched exactly to your design spec */
   height: 541px; 
   position: relative;
   overflow: hidden;
@@ -27,11 +25,9 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  /* 🛠️ Sharp framing structural stroke around the image asset */
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* Fallback card background until the Next.js <Image /> component src is active */
 .imagePlaceholderFallback {
   width: 100%;
   height: 100%;
@@ -81,7 +77,6 @@
   opacity: 0.9;
 }
 
-/* --- Lower Layout Map Block --- */
 .navSection {
   max-width: 1400px;
   width: 100%;
@@ -89,7 +84,6 @@
   padding: 6rem 2rem 3rem 2rem;
 }
 
-/* Justifies the layout so left and right groups split to the outer margins */
 .linksFlexContainer {
   display: flex;
   justify-content: space-between;
@@ -97,24 +91,9 @@
   margin-bottom: 5rem;
 }
 
-/* Anchors the two right-hand categories together cleanly */
 .rightColumnsGroup {
   display: flex;
   gap: 6rem;
-}
-
-@media (max-width: 768px) {
-  .linksFlexContainer {
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-  .rightColumnsGroup {
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-  .ctaHeading {
-    font-size: 2rem;
-  }
 }
 
 .linkColumn {
@@ -144,7 +123,6 @@
   color: var(--color-text-main);
 }
 
-/* --- Sub-Footer Area --- */
 .dividerLine {
   border: none;
   height: 1px;
@@ -177,4 +155,18 @@
 
 .legalLinks a:hover {
   color: var(--color-text-main);
+}
+
+@media (max-width: 768px) {
+  .linksFlexContainer {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .rightColumnsGroup {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .ctaHeading {
+    font-size: 2rem;
+  }
 }

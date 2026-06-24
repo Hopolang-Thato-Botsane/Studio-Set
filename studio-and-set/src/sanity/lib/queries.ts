@@ -51,3 +51,17 @@ export async function getStorefrontPreview() {
   const products = await client.fetch(query);
   return products;
 }
+
+export async function getFooterConfiguration() {
+  const query = `*[_type == "footerConfig"][0] {
+    ctaHeading,
+    ctaButtonText,
+    ctaButtonLink,
+    "imageUrl": bannerImage.asset->url,
+    studioLinks[] { _key, label, route },
+    showroomLinks[] { _key, label, route },
+    contactLinks[] { _key, label, route },
+    copyrightText
+  }`;
+  return await client.fetch(query);
+}
