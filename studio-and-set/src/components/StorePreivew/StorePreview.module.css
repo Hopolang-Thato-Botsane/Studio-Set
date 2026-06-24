@@ -1,0 +1,59 @@
+.storeSection {
+  width: 100%;
+  background-color: var(--color-mutegold);
+  padding: 5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.innerContainer {
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 4rem;
+}
+
+.sectionHeading {
+  color: var(--color-bg);
+  font-family: var(--font-main);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  margin-bottom: 3.5rem;
+}
+
+@media (max-width: 900px) {
+  .productGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.actionContainer {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.visitStoreLink {
+  display: inline-block;
+  color: var(--color-bg);
+  font-family: var(--font-support);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.visitStoreLink:hover {
+  border-color: var(--color-bg);
+}
