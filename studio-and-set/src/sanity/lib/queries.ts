@@ -26,3 +26,17 @@ export async function getProjects() {
   const projects = await client.fetch(query);
   return projects;
 }
+
+export async function getStorefrontPreview() {
+
+  const query = `*[_type == "product"] | order(_createdAt desc)[0...3] {
+    "id": _id,
+    "brand": coalesce(brandName, "Studio&Set"),
+    title,
+    price,
+    "imageUrl": productImage.asset->url
+  }`;
+
+  const products = await client.fetch(query);
+  return products;
+}

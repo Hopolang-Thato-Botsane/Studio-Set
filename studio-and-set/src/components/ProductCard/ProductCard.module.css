@@ -1,0 +1,77 @@
+.productCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 8px;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  /* Smooth transition for the card's underline stroke */
+  transition: border-color 0.25s ease-in-out;
+}
+
+.productCard:hover {
+  border-color: var(--color-bg);
+}
+
+/* This structural wrapper acts as a window to mask out-of-bounds scales */
+.imageScaleClip {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #8D99AE; 
+  background-size: cover;
+  background-position: center;
+  /* Smooth pan-in zoom transition */
+  transition: transform 0.4s ease-out;
+}
+
+/* When the whole card is hovered, zoom into the image frame */
+.productCard:hover .imageFrame {
+  transform: scale(1.05);
+}
+
+.badgeDot {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: 3px solid var(--color-mutegold);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: var(--color-bg);
+  font-family: var(--font-support);
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandName {
+  font-weight: 700;
+}
+
+.itemName {
+  font-weight: 400;
+}
+
+.itemPrice {
+  font-weight: 500;
+}
