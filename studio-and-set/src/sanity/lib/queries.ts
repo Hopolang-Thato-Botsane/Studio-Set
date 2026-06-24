@@ -40,12 +40,14 @@ export async function getProjects() {
 
 export async function getStorefrontPreview() {
 
-  const query = `*[_type == "product"] | order(_createdAt desc)[0...3] {
+  const query = `*[_type == "merchProduct"] | order(_createdAt desc)[0...3] {
     "id": _id,
     "brand": coalesce(brandName, "Studio&Set"),
     title,
     price,
-    "imageUrl": productImage.asset->url
+    "imageUrl": productImage.asset->url,
+    "iconUrl": productIcon.asset->url,
+    sizes
   }`;
 
   const products = await client.fetch(query);

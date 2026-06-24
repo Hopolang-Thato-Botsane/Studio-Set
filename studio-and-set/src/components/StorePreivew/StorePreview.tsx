@@ -8,6 +8,7 @@ interface ProductItem {
   title: string;
   price: string | number;
   imageUrl?: string;
+  sizes?: string[];
 }
 
 interface StorePreviewProps {
@@ -23,7 +24,6 @@ export default function StorePreview({ products = [], headingTitle = 'MERCHANDIS
         <h2 className={styles.sectionHeading}>{headingTitle}</h2>
 
         <div className={styles.productGrid}>
-
           {products?.map((item) => (
             <ProductCard 
               key={item.id}
@@ -31,6 +31,7 @@ export default function StorePreview({ products = [], headingTitle = 'MERCHANDIS
               title={item.title}
               price={item.price}
               imageUrl={item.imageUrl}
+              sizes={item.sizes} // 2. Pass sizes down safely into the ProductCard view layer
             />
           ))}
         </div>

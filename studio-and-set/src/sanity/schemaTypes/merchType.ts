@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity';
 
-export const productType = defineType({
-  name: 'product',
-  title: 'Storefront Products',
+export const merchType = defineType({
+  name: 'merchProduct',
+  title: 'Capsule Store (Merchandise)',
   type: 'document',
   fields: [
     defineField({
@@ -33,11 +33,25 @@ export const productType = defineType({
         hotspot: true,
       },
     }),
+    // 👈 Added Custom SVG Icon upload field
     defineField({
-      name: 'category',
-      title: 'Category Tag',
-      type: 'string',
-      description: 'e.g., Merchandise, Camera Kits, Lighting',
+      name: 'productIcon',
+      title: 'Custom Floating Icon (SVG)',
+      type: 'image',
+      description: 'Upload your custom SVG design for the top-right corner badge.',
+      options: {
+        accept: '.svg',
+      },
+    }),
+    defineField({
+      name: 'sizes',
+      title: 'Available Sizes',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags'
+      },
+      initialValue: ['S', 'M', 'L', 'XL']
     }),
   ],
 });
