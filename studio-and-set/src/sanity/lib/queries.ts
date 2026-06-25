@@ -67,3 +67,16 @@ export async function getFooterConfiguration() {
   }`;
   return await client.fetch(query);
 }
+
+// Store
+
+export const STORE_PRODUCTS_QUERY = `*[_type == "product"] {
+  _id,
+  brand,
+  title,
+  price,
+  productImage,
+  "iconUrl": productIcon.asset->url,
+  category,
+  sizes
+}`;
