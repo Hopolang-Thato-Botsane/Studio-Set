@@ -16,8 +16,13 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Removed scroll-snap-type from here to prevent layout jumping past the Hero */
+}
+
+/* Isolate scroll snapping strictly to your main body container */
+main {
   scroll-snap-type: y mandatory;
+  width: 100%;
 }
 
 main > section, 

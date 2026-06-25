@@ -1,0 +1,15 @@
+.homeViewportContainer {
+  width: 100%;
+  position: relative;
+  background-color: #12141c;
+  /* Using clip instead of hidden keeps position: sticky working flawlessly */
+  overflow-x: clip; 
+}
+
+/* Force the rest of the body content to sit beneath the 400vh scroll timeline */
+.mainContentBody {
+  position: relative;
+  z-index: 20; 
+  width: 100%;
+  background-color: #12141c; 
+}
