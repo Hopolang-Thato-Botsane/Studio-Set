@@ -83,3 +83,23 @@ export const STORE_PRODUCTS_QUERY = `*[_type == "product"] {
   category,
   sizes
 }`;
+
+export const STORE_HERO_QUERY = `*[_type == "storeHero"][0] {
+  title,
+  description,
+  "imageUrl": backgroundImage.asset->url
+}`;
+
+export const FOOTER_QUERY = `*[_type == "footerConfig"][0] {
+  ctaHeading,
+  ctaButtonText,
+  ctaButtonLink,
+  "imageUrl": bannerImage.asset->url,
+  storeCtaHeading,
+  storeCtaButtonText,
+  "storeImageUrl": storeBannerImage.asset->url,
+  studioLinks[] { _key, label, route },
+  showroomLinks[] { _key, label, route },
+  contactLinks[] { _key, label, route },
+  copyrightText
+}`;
