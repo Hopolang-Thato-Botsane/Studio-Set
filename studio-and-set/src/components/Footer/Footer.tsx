@@ -28,7 +28,6 @@ interface FooterProps {
 export default function Footer({ variant, data }: FooterProps) {
   const isStore = variant === 'store';
   
-  // Destructure content, prioritizing Sanity dashboard inputs before utilizing static strings
   const {
     ctaHeading = isStore 
       ? (data?.storeCtaHeading || "COMING SOON\nLorem ipsum dolor sit amet, consectetur adipiscing elit.") 
@@ -51,7 +50,6 @@ export default function Footer({ variant, data }: FooterProps) {
   return (
     <footer className={`${styles.footerWrapper} ${isStore ? styles.storeTheme : styles.marketingTheme}`}>
 
-      {/* FIXED HEIGHT SYSTEM CTA SECTION */}
       <div className={styles.ctaSection}>
         {imageUrl && (
           <Image 
@@ -69,13 +67,11 @@ export default function Footer({ variant, data }: FooterProps) {
           </h2>
           
           {isStore ? (
-            /* STORE VIEW: SUBSCRIPTION BOX LAYOUT */
             <div className={styles.inputGroup}>
               <input type="email" placeholder="Provide Email" className={styles.emailInput} />
               <button className={styles.secureAccessBtn}>{ctaButtonText}</button>
             </div>
           ) : (
-            /* MARKETING VIEW: SINGLE ACCESS NAVIGATION BUTTON */
             <Link href={ctaButtonLink} className={styles.secureAccessBtn}>
               {ctaButtonText}
             </Link>
@@ -83,11 +79,9 @@ export default function Footer({ variant, data }: FooterProps) {
         </div>
       </div>
 
-      {/* LINKS FRAME */}
       <div className={styles.navSection}>
         <div className={styles.linksFlexContainer}>
-          
-          {/* LEFT SIDE BRANDING COLUMN (Strict 354px Width) */}
+
           <div className={styles.brandColumn}>
             <h3>Company</h3>
             <p className={styles.brandParagraph}>
@@ -100,7 +94,6 @@ export default function Footer({ variant, data }: FooterProps) {
             </div>
           </div>
 
-          {/* RIGHT SIDE LINK CHANNELS */}
           <div className={styles.rightColumnsGroup}>
             
             <div className={styles.linkColumn}>
@@ -175,7 +168,6 @@ export default function Footer({ variant, data }: FooterProps) {
 
         <hr className={styles.dividerLine} />
 
-        {/* BASELINE LEGAL TRACK */}
         <div className={styles.subFooter}>
           <span className={styles.copyright}>
             {copyrightText}

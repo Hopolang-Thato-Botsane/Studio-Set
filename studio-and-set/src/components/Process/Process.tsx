@@ -14,7 +14,6 @@ interface ProcessProps {
 
 export default function Process({ steps = [] }: ProcessProps) {
   return (
-    /* Using bracket notation forces a 100% literal match with your original dashed CSS classes */
     <section className={styles['process-container']}>
       <h2 className={styles['process-main-title']}>PROCESS</h2>
       

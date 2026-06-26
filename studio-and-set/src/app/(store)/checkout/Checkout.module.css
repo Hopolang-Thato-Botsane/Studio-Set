@@ -1,6 +1,6 @@
 .pageWrapper {
   width: 100%;
-  background-color: #D9D9D9; /* Light slate grey backdrop matching your upload */
+  background-color: #D9D9D9;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,6 +28,7 @@
   font-weight: 600;
   color: #12141c;
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
 .loginPrompt {
@@ -69,7 +70,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .textInput {
@@ -81,6 +82,7 @@
   font-size: 0.95rem;
   color: #000000;
   outline: none;
+  width: 100%;
   transition: border-color 0.2s ease;
 }
 
@@ -88,7 +90,6 @@
   border-bottom-color: #000000;
 }
 
-/* SHIPPING SELECTORS */
 .shippingSelectorStack {
   display: flex;
   flex-direction: column;
@@ -137,7 +138,6 @@
   color: #000000;
 }
 
-/* TAB SELECTORS */
 .paymentSelectorTabs {
   display: flex;
   gap: 2rem;
@@ -164,7 +164,6 @@
   cursor: not-allowed;
 }
 
-/* RIGHT COLUMN STICKY CONTAINER */
 .rightColumn {
   border-left: 1px solid #9c9c9c;
   padding-left: 4rem;
@@ -202,7 +201,7 @@
 .imagePlaceholderBox {
   width: 100px;
   height: 100px;
-  background-color: #C5A880; /* Perfect match for your mock image palette boxes */
+  background-color: #C5A880;
 }
 
 .productDetailsMetadata {
@@ -265,23 +264,52 @@
   font-weight: 500;
   cursor: pointer;
   text-transform: capitalize;
-  transition: opacity 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .completeOrderButton:hover {
-  opacity: 0.9;
+  background-color: #000000;
 }
 
 @media (max-width: 968px) {
   .checkoutMainContainer {
     grid-template-columns: 1fr;
     gap: 4rem;
-    padding: 3rem 2rem;
+    padding: 3rem 1.5rem;
   }
+  
   .rightColumn {
     border-left: none;
     padding-left: 0;
     position: relative;
     top: 0;
+    border-top: 1px solid #9c9c9c;
+    padding-top: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .mainTitle {
+    font-size: 2.25rem;
+  }
+
+  .inputRow {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .paymentSelectorTabs {
+    gap: 1.25rem;
+  }
+  
+  .checkoutProductCard {
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+  }
+
+  .imagePlaceholderBox {
+    width: 80px;
+    height: 80px;
   }
 }

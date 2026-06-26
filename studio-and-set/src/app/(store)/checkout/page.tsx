@@ -4,7 +4,7 @@ import { useCart } from '@/context/CartContext';
 import { useState } from 'react';
 import Link from 'next/link';
 import Footer from '@/components/Footer/Footer';
-import styles from './checkout.module.css';
+import styles from './Checkout.module.css';
 
 export default function CheckoutPage() {
 

@@ -9,7 +9,7 @@ import styles from './store.module.css';
 export const revalidate = 60;
 
 export default async function StorePage() {
-  // Fire all queries concurrently to clear up data-fetching waterfalls
+
   const [allProducts, footerData, heroData] = await Promise.all([
     client.fetch<any[]>(STORE_PRODUCTS_QUERY).then(res => res || []),
     client.fetch<any>(FOOTER_QUERY),
@@ -19,8 +19,6 @@ export default async function StorePage() {
   const apparel = allProducts.filter((p) => p.category?.toLowerCase() === 'apparel');
   const accessories = allProducts.filter((p) => p.category?.toLowerCase() === 'accessories');
   const props = allProducts.filter((p) => p.category?.toLowerCase() === 'props');
-  
-  // Safe layout fallback if apparel isn't sorted yet
   const displayApparel = apparel.length > 0 ? apparel : allProducts;
 
   return (
@@ -28,8 +26,7 @@ export default async function StorePage() {
       <StoreHero data={heroData} />
 
       <main id="catalog-grid" className={styles.storeBody}>
-        
-        {/* APPAREL SECTION */}
+
         {displayApparel.length > 0 && (
           <section className={styles.catalogSection}>
             <h2 className={styles.sectionHeading}>Apparel</h2>
@@ -49,7 +46,6 @@ export default async function StorePage() {
           </section>
         )}
 
-        {/* ACCESSORIES SECTION */}
         {accessories.length > 0 && (
           <section className={styles.catalogSection}>
             <h2 className={styles.sectionHeading}>Accessories</h2>
@@ -69,7 +65,6 @@ export default async function StorePage() {
           </section>
         )}
 
-        {/* PROPS SECTION */}
         {props.length > 0 && (
           <section className={styles.catalogSection}>
             <h2 className={styles.sectionHeading}>Props</h2>

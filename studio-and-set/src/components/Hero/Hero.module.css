@@ -1,4 +1,3 @@
-/* TIMELINE HEIGHT TRACK (4 slides = 400vh) */
 .timelineContainer {
   position: relative;
   height: 400vh;
@@ -15,7 +14,6 @@
   overflow: hidden;
 }
 
-/* TOP OVERLAY BRANDING HEADER */
 .navHeader {
   position: absolute;
   top: 0;
@@ -52,7 +50,6 @@
   transition: transform 0.2s ease;
 }
 
-/* BACKGROUND LAYERS STACK COHESION */
 .videoStackContainer {
   position: absolute;
   top: 0;
@@ -95,13 +92,11 @@
   z-index: 2;
 }
 
-/* SOLID PREVIEW PALETTES FROM FIGMA ASSIGNED TO FALLBACKS */
 .fallback_0 { background-color: #12141c; }
 .fallback_1 { background-color: #241c18; }
 .fallback_2 { background-color: #1c2026; }
 .fallback_3 { background-color: #18221c; }
 
-/* TYPOGRAPHY PLACEMENT LAYER */
 .contentOverlay {
   position: absolute;
   bottom: 0;
@@ -152,7 +147,6 @@
   opacity: 0.8;
 }
 
-/* OVERLAY MODAL MENUS */
 .menuOverlay {
   position: fixed;
   top: 0;

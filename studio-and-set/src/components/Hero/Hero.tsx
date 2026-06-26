@@ -120,7 +120,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* FULL DROPDOWN INTERACTIVE MENU */}
         <div className={`${styles.menuOverlay} ${isMenuOpen ? styles.menuOpen : ''}`}>
           <button 
             className={styles.closeButton} 
