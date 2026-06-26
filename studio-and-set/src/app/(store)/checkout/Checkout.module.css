@@ -1,0 +1,287 @@
+.pageWrapper {
+  width: 100%;
+  background-color: #D9D9D9; /* Light slate grey backdrop matching your upload */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkoutMainContainer {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 5rem 4rem;
+  gap: 6rem;
+  flex: 1;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainTitle {
+  font-family: var(--font-main, sans-serif);
+  font-size: 3rem;
+  font-weight: 600;
+  color: #12141c;
+  margin: 0;
+}
+
+.loginPrompt {
+  font-family: var(--font-support, sans-serif);
+  color: #4a4a4a;
+  font-size: 0.95rem;
+  margin: 0.5rem 0 3rem 0;
+}
+
+.inlineLink {
+  color: #000000;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.formStructure {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroupHeading {
+  font-family: var(--font-support, sans-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #12141c;
+  letter-spacing: 0.05em;
+  margin: 0 0 1.5rem 0;
+}
+
+.subSectionLabel {
+  font-family: var(--font-support, sans-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2b2b2b;
+  margin: 1.5rem 0 1rem 0;
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.textInput {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #7c7c7c;
+  padding: 0.75rem 0;
+  font-family: var(--font-support, sans-serif);
+  font-size: 0.95rem;
+  color: #000000;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.textInput:focus {
+  border-bottom-color: #000000;
+}
+
+/* SHIPPING SELECTORS */
+.shippingSelectorStack {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #9c9c9c;
+}
+
+.shippingLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #9c9c9c;
+  cursor: pointer;
+}
+
+.radioInputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.radioInputWrapper input[type="radio"] {
+  accent-color: #000000;
+  width: 16px;
+  height: 16px;
+}
+
+.optionTitle {
+  display: block;
+  font-family: var(--font-support, sans-serif);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #000000;
+}
+
+.optionSubtitle {
+  display: block;
+  font-size: 0.8rem;
+  color: #5a5a5a;
+}
+
+.optionPrice {
+  font-family: var(--font-support, sans-serif);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #000000;
+}
+
+/* TAB SELECTORS */
+.paymentSelectorTabs {
+  display: flex;
+  gap: 2rem;
+  border-bottom: 1px solid #9c9c9c;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.activeTab {
+  font-family: var(--font-support, sans-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #000000;
+  border-bottom: 2px solid #000000;
+  padding-bottom: 0.5rem;
+  margin-bottom: -0.6rem;
+  cursor: pointer;
+}
+
+.disabledTab {
+  font-family: var(--font-support, sans-serif);
+  font-size: 0.95rem;
+  color: #7c7c7c;
+  cursor: not-allowed;
+}
+
+/* RIGHT COLUMN STICKY CONTAINER */
+.rightColumn {
+  border-left: 1px solid #9c9c9c;
+  padding-left: 4rem;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 4rem;
+  height: fit-content;
+}
+
+.sidebarHeading {
+  font-family: var(--font-support, sans-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #000000;
+  margin: 0 0 2rem 0;
+}
+
+.cartItemsScrollContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-height: 40vh;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+.checkoutProductCard {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.imagePlaceholderBox {
+  width: 100px;
+  height: 100px;
+  background-color: #C5A880; /* Perfect match for your mock image palette boxes */
+}
+
+.productDetailsMetadata {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.itemBrand {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.itemTitle, .itemSize {
+  font-size: 0.9rem;
+  color: #3a3a3a;
+}
+
+.itemPrice {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000000;
+  margin-top: 0.25rem;
+}
+
+.financialSummaryTable {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.summaryLine {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-support, sans-serif);
+  font-size: 1rem;
+  color: #000000;
+}
+
+.totalDueAmountRow {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-support, sans-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #000000;
+  margin: 1.5rem 0;
+}
+
+.completeOrderButton {
+  width: 100%;
+  background-color: #16181D;
+  color: #ffffff;
+  border: none;
+  padding: 1.25rem;
+  font-family: var(--font-support, sans-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: opacity 0.2s ease;
+}
+
+.completeOrderButton:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 968px) {
+  .checkoutMainContainer {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    padding: 3rem 2rem;
+  }
+  .rightColumn {
+    border-left: none;
+    padding-left: 0;
+    position: relative;
+    top: 0;
+  }
+}
