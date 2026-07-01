@@ -73,16 +73,24 @@
   margin-bottom: 1.25rem;
 }
 
+.inputWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .textInput {
   background: none;
   border: none;
   border-bottom: 1px solid #7c7c7c;
-  padding: 0.75rem 0;
+  padding: 0.75rem 2rem 0.75rem 0;
   font-family: var(--font-support, sans-serif);
   font-size: 0.95rem;
   color: #000000;
   outline: none;
   width: 100%;
+  box-sizing: border-box;
   transition: border-color 0.2s ease;
 }
 

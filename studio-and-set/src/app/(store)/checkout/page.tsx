@@ -29,23 +29,39 @@ export default function CheckoutPage() {
             <h3 className={styles.formGroupHeading}>INFORMATION</h3>
             <h4 className={styles.subSectionLabel}>Personal Information</h4>
             <div className={styles.inputRow}>
-              <input type="text" placeholder="First Name" className={styles.textInput} required />
-              <input type="text" placeholder="Last Name" className={styles.textInput} required />
+              <div className={styles.inputWrapper}>
+                <input type="text" placeholder="First Name" className={styles.textInput} required />
+              </div>
+              <div className={styles.inputWrapper}>
+                <input type="text" placeholder="Last Name" className={styles.textInput} required />
+              </div>
             </div>
             <div className={styles.inputRow}>
-              <input type="tel" placeholder="Number" className={styles.textInput} required />
-              <input type="email" placeholder="Email Address" className={styles.textInput} required />
+              <div className={styles.inputWrapper}>
+                <input type="tel" placeholder="Number" className={styles.textInput} required />
+              </div>
+              <div className={styles.inputWrapper}>
+                <input type="email" placeholder="Email Address" className={styles.textInput} required />
+              </div>
             </div>
 
             {/* SHIPPING DATA BLOCK */}
             <h4 className={styles.subSectionLabel}>Shipping information</h4>
             <div className={styles.inputRow}>
-              <input type="text" placeholder="Country" className={styles.textInput} required />
-              <input type="text" placeholder="City" className={styles.textInput} required />
+              <div className={styles.inputWrapper}>
+                <input type="text" placeholder="Country" className={styles.textInput} required />
+              </div>
+              <div className={styles.inputWrapper}>
+                <input type="text" placeholder="City" className={styles.textInput} required />
+              </div>
             </div>
             <div className={styles.inputRow}>
-              <input type="text" placeholder="Address" className={styles.textInput} required />
-              <input type="text" placeholder="Zip/Postal Code" className={styles.textInput} required />
+              <div className={styles.inputWrapper}>
+                <input type="text" placeholder="Address" className={styles.textInput} required />
+              </div>
+              <div className={styles.inputWrapper}>
+                <input type="text" placeholder="Zip/Postal Code" className={styles.textInput} required />
+              </div>
             </div>
 
             {/* DELIVERY SPEED METHOD SELECTION BLOCK */}
@@ -109,12 +125,48 @@ export default function CheckoutPage() {
             </div>
 
             <div className={styles.inputRow}>
-              <input type="text" placeholder="Card Number" className={styles.textInput} required />
-              <input type="text" placeholder="Cardholder Name" className={styles.textInput} required />
+              <div className={styles.inputWrapper}>
+                <input 
+                  type="text" 
+                  placeholder="Card Number" 
+                  className={styles.textInput} 
+                  autoComplete="off"
+                  data-lpignore="true"
+                  required 
+                />
+              </div>
+              <div className={styles.inputWrapper}>
+                <input 
+                  type="text" 
+                  placeholder="Cardholder Name" 
+                  className={styles.textInput} 
+                  autoComplete="off"
+                  data-lpignore="true"
+                  required 
+                />
+              </div>
             </div>
             <div className={styles.inputRow}>
-              <input type="text" placeholder="Expiration Date (MM/YY)" className={styles.textInput} required />
-              <input type="text" placeholder="CVV Number" className={styles.textInput} required />
+              <div className={styles.inputWrapper}>
+                <input 
+                  type="text" 
+                  placeholder="Expiration Date (MM/YY)" 
+                  className={styles.textInput} 
+                  autoComplete="off"
+                  data-lpignore="true"
+                  required 
+                />
+              </div>
+              <div className={styles.inputWrapper}>
+                <input 
+                  type="text" 
+                  placeholder="CVV Number" 
+                  className={styles.textInput} 
+                  autoComplete="off"
+                  data-lpignore="true"
+                  required 
+                />
+              </div>
             </div>
           </form>
         </div>
@@ -124,7 +176,6 @@ export default function CheckoutPage() {
           <h2 className={styles.sidebarHeading}>Shopping Cart</h2>
           
           <div className={styles.cartItemsScrollContainer}>
-            {/* Dynamic fallback render loop matching your layout style */}
             {(cartItems && cartItems.length > 0 ? cartItems : [1, 2, 3]).map((item: any, idx: number) => (
               <div key={item._id || idx} className={styles.checkoutProductCard}>
                 <div className={styles.imagePlaceholderBox} />
@@ -138,7 +189,6 @@ export default function CheckoutPage() {
             ))}
           </div>
 
-          {/* TOTALS WRAPPER MATRICES */}
           <div className={styles.financialSummaryTable}>
             <div className={styles.summaryLine}>
               <span>Subtotal:</span>
