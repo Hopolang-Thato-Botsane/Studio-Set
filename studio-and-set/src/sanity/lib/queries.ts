@@ -40,12 +40,14 @@ export async function getProjects() {
 
 export async function getStorefrontPreview() {
 
-  const query = `*[_type == "product"] | order(_createdAt desc)[0...3] {
+  const query = `*[_type == "merchProduct"] | order(_createdAt desc)[0...3] {
     "id": _id,
     "brand": coalesce(brandName, "Studio&Set"),
     title,
     price,
-    "imageUrl": productImage.asset->url
+    "imageUrl": productImage.asset->url,
+    "iconUrl": productIcon.asset->url,
+    sizes
   }`;
 
   const products = await client.fetch(query);
@@ -58,6 +60,9 @@ export async function getFooterConfiguration() {
     ctaButtonText,
     ctaButtonLink,
     "imageUrl": bannerImage.asset->url,
+    storeCtaHeading,
+    storeCtaButtonText,
+    "storeImageUrl": storeBannerImage.asset->url,
     studioLinks[] { _key, label, route },
     showroomLinks[] { _key, label, route },
     contactLinks[] { _key, label, route },
@@ -65,3 +70,36 @@ export async function getFooterConfiguration() {
   }`;
   return await client.fetch(query);
 }
+
+// Store
+
+export const STORE_PRODUCTS_QUERY = `*[_type == "product"] {
+  _id,
+  brand,
+  title,
+  price,
+  productImage,
+  "iconUrl": productIcon.asset->url,
+  category,
+  sizes
+}`;
+
+export const STORE_HERO_QUERY = `*[_type == "storeHero"][0] {
+  title,
+  description,
+  "imageUrl": backgroundImage.asset->url
+}`;
+
+export const FOOTER_QUERY = `*[_type == "footerConfig"][0] {
+  ctaHeading,
+  ctaButtonText,
+  ctaButtonLink,
+  "imageUrl": bannerImage.asset->url,
+  storeCtaHeading,
+  storeCtaButtonText,
+  "storeImageUrl": storeBannerImage.asset->url,
+  studioLinks[] { _key, label, route },
+  showroomLinks[] { _key, label, route },
+  contactLinks[] { _key, label, route },
+  copyrightText
+}`;

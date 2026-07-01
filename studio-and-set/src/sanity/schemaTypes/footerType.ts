@@ -5,34 +5,56 @@ export const footerType = defineType({
   title: 'Global Footer Configuration',
   type: 'document',
   fields: [
+    /* --- MARKETING VARIANT FIELDS --- */
     defineField({
       name: 'ctaHeading',
-      title: 'CTA Board Heading',
+      title: 'Marketing CTA Heading',
       type: 'string',
       initialValue: 'Apply for access to the Studio & Set ecosystem',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'ctaButtonText',
-      title: 'CTA Button Label',
+      title: 'Marketing CTA Button Label',
       type: 'string',
       initialValue: 'Secure Access',
     }),
     defineField({
       name: 'ctaButtonLink',
-      title: 'CTA Button Destination Route',
+      title: 'Marketing CTA Button Route',
       type: 'string',
       initialValue: '/request-access',
     }),
     defineField({
       name: 'bannerImage',
-      title: 'CTA Board Background Image',
+      title: 'Marketing Background Image',
       type: 'image',
       options: { hotspot: true },
     }),
+
+    /* --- CAPSULE STORE VARIANT FIELDS --- */
+    defineField({
+      name: 'storeCtaHeading',
+      title: 'Store CTA Heading',
+      type: 'string',
+      initialValue: 'COMING SOON\nSign up to stay updated.',
+    }),
+    defineField({
+      name: 'storeCtaButtonText',
+      title: 'Store Button Label',
+      type: 'string',
+      initialValue: 'Stay Tuned In',
+    }),
+    defineField({
+      name: 'storeBannerImage',
+      title: 'Store Background Image',
+      type: 'image',
+      options: { hotspot: true },
+    }),
+
+    /* --- SHARED LINK LISTS --- */
     defineField({
       name: 'studioLinks',
-      title: 'Studio Category Links',
+      title: 'Studio/Orders Links (Column 1)',
       type: 'array',
       of: [
         {
@@ -46,7 +68,7 @@ export const footerType = defineType({
     }),
     defineField({
       name: 'showroomLinks',
-      title: 'Showroom Category Links',
+      title: 'Showroom/Shop Links (Column 2)',
       type: 'array',
       of: [
         {
@@ -60,7 +82,7 @@ export const footerType = defineType({
     }),
     defineField({
       name: 'contactLinks',
-      title: 'Contact Category Links',
+      title: 'Contact Links (Column 3)',
       type: 'array',
       of: [
         {
@@ -73,24 +95,10 @@ export const footerType = defineType({
       ],
     }),
     defineField({
-    name: 'copyrightText',
-    title: 'Copyright Label Statement',
-    type: 'string',
-    initialValue: '© Studio&Set. 2026.',
+      name: 'copyrightText',
+      title: 'Copyright Label Statement',
+      type: 'string',
+      initialValue: '© Studio&Set. 2026.',
     }),
-    defineField({
-    name: 'legalLinks',
-    title: 'Baseline Legal Links (Bottom Right)',
-    type: 'array',
-    of: [
-        {
-        type: 'object',
-        fields: [
-            { name: 'label', title: 'Link Label', type: 'string' },
-            { name: 'route', title: 'Target Route Link', type: 'string' }
-        ]
-        }
-    ],
-    })
   ],
 });

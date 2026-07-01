@@ -1,0 +1,45 @@
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #cbb489;
+  scroll-snap-type: y proximity; 
+  overflow-y: auto;
+}
+
+.storeBody {
+  width: 100%;
+  flex: 1;
+  padding: 4rem 2rem;
+  scroll-snap-align: start;
+}
+.catalogSection {
+  margin-bottom: 5rem;
+}
+
+.sectionHeading {
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 3rem 2rem;
+}
+
+@media (min-width: 640px) {
+  .productGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .productGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

@@ -15,9 +15,9 @@
   margin: 0;
 }
 
-html {
-  scroll-behavior: smooth;
+main {
   scroll-snap-type: y mandatory;
+  width: 100%;
 }
 
 main > section, 

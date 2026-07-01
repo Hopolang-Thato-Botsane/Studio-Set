@@ -1,0 +1,13 @@
+.homeViewportContainer {
+  width: 100%;
+  position: relative;
+  background-color: #12141c;
+  overflow-x: clip; 
+}
+
+.mainContentBody {
+  position: relative;
+  z-index: 20; 
+  width: 100%;
+  background-color: #12141c; 
+}
