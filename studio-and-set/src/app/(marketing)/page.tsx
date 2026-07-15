@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer/Footer';
 import styles from './page.module.css';
 import Hero from '@/components/Hero/Hero';
 import Reviews from '@/components/Reviews/Reviews';
@@ -10,6 +11,7 @@ export default async function Home() {
       <Hero/>
       <ScoutAI/>
       <Reviews/>
+      <Footer/>
     </div>
   );
 }
