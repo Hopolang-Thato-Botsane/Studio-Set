@@ -1,5 +1,3 @@
-// src/data/reviews.ts
-
 export interface Review {
   id: number;
   company: string;

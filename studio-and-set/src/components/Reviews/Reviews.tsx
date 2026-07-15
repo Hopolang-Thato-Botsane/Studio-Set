@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { reviews } from './ReviewsData'; // Adjust import path if needed
+import { reviews } from './ReviewsData';
 import styles from "./Reviews.module.css"
 
 export default function Reviews() {
