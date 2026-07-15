@@ -1,151 +1,52 @@
-'use client';
-
-import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
 import styles from './Hero.module.css';
 
-interface HeroSlide {
-  title: string;
-  subtitle: string;
-  trailerUrl?: string;
-  videoUrl?: string;
-}
-
-const DEFAULT_SLIDES: HeroSlide[] = [
-  { 
-    title: "Studio & Set", 
-    subtitle: "Home of Film Equipment Rental" 
-  },
-  { 
-    title: "Project 1", 
-    subtitle: "Home of Film Equipment Rental",
-    trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-  },
-  { 
-    title: "Project 2", 
-    subtitle: "Home of Film Equipment Rental",
-    trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-  },
-  { 
-    title: "Project 3", 
-    subtitle: "Home of Film Equipment Rental",
-    trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-  }
-];
-
 export default function Hero() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const totalHeight = rect.height - window.innerHeight;
-      const scrolled = Math.max(0, -rect.top);
-      
-      if (totalHeight <= 0) return;
-      
-      const percentage = scrolled / totalHeight;
-      const index = Math.min(
-        DEFAULT_SLIDES.length - 1,
-        Math.floor(percentage * DEFAULT_SLIDES.length)
-      );
-      
-      setActiveSlideIndex(index);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const currentSlide = DEFAULT_SLIDES[activeSlideIndex];
-
   return (
-    <div ref={containerRef} className={styles.timelineContainer}>
-      <div className={styles.stickyViewport}>
-        
-        {/* TOP NAVIGATION BAR OVERLAY */}
-        <header className={styles.navHeader}>
-          <span className={styles.logoText}>Studio&Set</span>
-          <button 
-            className={styles.burgerButton} 
-            onClick={() => setIsMenuOpen(true)}
-            aria-label="Open Menu"
-          >
-            <div className={styles.burgerLine} />
-            <div className={styles.burgerLine} />
-            <div className={styles.burgerLine} />
-          </button>
-        </header>
+    <section className={styles.heroSection}>
+      {/* Top Header Row */}
+      <header className={styles.header}>
+        <div className={styles.logo}>STUDIO&SET</div>
+        <button className={styles.accountButton}>Account</button>
+      </header>
 
-        {/* CINEMATIC LAYERS BACKGROUND STACK */}
-        <div className={styles.videoStackContainer}>
-          {DEFAULT_SLIDES.map((slide, idx) => (
-            <div 
-              key={idx} 
-              className={`${styles.videoLayer} ${idx === activeSlideIndex ? styles.layerActive : ''}`}
-            >
-              <div className={styles.darkOverlay} />
-              {slide.videoUrl ? (
-                <video src={slide.videoUrl} autoPlay loop muted playsInline className={styles.bgVideo} />
-              ) : (
-                <div className={`${styles.videoFallbackImage} ${styles[`fallback_${idx}`]}`} />
-              )}
-            </div>
-          ))}
+      {/* Main Copy & Action Buttons */}
+      <div className={styles.contentArea}>
+        <span className={styles.subtitle}>CREW & EQUIPMENT HIRE SPECIALISTS</span>
+        <h1 className={styles.title}>
+          The premier choice for production crews and curated film equipment rentals in Southern Africa now powered power with AI search
+        </h1>
+        <div className={styles.buttonGroup}>
+          <button className={styles.btnPrimary}>Register as crew</button>
+          <button className={styles.btnSecondary}>Register as studio</button>
         </div>
-
-        {/* FIXED ACCENT TEXT LAYOUT */}
-        <div className={styles.contentOverlay}>
-          <div className={styles.textContainer}>
-            <h1 className={styles.heroTitle}>
-              {currentSlide.title}
-            </h1>
-            <p className={styles.heroSubtitle}>
-              {currentSlide.subtitle}
-            </p>
-            
-            {currentSlide.trailerUrl && (
-              <a 
-                href={currentSlide.trailerUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className={styles.trailerButton}
-              >
-                Watch Trailer
-              </a>
-            )}
-          </div>
-        </div>
-
-        <div className={`${styles.menuOverlay} ${isMenuOpen ? styles.menuOpen : ''}`}>
-          <button 
-            className={styles.closeButton} 
-            onClick={() => setIsMenuOpen(false)}
-            aria-label="Close Menu"
-          >
-            X
-          </button>
-          
-          <nav className={styles.overlayNav}>
-            <Link href="/" className={`${styles.navLink} ${styles.activeLink}`} onClick={() => setIsMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link href="/store" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
-              STORE
-            </Link>
-            <Link href="/request-access" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
-              REQUEST ACCESS
-            </Link>
-            <Link href="/contact" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
-              CONTACT
-            </Link>
-          </nav>
-        </div>
-
       </div>
-    </div>
+
+      {/* Sleek, Static Brands Footer */}
+      <footer className={styles.logoFooter}>
+        <div className={styles.divider} />
+        <div className={styles.logoRow}>
+          {/* Aputure */}
+          <svg className={styles.brandLogo} viewBox="0 0 100 24" fill="var(--color-cream)">
+            <text x="0" y="18" fontFamily="var(--font-support)" fontWeight="bold" fontSize="18" letterSpacing="2">Aputure</text>
+          </svg>
+          
+          {/* ARRI */}
+          <svg className={styles.brandLogo} viewBox="0 0 100 24" fill="#006BB6">
+            <text x="0" y="18" fontFamily="var(--font-support)" fontWeight="900" fontSize="20" letterSpacing="1">ARRI</text>
+          </svg>
+
+          {/* SONY */}
+          <svg className={styles.brandLogo} viewBox="0 0 100 24" fill="var(--color-cream)">
+            <text x="0" y="18" fontFamily="var(--font-support)" fontWeight="bold" fontSize="16" letterSpacing="6">SONY</text>
+          </svg>
+
+          {/* Manfrotto */}
+          <svg className={styles.brandLogo} viewBox="0 0 120 24" fill="var(--color-cream)">
+            <circle cx="10" cy="12" r="6" fill="#E2231A" />
+            <text x="25" y="18" fontFamily="var(--font-support)" fontWeight="bold" fontSize="14" letterSpacing="1">Manfrotto</text>
+          </svg>
+        </div>
+      </footer>
+    </section>
   );
 }

@@ -1,26 +1,18 @@
-// src/app/layout.tsx
+// src/app/(marketing)/layout.tsx
 
-import type { Metadata } from 'next';
 import { CartProvider } from '@/context/CartContext';
-import './globals.css';
 
-export const metadata: Metadata = {
-  title: 'Studio & Set',
-  description: 'Inventory for the Unforgiving',
-};
-
-export default function RootLayout({
-  children,
-}: {
+interface MarketingLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default function MarketingLayout({ children }: MarketingLayoutProps) {
   return (
-    <html lang="en">
-      <body>
-        <CartProvider>
-          {children}
-        </CartProvider>
-      </body>
-    </html>
+    <div className="marketing-shell">
+      {/* This wraps ONLY your marketing & store pages in the Cart State */}
+      <CartProvider>
+        {children}
+      </CartProvider>
+    </div>
   );
 }
