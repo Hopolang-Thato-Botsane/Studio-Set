@@ -1,5 +1,3 @@
-/* Hero.module.css */
-
 .heroSection {
   position: relative;
   width: 100%;
@@ -15,7 +13,6 @@
   overflow: hidden;
 }
 
-/* Header Navigation Row */
 .header {
   display: flex;
   justify-content: space-between;
@@ -27,7 +24,6 @@
 .logo {
   font-family: var(--font-main);
   font-weight: 800;
-  /* Scales between 1.25rem (mobile) and 1.75rem (desktop) */
   font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
   text-transform: uppercase;
   letter-spacing: -0.05em;
@@ -36,7 +32,6 @@
 
 .accountButton {
   font-family: var(--font-support);
-  /* Scales between 0.8rem (mobile) and 0.95rem (desktop) */
   font-size: clamp(0.8rem, 0.75rem + 0.25vw, 0.95rem);
   font-weight: 500;
   background-color: var(--color-maroon);
@@ -52,14 +47,13 @@
   opacity: 0.9;
 }
 
-/* Hero Content Area */
 .contentArea {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  max-width: clamp(600px, 60vw, 1000px); /* Restricts the max text width on huge monitors */
+  max-width: clamp(600px, 60vw, 1000px);
   margin: auto;
   z-index: 10;
   padding: 2rem 0;
@@ -67,7 +61,6 @@
 
 .subtitle {
   font-family: var(--font-support);
-  /* Scales between 0.7rem and 0.85rem with letter spacing */
   font-size: clamp(0.7rem, 0.65rem + 0.25vw, 0.85rem);
   font-weight: 600;
   letter-spacing: 0.25em;
@@ -79,8 +72,6 @@
 
 .title {
   font-family: var(--font-main);
-  /* FLUID TYPOGRAPHY: Scales naturally with the screen size.
-     Min: 1.75rem, Ideal: 3vw (3% of viewport width), Max: 2.75rem */
   font-size: clamp(1.75rem, 3vw, 2.75rem);
   font-weight: 500;
   line-height: 1.3;
@@ -119,7 +110,6 @@
   opacity: 0.95;
 }
 
-/* Static Logo Footer Area */
 .logoFooter {
   width: 100%;
   z-index: 10;
@@ -146,7 +136,6 @@
 }
 
 .brandLogo {
-  /* Dynamic logo height that scales gently on larger displays */
   height: clamp(18px, 1.5vw, 28px);
   opacity: 0.75;
   transition: opacity 0.2s ease;
@@ -156,7 +145,6 @@
   opacity: 1;
 }
 
-/* Responsiveness adjustments */
 @media (max-width: 768px) {
   .heroSection {
     padding: 1.5rem;

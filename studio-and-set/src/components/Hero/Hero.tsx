@@ -3,13 +3,12 @@ import styles from './Hero.module.css';
 export default function Hero() {
   return (
     <section className={styles.heroSection}>
-      {/* Top Header Row */}
+
       <header className={styles.header}>
         <div className={styles.logo}>STUDIO&SET</div>
         <button className={styles.accountButton}>Account</button>
       </header>
 
-      {/* Main Copy & Action Buttons */}
       <div className={styles.contentArea}>
         <span className={styles.subtitle}>CREW & EQUIPMENT HIRE SPECIALISTS</span>
         <h1 className={styles.title}>
@@ -21,7 +20,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Sleek, Static Brands Footer */}
       <footer className={styles.logoFooter}>
         <div className={styles.divider} />
         <div className={styles.logoRow}>
