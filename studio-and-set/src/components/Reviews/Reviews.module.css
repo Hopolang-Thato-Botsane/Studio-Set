@@ -1,0 +1,115 @@
+/* Reviews.module.css */
+
+.section {
+  width: 100%;
+  height: 100vh; /* Perfectly locked to viewport height for snappy scroll */
+  background-color: var(--color-cream); /* Matching Scout AI solid cream backdrop */
+  padding: 2rem clamp(2rem, 8vw, 10rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Slider Layout Wrapper */
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  gap: 3rem;
+}
+
+/* Center Content block */
+.contentArea {
+  flex-grow: 1;
+  max-width: 800px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.75rem;
+  min-height: 320px; /* Prevents layout height shifting on slide change */
+}
+
+.company {
+  font-family: var(--font-main);
+  font-size: clamp(1.2rem, 1.8vw, 1.75rem);
+  font-weight: 600;
+  color: var(--color-maroon);
+  letter-spacing: -0.02em;
+}
+
+.quote {
+  font-family: var(--font-support);
+  /* Perfect fluid font size that doesn't overwhelm smaller laptop screens */
+  font-size: clamp(1.05rem, 1.4vw, 1.5rem);
+  line-height: 1.6;
+  color: var(--color-maroon);
+  font-weight: 400;
+  opacity: 0.95;
+}
+
+.author {
+  font-family: var(--font-main);
+  font-size: clamp(1rem, 1.3vw, 1.3rem);
+  font-weight: 600;
+  color: var(--color-maroon);
+  margin-top: 0.5rem;
+}
+
+/* Navigation Arrow Buttons */
+.navButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border-radius: 50%;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Arrow SVGs */
+.arrowIcon {
+  width: clamp(24px, 3vw, 32px);
+  height: clamp(24px, 3vw, 32px);
+  fill: var(--color-maroon);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  opacity: 0.85;
+}
+
+/* Elegant custom hover state from your screenshots */
+.navButton:hover .arrowIcon {
+  opacity: 1;
+  transform: scale(1.18);
+}
+
+.navButton:active .arrowIcon {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 1.5rem;
+  }
+  
+  .carouselContainer {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+  
+  .navRow {
+    display: flex;
+    gap: 3rem;
+  }
+  
+  .contentArea {
+    min-height: 380px;
+  }
+}
