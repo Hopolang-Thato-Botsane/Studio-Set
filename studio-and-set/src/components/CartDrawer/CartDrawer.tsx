@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { useCart } from '@/context/CartContext';
 import styles from './cartDrawer.module.css';
 
