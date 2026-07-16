@@ -4,6 +4,8 @@ import ScoutAI from '@/components/ScoutAI/ScoutAI';
 import Reviews from '@/components/Reviews/Reviews';
 import Footer from '@/components/Footer/Footer';
 import Process from '@/components/Process/Process';
+import StoreSection from '@/components/StoreSection/StoreSection';
+
 
 export default async function Home() {
 
@@ -13,6 +15,7 @@ export default async function Home() {
       <ScoutAI/>
       <Process/>
       <Reviews/>
+      <StoreSection/>
       <Footer/>
     </div>
   );
