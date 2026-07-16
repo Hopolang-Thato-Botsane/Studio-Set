@@ -1,18 +1,34 @@
-// src/app/(marketing)/layout.tsx
+import React from 'react';
+import { Syne, Inter } from 'next/font/google';
+import './globals.css';
 
-import { CartProvider } from '@/context/CartContext';
+const syne = Syne({
+  subsets: ['latin'],
+  weight: ['700', '800'], 
+  variable: '--font-main',
+});
 
-interface MarketingLayoutProps {
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-support',
+});
+
+export const metadata = {
+  title: 'Studio & Set',
+  description: 'Built for the Crew. Not the Runway.',
+};
+
+export default function RootLayout({
+  children,
+}: {
   children: React.ReactNode;
-}
-
-export default function MarketingLayout({ children }: MarketingLayoutProps) {
+}) {
   return (
-    <div className="marketing-shell">
-      {/* This wraps ONLY your marketing & store pages in the Cart State */}
-      <CartProvider>
+    <html lang="en" className={`${syne.variable} ${inter.variable}`}>
+      <body>
         {children}
-      </CartProvider>
-    </div>
+      </body>
+    </html>
   );
 }
