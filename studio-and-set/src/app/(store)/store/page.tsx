@@ -1,19 +1,19 @@
-// src/app/(store)/store/page.tsx
 import React from 'react';
 import StoreHero from '@/components/StoreHero/StoreHero';
 import styles from './store.module.css';
 import ProductGrid from '@/components/ProductGrid/ProductGrid'
+import StoreFooter from '@/components/StoreFooter/StoreFooter'
 
 export default function StorePage() {
   return (
     <main className={styles.storeContainer}>
-      {/* Self-contained cinematic section with snap-alignment */}
       <StoreHero />
       
-      {/* Next scroll snap point section */}
       <section className={styles.productGridSection}>
         <ProductGrid />
       </section>
+
+      <StoreFooter/>
     </main>
   );
 }
