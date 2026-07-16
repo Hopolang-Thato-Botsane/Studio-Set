@@ -2,6 +2,7 @@
 import React from 'react';
 import StoreHero from '@/components/StoreHero/StoreHero';
 import styles from './store.module.css';
+import ProductGrid from '@/components/ProductGrid/ProductGrid'
 
 export default function StorePage() {
   return (
@@ -11,7 +12,7 @@ export default function StorePage() {
       
       {/* Next scroll snap point section */}
       <section className={styles.productGridSection}>
-        {/* We'll load the 3 B2C production apparel cards in here */}
+        <ProductGrid />
       </section>
     </main>
   );
