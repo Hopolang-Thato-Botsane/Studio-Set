@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import { products, Product } from '../ProductCard/ProductsData';
 import ProductCard from '../ProductCard/ProductCard';
-import ProductDetailsDrawer, { CartItem } from '../ProductDetailsDrawer/ProductsDetailsDrawer';
+import ProductDetailsDrawer from '../ProductDetailsDrawer/ProductsDetailsDrawer';
+import { useCart } from '@/context/CartContext';
 import styles from './StoreSection.module.css';
 
 interface StoreSectionProps {
@@ -13,10 +14,14 @@ interface StoreSectionProps {
 export default function StoreSection({ onNavigateToFullStore }: StoreSectionProps) {
   const [drawerState, setDrawerState] = useState<'closed' | 'details' | 'cart'>('closed');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  
+  // Connect cleanly to your global cart context state
+  const { cart, addToCart, updateQuantity } = useCart();
 
   const featuredProducts = products.filter((product) => product.featured);
-  const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  
+  // Calculate item totals using the real global state
+  const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
   const hasCartItems = cartItemCount > 0;
 
   const handleOpenDetails = (productId: string) => {
@@ -35,29 +40,22 @@ export default function StoreSection({ onNavigateToFullStore }: StoreSectionProp
     setDrawerState('closed');
   };
 
-  const handleAddToCart = (newItem: Omit<CartItem, 'id'>) => {
-    const selectionId = `${newItem.product.id}-${newItem.selectedSize}-${newItem.selectedColor}-${newItem.selectedGender}`;
-
-    setCartItems((prevItems) => {
-      const existingItemIndex = prevItems.findIndex(item => item.id === selectionId);
-
-      if (existingItemIndex > -1) {
-        const updated = [...prevItems];
-        updated[existingItemIndex].quantity += newItem.quantity;
-        return updated;
-      } else {
-        return [...prevItems, { ...newItem, id: selectionId }];
-      }
+  const handleAddToCart = (newItem: any) => {
+    addToCart({
+      id: newItem.product.id,
+      title: newItem.product.title,
+      brand: newItem.product.brand || 'Studio & Set',
+      price: newItem.product.price,
+      imageUrl: newItem.product.imageUrl || '',
+      size: newItem.selectedSize,
     });
   };
 
   const handleUpdateCartQty = (id: string, newQty: number) => {
-    if (newQty <= 0) {
-      setCartItems(prev => prev.filter(item => item.id !== id));
-    } else {
-      setCartItems(prev =>
-        prev.map(item => (item.id === id ? { ...item, quantity: newQty } : item))
-      );
+    const item = cart.find(i => i.id === id);
+    if (item) {
+      const delta = newQty - item.quantity;
+      updateQuantity(id, item.size, delta);
     }
   };
 
@@ -94,7 +92,7 @@ export default function StoreSection({ onNavigateToFullStore }: StoreSectionProp
       <ProductDetailsDrawer
         product={selectedProduct}
         drawerState={drawerState}
-        cartItems={cartItems}
+        cartItems={cart as any}
         onClose={handleCloseDrawer}
         onNavigateToCart={() => setDrawerState('cart')}
         onNavigateToDetails={() => setDrawerState('details')}

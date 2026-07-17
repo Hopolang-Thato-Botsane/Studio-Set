@@ -84,6 +84,7 @@
 .itemsList::-webkit-scrollbar {
   display: none;
 }
+
 .itemsList {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -172,8 +173,9 @@
 .infoSidebar::-webkit-scrollbar {
   display: none;
 }
+
 .infoSidebar {
-  -ms-overflow-style: none; /
+  -ms-overflow-style: none;
   scrollbar-width: none;
 }
 

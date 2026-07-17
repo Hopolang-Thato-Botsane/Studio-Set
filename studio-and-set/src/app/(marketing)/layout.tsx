@@ -23,17 +23,14 @@ export const metadata: Metadata = {
   description: 'Inventory for the Unforgiving',
 };
 
-export default function RootLayout({
+export default function MarketingLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    // 3. This injects both font variables into the root HTML tag
-    <html lang="en" className={`${syne.variable} ${inter.variable}`}>
-      <body>
-        {children}
-      </body>
-    </html>
+    <div className="marketing-layout-wrapper">
+      {children}
+    </div>
   );
 }

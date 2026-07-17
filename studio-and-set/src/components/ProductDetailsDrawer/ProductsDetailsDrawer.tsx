@@ -1,230 +1,194 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Product } from '../ProductCard/ProductsData';
+import React from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './ProductDetailsDrawer.module.css';
 
-export interface CartItem {
+export interface DrawerCartItem {
   id: string;
-  product: Product;
+  title: string;
+  brand: string;
+  price: number;
+  imageUrl: string;
+  size: string;
   quantity: number;
-  selectedSize: string;
-  selectedColor: string;
-  selectedGender: string;
 }
 
 interface ProductDetailsDrawerProps {
-  product: Product | null;
+  product: any;
   drawerState: 'closed' | 'details' | 'cart';
-  cartItems: CartItem[];
+  cartItems: DrawerCartItem[];
   onClose: () => void;
   onNavigateToCart: () => void;
   onNavigateToDetails: () => void;
-  onAddToCart: (item: Omit<CartItem, 'id'>) => void;
+  onAddToCart: (item: { product: any; selectedSize: string }) => void;
   onUpdateCartQty: (id: string, newQty: number) => void;
 }
 
 export default function ProductDetailsDrawer({
   product,
   drawerState,
-  cartItems,
+  cartItems = [],
   onClose,
   onNavigateToCart,
   onNavigateToDetails,
   onAddToCart,
-  onUpdateCartQty
+  onUpdateCartQty,
 }: ProductDetailsDrawerProps) {
-  // Details Option States
-  const [selectedGender, setSelectedGender] = useState<'MALE' | 'FEMALE'>('MALE');
-  const [selectedSize, setSelectedSize] = useState<string>('');
-  const [selectedColor, setSelectedColor] = useState<string>('');
-  const [detailQty, setDetailQty] = useState<number>(1);
+  const router = useRouter();
+  const [selectedSize, setSelectedSize] = React.useState<string>('');
 
-  useEffect(() => {
-    if (product) {
-      setSelectedSize(product.sizes[0] || '');
-      setSelectedColor(product.colors[0]?.name || 'Slick Black');
-      setDetailQty(1);
+  // 1. Hook declared at the top level unconditionally
+  React.useEffect(() => {
+    if (product && product.sizes && product.sizes.length > 0 && !selectedSize) {
+      setSelectedSize(product.sizes[0]);
     }
-  }, [product]);
+  }, [product, selectedSize]);
 
+  // 2. Early return must ALWAYS come AFTER all hook declarations
   if (drawerState === 'closed') return null;
 
-  const handleAddQty = () => setDetailQty(p => p + 1);
-  const handleSubQty = () => setDetailQty(p => (p > 1 ? p - 1 : 1));
-
-  const handleAddToCartClick = () => {
-    if (!product) return;
-    onAddToCart({
-      product,
-      quantity: detailQty,
-      selectedSize,
-      selectedColor,
-      selectedGender
-    });
-
-    onNavigateToCart();
-  };
-
-  const cartTotal = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  // Calculate totals safely
+  const cartTotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
-    <>
-      <div className={styles.backdrop} onClick={onClose} />
-
-      <div className={styles.drawer}>
+    <div className={styles.backdrop} onClick={onClose}>
+      <div className={styles.drawer} onClick={(e) => e.stopPropagation()}>
+        
         <div className={styles.header}>
-          <span className={styles.headerTitle}>
-            {drawerState === 'details' ? 'Available Options' : 'Your Cart'}
-          </span>
-          <button className={styles.closeBtn} onClick={onClose} aria-label="Close panel">✕</button>
+          <h2 className={styles.headerTitle}>
+            {drawerState === 'details' ? 'Product Details' : 'Your Basket'}
+          </h2>
+          <button className={styles.closeBtn} onClick={onClose} aria-label="Close details drawer">
+            ✕
+          </button>
         </div>
 
-        {drawerState === 'details' && product && (
+        {drawerState === 'details' && product ? (
           <div className={styles.scrollableContent}>
             <div className={styles.heroImageContainer}>
-              <img src={product.image} alt={product.name} className={styles.heroImage} />
+              <img 
+                src={product.imageUrl} 
+                alt={product.title} 
+                className={styles.heroImage} 
+              />
             </div>
-
             <div className={styles.detailsContent}>
-              <h2 className={styles.productName}>{product.name}</h2>
+              <span className={styles.label}>{product.brand || 'Studio & Set'}</span>
+              <h3 className={styles.productName}>{product.title}</h3>
+              <p className={styles.taxNotice}>{product.description}</p>
               <span className={styles.price}>R {product.price}</span>
-              <span className={styles.taxNotice}>Tax Included. Shipping Calculated At Checkout</span>
 
-              <div className={styles.reviewsRow}>
-                <span className={styles.stars}>★★★★★</span>
-                <span className={styles.reviewCount}>10 Reviews</span>
-              </div>
-
-              <div className={styles.optionsBlock}>
-                <span className={styles.label}>Gender:</span>
-                <div className={styles.genderRow}>
-                  <button 
-                    className={`${styles.toggleBtn} ${selectedGender === 'MALE' ? styles.toggleBtnActive : ''}`}
-                    onClick={() => setSelectedGender('MALE')}
-                  >
-                    MALE
-                  </button>
-                  <button 
-                    className={`${styles.toggleBtn} ${selectedGender === 'FEMALE' ? styles.toggleBtnActive : ''}`}
-                    onClick={() => setSelectedGender('FEMALE')}
-                  >
-                    FEMALE
-                  </button>
+              {product.sizes && (
+                <div className={styles.optionsBlock}>
+                  <span className={styles.label}>Select Size:</span>
+                  <div className={styles.sizesRow}>
+                    {product.sizes.map((size: string) => (
+                      <button
+                        key={size}
+                        type="button"
+                        onClick={() => setSelectedSize(size)}
+                        className={`${styles.sizeBtn} ${selectedSize === size ? styles.sizeBtnActive : ''}`}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-
-              <div className={styles.optionsBlock}>
-                <span className={styles.label}>Sizes:</span>
-                <div className={styles.sizesRow}>
-                  {product.sizes.map(size => (
-                    <button
-                      key={size}
-                      className={`${styles.sizeBtn} ${selectedSize === size ? styles.sizeBtnActive : ''}`}
-                      onClick={() => setSelectedSize(size)}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className={styles.optionsBlock}>
-                <span className={styles.label}>Colours:</span>
-                <div className={styles.colorsRow}>
-                  {product.colors.map(color => (
-                    <button
-                      key={color.name}
-                      className={`${styles.colorSwatch} ${selectedColor === color.name ? styles.colorSwatchActive : ''}`}
-                      style={{ backgroundColor: color.hex }}
-                      onClick={() => setSelectedColor(color.name)}
-                      title={color.name}
-                    />
-                  ))}
-                </div>
-              </div>
+              )}
 
               <div className={styles.actionRow}>
-                <div className={styles.quantityContainer}>
-                  <button className={styles.qtyBtn} onClick={handleSubQty}>—</button>
-                  <span className={styles.qtyCount}>{detailQty}</span>
-                  <button className={styles.qtyBtn} onClick={handleAddQty}>+</button>
-                </div>
-                <button className={styles.primaryActionButton} onClick={handleAddToCartClick}>
-                  Add To Cart <span className={styles.arrowIcon}>→</span>
+                <button
+                  type="button"
+                  className={styles.primaryActionButton}
+                  onClick={() => {
+                    onAddToCart({ product, selectedSize });
+                    onNavigateToCart();
+                  }}
+                >
+                  Add to Basket
                 </button>
               </div>
             </div>
           </div>
-        )}
-
-        {drawerState === 'cart' && (
+        ) : (
           <div className={styles.cartContentContainer}>
             <div className={styles.shippingBar}>
-              <span>Free Standard Shipping</span>
+              Complimentary shipping on orders over R 1500
             </div>
-
-            <div className={styles.cartItemsScrollList}>
-              {cartItems.length === 0 ? (
-                <div className={styles.emptyCartMessage}>
-                  Your cart is currently empty.
+            
+            {cartItems.length === 0 ? (
+              <div className={styles.emptyCartMessage}>
+                <p>Your basket is currently empty.</p>
+                {product && (
+                  <button type="button" className={styles.continueShoppingBtn} onClick={onNavigateToDetails}>
+                    ← Back to Product
+                  </button>
+                )}
+              </div>
+            ) : (
+              <>
+                <div className={styles.cartItemsScrollList}>
+                  {cartItems.map((item) => (
+                    <div key={`${item.id}-${item.size}`} className={styles.cartItemCard}>
+                      <div className={styles.cartItemThumbnail}>
+                        <img src={item.imageUrl} alt={item.title} />
+                      </div>
+                      <div className={styles.cartItemMeta}>
+                        <span className={styles.cartItemSubInfo}>{item.brand}</span>
+                        <h4 className={styles.cartItemName}>{item.title}</h4>
+                        <span className={styles.cartItemSubInfo}>Size: {item.size}</span>
+                        
+                        <div className={styles.cartQtyContainer} style={{ marginTop: '0.5rem' }}>
+                          <button 
+                            type="button" 
+                            className={styles.cartQtyBtn} 
+                            onClick={() => onUpdateCartQty(item.id, item.quantity - 1)}
+                          >
+                            -
+                          </button>
+                          <span className={styles.cartQtyCount}>{item.quantity}</span>
+                          <button 
+                            type="button" 
+                            className={styles.cartQtyBtn} 
+                            onClick={() => onUpdateCartQty(item.id, item.quantity + 1)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                      <div className={styles.cartItemPrice}>
+                        <span>R {item.price * item.quantity}</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ) : (
-                cartItems.map(item => (
-                  <div key={item.id} className={styles.cartItemCard}>
-                    <div className={styles.cartItemThumbnail}>
-                      <img src={item.product.image} alt={item.product.name} />
-                    </div>
 
-                    <div className={styles.cartItemMeta}>
-                      <span className={styles.cartItemName}>{item.product.name}</span>
-                      <span className={styles.cartItemSubInfo}>Size: {item.selectedSize}</span>
-                      <span className={styles.cartItemSubInfo}>Colour: {item.selectedColor.toUpperCase()}</span>
-                      <span className={styles.cartItemPrice}>R {item.product.price}</span>
-                    </div>
-
-                    <div className={styles.cartQtyContainer}>
-                      <button 
-                        className={styles.cartQtyBtn} 
-                        onClick={() => onUpdateCartQty(item.id, item.quantity - 1)}
-                      >
-                        —
-                      </button>
-                      <span className={styles.cartQtyCount}>{item.quantity}</span>
-                      <button 
-                        className={styles.cartQtyBtn} 
-                        onClick={() => onUpdateCartQty(item.id, item.quantity + 1)}
-                      >
-                        +
-                      </button>
-                    </div>
+                <div className={styles.cartFooterPanel}>
+                  <div className={styles.cartTotalRow}>
+                    <span className={styles.totalLabel}>Subtotal</span>
+                    <span className={styles.totalPrice}>R {cartTotal}</span>
                   </div>
-                ))
-              )}
-            </div>
-
-            <div className={styles.cartFooterPanel}>
-              <div className={styles.cartTotalRow}>
-                <span className={styles.totalLabel}>Cart Total:</span>
-                <span className={styles.totalPrice}>R {cartTotal}</span>
-              </div>
-
-              <div className={styles.cartActionButtonsRow}>
-                <button className={styles.continueShoppingBtn} onClick={onClose}>
-                  Continue Shopping
-                </button>
-                <button 
-                  className={styles.checkoutBtn} 
-                  disabled={cartItems.length === 0}
-                  onClick={() => alert("Redirecting to checkout...")}
-                >
-                  Checkout <span className={styles.arrowIcon}>→</span>
-                </button>
-              </div>
-            </div>
+                  
+                  <div className={styles.cartActionButtonsRow}>
+                    <button 
+                      type="button"
+                      className={styles.checkoutBtn}
+                      onClick={() => {
+                        onClose();
+                        router.push('/checkout');
+                      }}
+                    >
+                      Secure Checkout <span className={styles.arrowIcon}>→</span>
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         )}
+
       </div>
-    </>
+    </div>
   );
 }
