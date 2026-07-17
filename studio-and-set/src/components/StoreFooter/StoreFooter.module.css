@@ -1,5 +1,3 @@
-/* src/components/Footer/Footer.module.css */
-
 .section {
   width: 100%;
   height: 100vh;
@@ -14,7 +12,6 @@
   position: relative;
   width: 100%;
   flex-grow: 1;
-  /* Borrowed main footer gradient overlay logic with store background asset */
   background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('/assets/images/storefooter-bg.jpg');
   background-size: cover;
   background-position: center;
@@ -151,7 +148,6 @@
   font-weight: 500;
 }
 
-/* Responsive adjustments matched to Main */
 @media (max-width: 968px) {
   .linksGrid {
     grid-template-columns: repeat(2, 1fr);

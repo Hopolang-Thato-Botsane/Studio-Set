@@ -1,4 +1,3 @@
-// src/components/Footer/Footer.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -12,7 +11,6 @@ export default function Footer() {
 
   return (
     <footer className={styles.section}>
-      {/* 1. Newsletter Banner using Main CTA Banner styling */}
       <div className={styles.ctaBanner}>
         <h2 className={styles.ctaHeading}>INTEL DIRECT</h2>
         <p className={styles.ctaSubtext}>
@@ -27,17 +25,14 @@ export default function Footer() {
         </button>
       </div>
 
-      {/* 2. Directory Panel with matching Main styles */}
       <div className={styles.directoryContainer}>
         <div className={styles.linksGrid}>
-          {/* Column 1: Account */}
           <div className={styles.column}>
             <h4 className={styles.columnTitle}>ACCOUNT</h4>
             <Link href="/account/register" className={styles.linkItem}>Sign-In/Register</Link>
             <Link href="/account/orders" className={styles.linkItem}>Orders</Link>
           </div>
 
-          {/* Column 2: Customer Care */}
           <div className={styles.column}>
             <h4 className={styles.columnTitle}>CUSTOMER CARE</h4>
             <Link href="/faq" className={styles.linkItem}>FAQs</Link>
@@ -45,7 +40,6 @@ export default function Footer() {
             <Link href="/terms" className={styles.linkItem}>Terms & Conditions</Link>
           </div>
 
-          {/* Column 3: Company */}
           <div className={styles.column}>
             <h4 className={styles.columnTitle}>COMPANY</h4>
             <Link href="/contact" className={styles.linkItem}>Contact</Link>
@@ -53,7 +47,6 @@ export default function Footer() {
             <Link href="/careers" className={styles.linkItem}>Careers</Link>
           </div>
 
-          {/* Column 4: Office Details */}
           <div className={styles.column}>
             <h4 className={styles.columnTitle}>OFFICE</h4>
             <address className={styles.addressText}>
@@ -67,7 +60,6 @@ export default function Footer() {
 
         <div className={styles.divider} />
 
-        {/* 3. Bottom Bar */}
         <div className={styles.footerBottom}>
           <div className={styles.copyright}>
             © 2026. STUDIO & SET. ALL RIGHTS RESERVED
