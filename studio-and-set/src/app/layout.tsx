@@ -1,4 +1,5 @@
 import React from 'react';
+import { CartProvider, useCart } from '@/context/CartContext';
 import { Syne, Inter } from 'next/font/google';
 import './globals.css';
 
@@ -27,7 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${syne.variable} ${inter.variable}`}>
       <body>
+        <CartProvider>
         {children}
+        </CartProvider>
       </body>
     </html>
   );
