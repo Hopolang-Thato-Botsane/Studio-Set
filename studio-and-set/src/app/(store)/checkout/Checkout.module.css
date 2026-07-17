@@ -1,13 +1,13 @@
 .container {
   height: 100vh;
-  height: 100dvh; /* Dynamic viewport for mobile browser scaling */
+  height: 100dvh;
   background-color: #D3C2A9;
   color: #370B14;
   padding: 2.5rem;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  overflow: hidden; /* Prevents the body/entire page from scrolling */
+  overflow: hidden;
 }
 
 .header {
@@ -15,7 +15,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
-  flex-shrink: 0; /* Prevents header from compressing */
+  flex-shrink: 0;
 }
 
 .title {
@@ -43,9 +43,9 @@
   display: grid;
   grid-template-columns: 1fr 400px;
   gap: 4rem;
-  align-items: stretch; /* Stretch components to full height of remaining space */
+  align-items: stretch;
   flex-grow: 1;
-  min-height: 0; /* Critical for enabling flex child scroll limits in modern browsers */
+  min-height: 0;
   margin-bottom: 1rem;
 }
 
@@ -53,11 +53,10 @@
   .mainLayout {
     grid-template-columns: 1fr;
     gap: 2rem;
-    overflow-y: auto; /* Fallback for tablets and smaller viewports */
+    overflow-y: auto;
   }
 }
 
-/* Left Side: Static Cart Layout */
 .cartSection {
   display: flex;
   flex-direction: column;
@@ -73,17 +72,15 @@
   flex-shrink: 0;
 }
 
-/* Cart Items Container */
 .itemsList {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  overflow-y: auto; /* If items exceed space, container scrolls inside itself */
+  overflow-y: auto;
   flex-grow: 1;
   padding-right: 1rem;
 }
 
-/* Hide scrollbar for Cart Items Container if you want it completely seamless */
 .itemsList::-webkit-scrollbar {
   display: none;
 }
@@ -101,7 +98,7 @@
 .imagePlaceholder {
   width: 120px;
   height: 120px;
-  background-color: #D6CBB9; /* Adjusted shade slightly to blend with warm sand */
+  background-color: #D6CBB9;
   border-radius: 2px;
   flex-shrink: 0;
   overflow: hidden;
@@ -159,7 +156,6 @@
   margin-left: auto;
 }
 
-/* Sidebar Information Block Styling */
 .infoSidebar {
   background-color: #370B14;
   color: #EAE3D2;
@@ -167,21 +163,18 @@
   border-radius: 2px;
   height: 100%;
   box-sizing: border-box;
-  
-  /* The Secret Sauce: Lock the height & hide overflows, letting only internal contents scroll */
   overflow-y: scroll; 
   display: flex;
   flex-direction: column;
   min-height: 0;
 }
 
-/* Completely hides the scrollbar on the Sidebar for that ultra-clean mockup feel */
 .infoSidebar::-webkit-scrollbar {
   display: none;
 }
 .infoSidebar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /
+  scrollbar-width: none;
 }
 
 .sidebarTitle {
@@ -231,10 +224,10 @@
 }
 
 .inputRow input.inputField {
-  width: 50% !important; /* Forces them to share the parent's width */
+  width: 50% !important;
   flex: 1 1 50% !important;
-  min-width: 0 !important; /* Prevents text overflow stretching */
-  margin-bottom: 0 !important; /* Removes individual bottom margin inside the row */
+  min-width: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .radioOption {

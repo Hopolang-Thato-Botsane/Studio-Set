@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useCart } from '@/context/CartContext'; // Make sure this path targets your exact CartContext file
+import { useCart } from '@/context/CartContext';
 import styles from './Checkout.module.css';
 
 export default function CheckoutPage() {
-  const { cart, updateQuantity, cartTotal, cartCount } = useCart(); // Destructuring your exact context values
+  const { cart, updateQuantity, cartTotal, cartCount } = useCart();
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'gpay' | 'applepay'>('card');
 
   const handleCheckoutSubmit = (e: React.FormEvent) => {
@@ -17,7 +17,6 @@ export default function CheckoutPage() {
 
   return (
     <div className={styles.container}>
-      {/* Header with Exit Route back to the store */}
       <header className={styles.header}>
         <h1 className={styles.title}>Checkout</h1>
         <Link href="/" className={styles.closeButton} aria-label="Go back to store">
@@ -29,7 +28,6 @@ export default function CheckoutPage() {
       </header>
 
       <div className={styles.mainLayout}>
-        {/* Left Side: Dynamic Cart Content */}
         <section className={styles.cartSection}>
           <div>
             <h2 className={styles.sectionTitle}>In Cart</h2>
@@ -58,7 +56,6 @@ export default function CheckoutPage() {
                       <p className={styles.itemMeta}>Brand: {item.brand}</p>
                       
                       <div className={styles.quantityControl}>
-                        {/* Minus button lowers quantity by 1, automatically removing item if it drops to 0 */}
                         <button 
                           type="button" 
                           onClick={() => updateQuantity(item.id, item.size, -1)} 
@@ -84,18 +81,15 @@ export default function CheckoutPage() {
             )}
           </div>
 
-          {/* Footer details anchored at the bottom */}
           <div className={styles.footerRow}>
             <span className={styles.itemCount}>{cartCount} items in total</span>
             <span className={styles.totalAmount}>R {cartTotal}</span>
           </div>
         </section>
 
-        {/* Right Side: Information Block */}
         <form onSubmit={handleCheckoutSubmit} className={styles.infoSidebar}>
           <h2 className={styles.sidebarTitle}>Information</h2>
 
-          {/* Personal & Shipping forms render only when Credit Card is active */}
           {paymentMethod === 'card' && (
             <>
               <h3 className={styles.formGroupTitle}>Personal Information</h3>
@@ -114,8 +108,7 @@ export default function CheckoutPage() {
 
           <h3 className={styles.formGroupTitle}>Payment Method</h3>
           <div className="space-y-4">
-            
-            {/* Credit Card Choice */}
+
             <label className={styles.radioOption}>
               <input 
                 type="radio" 
@@ -164,7 +157,6 @@ export default function CheckoutPage() {
               </div>
             )}
 
-            {/* Apple Pay Choice */}
             <label className={styles.radioOption}>
               <input 
                 type="radio" 
@@ -186,7 +178,6 @@ export default function CheckoutPage() {
             )}
           </div>
 
-          {/* Regular 'Complete Purchase' is only active for credit card layout */}
           {paymentMethod === 'card' && (
             <button type="submit" className={styles.completeBtn} disabled={cart.length === 0}>
               Complete Purchase
