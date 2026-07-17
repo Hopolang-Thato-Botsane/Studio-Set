@@ -1,5 +1,3 @@
-/* src/components/ProductGrid/ProductGrid.module.css */
-
 .gridSection {
   background-color: var(--color-cream);
   padding: 3rem clamp(2rem, 6vw, 6rem) 6rem;
@@ -31,7 +29,6 @@
   font-size: 1.1rem;
 }
 
-/* Explicit CSS Grid specification rules */
 .productGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
