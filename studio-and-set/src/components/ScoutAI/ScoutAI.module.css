@@ -1,0 +1,89 @@
+.section {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-cream);
+  padding: clamp(1.5rem, 3.5vh, 3.5rem) clamp(2rem, 5vw, 4rem);
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+.heading {
+  font-family: var(--font-main);
+  font-size: clamp(1.5rem, 2.2vw, 2.25rem);
+  font-weight: 600;
+  color: var(--color-maroon);
+  text-transform: capitalize;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+
+.videoContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  flex-grow: 1;
+  max-height: calc(100vh - 11rem); 
+  aspect-ratio: 16 / 9;
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.videoElement {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.playButton {
+  position: absolute;
+  z-index: 10;
+  width: clamp(55px, 6vw, 85px);
+  height: clamp(55px, 6vw, 85px);
+  background-color: var(--color-cream);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.playButton:hover {
+  transform: scale(1.08);
+}
+
+.playIcon {
+  width: 25%;
+  height: 25%;
+  fill: var(--color-maroon);
+  margin-left: 8%;
+}
+
+.pauseIcon {
+  width: 25%;
+  height: 25%;
+  fill: var(--color-maroon);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .videoContainer {
+    max-height: calc(100vh - 7rem);
+  }
+}

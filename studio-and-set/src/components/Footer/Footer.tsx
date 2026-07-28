@@ -1,184 +1,95 @@
-import Image from 'next/image';
+'use client';
+
+import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import styles from './Footer.module.css';
 
-interface NavLinkItem {
-  _key: string;
-  label: string;
-  route: string;
-}
+export default function Footer() {
+  const router = useRouter();
 
-interface FooterProps {
-  variant: 'store' | 'marketing';
-  data?: {
-    ctaHeading?: string;
-    ctaButtonText?: string;
-    ctaButtonLink?: string;
-    imageUrl?: string;
-    storeCtaHeading?: string;
-    storeCtaButtonText?: string;
-    storeImageUrl?: string;
-    studioLinks?: NavLinkItem[];
-    showroomLinks?: NavLinkItem[];
-    contactLinks?: NavLinkItem[];
-    copyrightText?: string;
+  const handleRegisterClick = () => {
+    router.push('/register');
   };
-}
-
-export default function Footer({ variant, data }: FooterProps) {
-  const isStore = variant === 'store';
-  
-  const {
-    ctaHeading = isStore 
-      ? (data?.storeCtaHeading || "COMING SOON\nLorem ipsum dolor sit amet, consectetur adipiscing elit.") 
-      : (data?.ctaHeading || "Apply for access to the\nStudio & Set ecosystem"),
-      
-    ctaButtonText = isStore 
-      ? (data?.storeCtaButtonText || "Stay Tuned In") 
-      : (data?.ctaButtonText || "Secure Access"),
-      
-    ctaButtonLink = isStore ? "#newsletter" : (data?.ctaButtonLink || "/request-access"),
-    
-    imageUrl = isStore ? data?.storeImageUrl : data?.imageUrl,
-    
-    studioLinks = [],
-    showroomLinks = [],
-    contactLinks = [],
-    copyrightText = data?.copyrightText || "© Studio&Set. 2026."
-  } = data || {};
 
   return (
-    <footer className={`${styles.footerWrapper} ${isStore ? styles.storeTheme : styles.marketingTheme}`}>
+    <footer className={styles.section}>
+      {/* Top Ticker Bar wrapped in Link */}
+      <div className={styles.tickerBar}>
+        <Link 
+          href="/store" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className={styles.tickerLink}
+        >
+          NEW RELEASE — ON-SET APPAREL & CREW GEAR NOW AVAILABLE IN STORE
+        </Link>
+      </div>
 
-      <div className={styles.ctaSection}>
-        {imageUrl && (
-          <Image 
-            src={imageUrl} 
-            alt="Footer Context" 
-            fill 
-            className={styles.bgImage} 
-            priority
-            unoptimized
-          />
-        )}
-        <div className={styles.overlayContent}>
-          <h2 className={styles.ctaHeading} style={{ whiteSpace: 'pre-line' }}>
-            {ctaHeading}
-          </h2>
-          
-          {isStore ? (
-            <div className={styles.inputGroup}>
-              <input type="email" placeholder="Provide Email" className={styles.emailInput} />
-              <button className={styles.secureAccessBtn}>{ctaButtonText}</button>
-            </div>
-          ) : (
-            <Link href={ctaButtonLink} className={styles.secureAccessBtn}>
-              {ctaButtonText}
-            </Link>
-          )}
+      {/* CTA Banner */}
+      <div className={styles.ctaWrapper}>
+        <div className={styles.ctaBanner}>
+          <h2 className={styles.ctaHeading}>Stop chasing crews. Stop bundling gear.</h2>
+          <p className={styles.ctaSubtext}>
+            Access our authenticated filmmaker catalogue and instantly deploy engineered equipment packages 
+            tailored exactly to your shoot parameters.
+          </p>
+          <button 
+            className={styles.ctaButton}
+            onClick={handleRegisterClick}
+          >
+            Register
+          </button>
         </div>
       </div>
 
-      <div className={styles.navSection}>
-        <div className={styles.linksFlexContainer}>
+      {/* Directory Container */}
+      <div className={styles.directoryContainer}>
+        <div className={styles.linksGrid}>
+          <div className={styles.column}>
+            <span className={styles.columnTitle}>SERVICES</span>
+            <Link href="/crews" className={styles.linkItem}>Crew Catalogue</Link>
+            <Link href="/kits" className={styles.linkItem}>Production Kits</Link>
+            <Link href="/gaffer-ai" className={styles.linkItem}>Gaffer AI</Link>
+          </div>
 
-          <div className={styles.brandColumn}>
-            <h3>Company</h3>
-            <p className={styles.brandParagraph}>
-              Since 2020, Studio and Set has had it's eyes set on being the number one supplier for the film industry for Africa. There are stories to be told and we want to be part of those stories.
+          <div className={styles.column}>
+            <span className={styles.columnTitle}>LEGAL</span>
+            <Link href="/deliveries" className={styles.linkItem}>Equipment Transportation</Link>
+            <Link href="/terms" className={styles.linkItem}>Terms & Conditions</Link>
+            <Link href="/privacy" className={styles.linkItem}>Privacy</Link>
+          </div>
+
+          <div className={styles.column}>
+            <span className={styles.columnTitle}>COMPANY</span>
+            <Link href="/contact" className={styles.linkItem}>Contact</Link>
+            <Link href="/media" className={styles.linkItem}>Media Office</Link>
+            <Link href="/careers" className={styles.linkItem}>Careers</Link>
+            <Link href="/store" className={styles.linkItem}>Store</Link>
+          </div>
+
+          <div className={`${styles.column} ${styles.officeColumn}`}>
+            <span className={styles.columnTitle}>OFFICE</span>
+            <p className={styles.addressText}>
+              Arrow Business Park<br />
+              60 Rietspruit Road<br />
+              Kosmosdal x11<br />
+              Centurion
             </p>
-            <div className={styles.socialRow}>
-              <span>Instagram</span>
-              <span>YouTube</span>
-              <span>LinkedIn</span>
-            </div>
-          </div>
-
-          <div className={styles.rightColumnsGroup}>
-            
-            <div className={styles.linkColumn}>
-              <h3>{isStore ? "Orders" : "Studio"}</h3>
-              <div className={styles.linksStack}>
-                {isStore ? (
-                  <>
-                    <Link href="/orders/track">Track Your Order</Link>
-                    <Link href="/orders/delivery">Delivery</Link>
-                    <Link href="/orders/returns">Returns</Link>
-                    <Link href="/support">Support/Contact</Link>
-                  </>
-                ) : studioLinks.length > 0 ? (
-                  studioLinks.map((link) => (
-                    <Link key={link._key} href={link.route}>{link.label}</Link>
-                  ))
-                ) : (
-                  <>
-                    <Link href="/dashboard">Dashboard</Link>
-                    <Link href="/support/technical">Technical Support</Link>
-                  </>
-                )}
-              </div>
-            </div>
-
-            <div className={styles.linkColumn}>
-              <h3>{isStore ? "Shop" : "Showroom"}</h3>
-              <div className={styles.linksStack}>
-                {isStore ? (
-                  <>
-                    <Link href="/store/apparel">Apparel</Link>
-                    <Link href="/store/accessories">Accessories</Link>
-                    <Link href="/store/props">Props</Link>
-                  </>
-                ) : showroomLinks.length > 0 ? (
-                  showroomLinks.map((link) => (
-                    <Link key={link._key} href={link.route}>{link.label}</Link>
-                  ))
-                ) : (
-                  <>
-                    <Link href="/showroom/kits">Curated Kits</Link>
-                    <Link href="/showroom/capsule">Capsule Store</Link>
-                  </>
-                )}
-              </div>
-            </div>
-
-            <div className={styles.linkColumn}>
-              <h3>Contact</h3>
-              <div className={styles.linksStack}>
-                {isStore ? (
-                  <>
-                    <Link href="/contact">Contact Us</Link>
-                    <Link href="/store/accessories">Accessories</Link>
-                    <Link href="/store/props">Props</Link>
-                  </>
-                ) : contactLinks.length > 0 ? (
-                  contactLinks.map((link) => (
-                    <Link key={link._key} href={link.route}>{link.label}</Link>
-                  ))
-                ) : (
-                  <>
-                    <Link href="/request-access">Request Access</Link>
-                    <Link href="/support/contact">Support/Contact</Link>
-                  </>
-                )}
-              </div>
-            </div>
-
           </div>
         </div>
 
-        <hr className={styles.dividerLine} />
+        <div className={styles.divider} />
 
-        <div className={styles.subFooter}>
+        <div className={styles.footerBottom}>
           <span className={styles.copyright}>
-            {copyrightText}
+            <span className={styles.copyIcon}>C</span> 2026. STUDIO & SET. ALL RIGHTS RESERVED
           </span>
-          <div className={styles.legalLinks}>
-            <Link href="/privacy">Privacy Policy</Link>
-            <Link href="/terms">Terms & Conditions</Link>
-          </div>
+          <span className={styles.designerTag}>
+            Designed By: <span className={styles.signature}>thbjr</span>
+          </span>
         </div>
       </div>
-
     </footer>
   );
 }

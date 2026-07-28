@@ -1,151 +1,91 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { JSX, useState } from 'react';
 import Link from 'next/link';
 import styles from './Hero.module.css';
 
-interface HeroSlide {
-  title: string;
-  subtitle: string;
-  trailerUrl?: string;
-  videoUrl?: string;
-}
+export default function Hero(): JSX.Element {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isMenuAnimating, setIsMenuAnimating] = useState<boolean>(false);
 
-const DEFAULT_SLIDES: HeroSlide[] = [
-  { 
-    title: "Studio & Set", 
-    subtitle: "Home of Film Equipment Rental" 
-  },
-  { 
-    title: "Project 1", 
-    subtitle: "Home of Film Equipment Rental",
-    trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-  },
-  { 
-    title: "Project 2", 
-    subtitle: "Home of Film Equipment Rental",
-    trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-  },
-  { 
-    title: "Project 3", 
-    subtitle: "Home of Film Equipment Rental",
-    trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-  }
-];
+  const openMenu = (): void => {
+    setIsMenuOpen(true);
+    requestAnimationFrame(() => {
+      setIsMenuAnimating(true);
+    });
+  };
 
-export default function Hero() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const totalHeight = rect.height - window.innerHeight;
-      const scrolled = Math.max(0, -rect.top);
-      
-      if (totalHeight <= 0) return;
-      
-      const percentage = scrolled / totalHeight;
-      const index = Math.min(
-        DEFAULT_SLIDES.length - 1,
-        Math.floor(percentage * DEFAULT_SLIDES.length)
-      );
-      
-      setActiveSlideIndex(index);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const currentSlide = DEFAULT_SLIDES[activeSlideIndex];
+  const closeMenu = (): void => {
+    setIsMenuAnimating(false);
+    setTimeout(() => {
+      setIsMenuOpen(false);
+    }, 400);
+  };
 
   return (
-    <div ref={containerRef} className={styles.timelineContainer}>
-      <div className={styles.stickyViewport}>
-        
-        {/* TOP NAVIGATION BAR OVERLAY */}
-        <header className={styles.navHeader}>
-          <span className={styles.logoText}>Studio&Set</span>
-          <button 
-            className={styles.burgerButton} 
-            onClick={() => setIsMenuOpen(true)}
-            aria-label="Open Menu"
-          >
-            <div className={styles.burgerLine} />
-            <div className={styles.burgerLine} />
-            <div className={styles.burgerLine} />
-          </button>
+    <>
+      <section className={styles.heroSection}>
+
+        <header className={styles.header}>
+          <div className={styles.logo}>STUDIO&amp;SET</div>
+          <nav className={styles.navRight}>
+            <Link href="/store" className={`${styles.storeLink} ${styles.desktopOnly}`}>
+              STORE
+            </Link>
+            <button 
+              className={styles.menuButton} 
+              onClick={openMenu}
+              aria-expanded={isMenuOpen}
+              aria-label="Toggle navigation menu"
+            >
+              Menu
+            </button>
+          </nav>
         </header>
 
-        {/* CINEMATIC LAYERS BACKGROUND STACK */}
-        <div className={styles.videoStackContainer}>
-          {DEFAULT_SLIDES.map((slide, idx) => (
-            <div 
-              key={idx} 
-              className={`${styles.videoLayer} ${idx === activeSlideIndex ? styles.layerActive : ''}`}
-            >
-              <div className={styles.darkOverlay} />
-              {slide.videoUrl ? (
-                <video src={slide.videoUrl} autoPlay loop muted playsInline className={styles.bgVideo} />
-              ) : (
-                <div className={`${styles.videoFallbackImage} ${styles[`fallback_${idx}`]}`} />
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* FIXED ACCENT TEXT LAYOUT */}
-        <div className={styles.contentOverlay}>
-          <div className={styles.textContainer}>
-            <h1 className={styles.heroTitle}>
-              {currentSlide.title}
-            </h1>
-            <p className={styles.heroSubtitle}>
-              {currentSlide.subtitle}
-            </p>
-            
-            {currentSlide.trailerUrl && (
-              <a 
-                href={currentSlide.trailerUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className={styles.trailerButton}
-              >
-                Watch Trailer
-              </a>
-            )}
+        <div className={styles.contentArea}>
+          <span className={styles.subtitle}>CREW &amp; EQUIPMENT HIRE SPECIALISTS</span>
+          <h1 className={styles.title}>
+            The premier choice for production crews and curated film equipment rentals in Southern Africa, featuring AI-driven search
+          </h1>
+          <div className={styles.buttonGroup}>
+            <button className={styles.btnPrimary}>Register as crew</button>
+            <button className={styles.btnSecondary}>Register as studio</button>
           </div>
         </div>
 
-        <div className={`${styles.menuOverlay} ${isMenuOpen ? styles.menuOpen : ''}`}>
+        <footer className={styles.logoFooter}>
+          <div className={styles.divider} />
+          <div className={styles.logoRow}>
+            <span className={styles.brandText}>Aputure</span>
+            <span className={`${styles.brandText} ${styles.arriText}`}>ARRI</span>
+            <span className={styles.brandText}>SONY</span>
+            <span className={styles.moreCount}>+ 12 More</span>
+          </div>
+        </footer>
+      </section>
+
+      {isMenuOpen && (
+        <div 
+          className={`${styles.menuOverlay} ${isMenuAnimating ? styles.menuVisible : ''}`}
+          aria-hidden={!isMenuAnimating}
+        >
           <button 
             className={styles.closeButton} 
-            onClick={() => setIsMenuOpen(false)}
-            aria-label="Close Menu"
+            onClick={closeMenu}
+            aria-label="Close menu"
           >
-            X
+            &#x2715;
           </button>
-          
           <nav className={styles.overlayNav}>
-            <Link href="/" className={`${styles.navLink} ${styles.activeLink}`} onClick={() => setIsMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link href="/store" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
-              STORE
-            </Link>
-            <Link href="/request-access" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
-              REQUEST ACCESS
-            </Link>
-            <Link href="/contact" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
-              CONTACT
-            </Link>
+            <Link href="/register/crew" onClick={closeMenu}>Register as Crew</Link>
+            <Link href="/register/studio" onClick={closeMenu}>Register as Studio</Link>
+            <Link href="/login/crew" onClick={closeMenu}>Login as Crew</Link>
+            <Link href="/login/studio" onClick={closeMenu}>Login as Studio</Link>
+            <Link href="/store" onClick={closeMenu}>Go To Store</Link>
           </nav>
         </div>
-
-      </div>
-    </div>
+      )}
+    </>
   );
 }
