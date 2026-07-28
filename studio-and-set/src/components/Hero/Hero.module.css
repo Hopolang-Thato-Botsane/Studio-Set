@@ -6,13 +6,15 @@
   flex-direction: column;
   justify-content: space-between;
   background: 
-    linear-gradient(to bottom, rgba(22, 24, 29, 0.4) 0%, rgba(22, 24, 29, 0.7) 25%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%),
     url('/assets/images/gafferAI.jpg') no-repeat center center;
   background-size: cover;
-  padding: 2rem 4rem 3rem 4rem;
+  padding: 2.5rem 4rem;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
+/* --- Header Styling --- */
 .header {
   display: flex;
   justify-content: space-between;
@@ -22,60 +24,83 @@
 }
 
 .logo {
-  font-family: var(--font-main);
+  font-family: var(--font-main, sans-serif);
   font-weight: 800;
-  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
+  font-size: clamp(1.2rem, 1.5vw, 1.6rem);
   text-transform: uppercase;
-  letter-spacing: -0.05em;
-  color: var(--color-cream);
+  letter-spacing: -0.03em;
+  color: var(--color-cream, #e2d2be);
 }
 
-.accountButton {
-  font-family: var(--font-support);
-  font-size: clamp(0.8rem, 0.75rem + 0.25vw, 0.95rem);
-  font-weight: 500;
-  background-color: var(--color-maroon);
-  color: var(--color-cream);
-  padding: 0.75rem 2rem;
-  border-radius: 9999px;
-  border: none;
-  cursor: pointer;
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.storeLink {
+  font-family: var(--font-support, sans-serif);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-cream, #e2d2be);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   transition: opacity 0.2s ease;
 }
 
-.accountButton:hover {
-  opacity: 0.9;
+.storeLink:hover {
+  opacity: 0.8;
 }
 
+.menuButton {
+  font-family: var(--font-support, sans-serif);
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: #3d0c1e; /* Dark Maroon */
+  color: var(--color-cream, #e2d2be);
+  padding: 0.65rem 2.5rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.menuButton:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* --- Main Content Area --- */
 .contentArea {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  max-width: clamp(600px, 60vw, 1000px);
+  max-width: 900px;
   margin: auto;
   z-index: 10;
   padding: 2rem 0;
 }
 
 .subtitle {
-  font-family: var(--font-support);
-  font-size: clamp(0.7rem, 0.65rem + 0.25vw, 0.85rem);
+  font-family: var(--font-support, sans-serif);
+  font-size: clamp(0.7rem, 0.8vw, 0.85rem);
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--color-cream);
+  color: var(--color-cream, #e2d2be);
   margin-bottom: 1.5rem;
   opacity: 0.9;
 }
 
 .title {
-  font-family: var(--font-main);
-  font-size: clamp(1.75rem, 3vw, 2.75rem);
-  font-weight: 500;
-  line-height: 1.3;
-  color: var(--color-cream);
+  font-family: var(--font-main, sans-serif);
+  font-size: clamp(1.8rem, 2.5vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--color-cream, #e2d2be);
   margin-bottom: 2.5rem;
 }
 
@@ -85,10 +110,10 @@
 }
 
 .btnPrimary, .btnSecondary {
-  font-family: var(--font-support);
-  font-size: clamp(0.85rem, 0.8rem + 0.25vw, 0.95rem);
+  font-family: var(--font-support, sans-serif);
+  font-size: 0.9rem;
   font-weight: 500;
-  padding: 1rem 2.25rem;
+  padding: 0.85rem 2.25rem;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
@@ -96,13 +121,13 @@
 }
 
 .btnPrimary {
-  background-color: var(--color-maroon);
-  color: var(--color-cream);
+  background-color: #3d0c1e;
+  color: var(--color-cream, #e2d2be);
 }
 
 .btnSecondary {
-  background-color: var(--color-cream);
-  color: var(--color-maroon);
+  background-color: #c0aa98;
+  color: #23120b;
 }
 
 .btnPrimary:hover, .btnSecondary:hover {
@@ -110,6 +135,7 @@
   opacity: 0.95;
 }
 
+/* --- Footer Logo Bar --- */
 .logoFooter {
   width: 100%;
   z-index: 10;
@@ -121,42 +147,130 @@
 .divider {
   width: 100%;
   height: 1px;
-  background-color: var(--color-cream);
-  opacity: 0.35;
-  margin-bottom: 2.5rem;
+  background-color: var(--color-cream, #e2d2be);
+  opacity: 0.4;
+  margin-bottom: 2rem;
 }
 
 .logoRow {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 1200px;
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 
-.brandLogo {
-  height: clamp(18px, 1.5vw, 28px);
-  opacity: 0.75;
-  transition: opacity 0.2s ease;
+.brandText {
+  font-family: var(--font-support, sans-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-cream, #e2d2be);
+  letter-spacing: 0.08em;
 }
 
-.brandLogo:hover {
+.arriText {
+  color: #0072ce;
+}
+
+.moreCount {
+  font-family: var(--font-support, sans-serif);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--color-cream, #e2d2be);
+  opacity: 0.9;
+}
+
+/* --- Animated Fullscreen Overlay Menu --- */
+.menuOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: #3d0c1e;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.menuVisible {
+  transform: translateY(0);
   opacity: 1;
 }
 
+.closeButton {
+  position: absolute;
+  top: 2.5rem;
+  right: 3.5rem;
+  background: transparent;
+  border: none;
+  color: var(--color-cream, #e2d2be);
+  font-size: 2rem;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.closeButton:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.overlayNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.overlayNav a {
+  font-family: var(--font-main, sans-serif);
+  font-size: clamp(1.4rem, 2vw, 2.2rem);
+  color: var(--color-cream, #e2d2be);
+  text-decoration: none;
+  font-weight: 400;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.overlayNav a:hover {
+  opacity: 0.75;
+  transform: translateY(-2px);
+}
+
+/* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
   .heroSection {
     padding: 1.5rem;
   }
   
+  .desktopOnly {
+    display: none;
+  }
+
+  .navRight {
+    gap: 0;
+  }
+
+  .menuButton {
+    padding: 0.55rem 1.75rem;
+  }
+
   .buttonGroup {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .logoRow {
     flex-wrap: wrap;
-    gap: 2rem;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .closeButton {
+    top: 1.5rem;
+    right: 1.5rem;
   }
 }

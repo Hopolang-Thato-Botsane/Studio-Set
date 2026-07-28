@@ -1,50 +1,94 @@
+'use client';
+
+import { JSX, useState } from 'react';
+import Link from 'next/link';
 import styles from './Hero.module.css';
 
-export default function Hero() {
+export default function Hero(): JSX.Element {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isMenuAnimating, setIsMenuAnimating] = useState<boolean>(false);
+
+  const openMenu = (): void => {
+    setIsMenuOpen(true);
+    requestAnimationFrame(() => {
+      setIsMenuAnimating(true);
+    });
+  };
+
+  const closeMenu = (): void => {
+    setIsMenuAnimating(false);
+    setTimeout(() => {
+      setIsMenuOpen(false);
+    }, 400);
+  };
+
   return (
-    <section className={styles.heroSection}>
+    <>
+      <section className={styles.heroSection}>
+        {/* Header Navigation */}
+        <header className={styles.header}>
+          <div className={styles.logo}>STUDIO&amp;SET</div>
+          <nav className={styles.navRight}>
+            <Link href="/store" className={`${styles.storeLink} ${styles.desktopOnly}`}>
+              STORE
+            </Link>
+            <button 
+              className={styles.menuButton} 
+              onClick={openMenu}
+              aria-expanded={isMenuOpen}
+              aria-label="Toggle navigation menu"
+            >
+              Menu
+            </button>
+          </nav>
+        </header>
 
-      <header className={styles.header}>
-        <div className={styles.logo}>STUDIO&SET</div>
-        <button className={styles.accountButton}>Account</button>
-      </header>
-
-      <div className={styles.contentArea}>
-        <span className={styles.subtitle}>CREW & EQUIPMENT HIRE SPECIALISTS</span>
-        <h1 className={styles.title}>
-          The premier choice for production crews and curated film equipment rentals in Southern Africa now powered power with AI search
-        </h1>
-        <div className={styles.buttonGroup}>
-          <button className={styles.btnPrimary}>Register as crew</button>
-          <button className={styles.btnSecondary}>Register as studio</button>
+        {/* Hero Central Content Area */}
+        <div className={styles.contentArea}>
+          <span className={styles.subtitle}>CREW &amp; EQUIPMENT HIRE SPECIALISTS</span>
+          <h1 className={styles.title}>
+            The premier choice for production crews and curated film equipment rentals in Southern Africa, featuring AI-driven search
+          </h1>
+          <div className={styles.buttonGroup}>
+            <button className={styles.btnPrimary}>Register as crew</button>
+            <button className={styles.btnSecondary}>Register as studio</button>
+          </div>
         </div>
-      </div>
 
-      <footer className={styles.logoFooter}>
-        <div className={styles.divider} />
-        <div className={styles.logoRow}>
-          {/* Aputure */}
-          <svg className={styles.brandLogo} viewBox="0 0 100 24" fill="var(--color-cream)">
-            <text x="0" y="18" fontFamily="var(--font-support)" fontWeight="bold" fontSize="18" letterSpacing="2">Aputure</text>
-          </svg>
-          
-          {/* ARRI */}
-          <svg className={styles.brandLogo} viewBox="0 0 100 24" fill="#006BB6">
-            <text x="0" y="18" fontFamily="var(--font-support)" fontWeight="900" fontSize="20" letterSpacing="1">ARRI</text>
-          </svg>
+        {/* Footer Brand Logo Bar */}
+        <footer className={styles.logoFooter}>
+          <div className={styles.divider} />
+          <div className={styles.logoRow}>
+            <span className={styles.brandText}>Aputure</span>
+            <span className={`${styles.brandText} ${styles.arriText}`}>ARRI</span>
+            <span className={styles.brandText}>SONY</span>
+            <span className={styles.moreCount}>+ 12 More</span>
+          </div>
+        </footer>
+      </section>
 
-          {/* SONY */}
-          <svg className={styles.brandLogo} viewBox="0 0 100 24" fill="var(--color-cream)">
-            <text x="0" y="18" fontFamily="var(--font-support)" fontWeight="bold" fontSize="16" letterSpacing="6">SONY</text>
-          </svg>
-
-          {/* Manfrotto */}
-          <svg className={styles.brandLogo} viewBox="0 0 120 24" fill="var(--color-cream)">
-            <circle cx="10" cy="12" r="6" fill="#E2231A" />
-            <text x="25" y="18" fontFamily="var(--font-support)" fontWeight="bold" fontSize="14" letterSpacing="1">Manfrotto</text>
-          </svg>
+      {/* Animated Dropdown Menu Overlay */}
+      {isMenuOpen && (
+        <div 
+          className={`${styles.menuOverlay} ${isMenuAnimating ? styles.menuVisible : ''}`}
+          aria-hidden={!isMenuAnimating}
+        >
+          <button 
+            className={styles.closeButton} 
+            onClick={closeMenu}
+            aria-label="Close menu"
+          >
+            &#x2715;
+          </button>
+          <nav className={styles.overlayNav}>
+            <Link href="/register/crew" onClick={closeMenu}>Register as Crew</Link>
+            <Link href="/register/studio" onClick={closeMenu}>Register as Studio</Link>
+            <Link href="/login/crew" onClick={closeMenu}>Login as Crew</Link>
+            <Link href="/login/studio" onClick={closeMenu}>Login as Studio</Link>
+            <Link href="/store" onClick={closeMenu}>Go To Store</Link>
+          </nav>
         </div>
-      </footer>
-    </section>
+      )}
+    </>
   );
 }
