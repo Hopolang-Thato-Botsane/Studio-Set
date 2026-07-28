@@ -1,8 +1,8 @@
 .section {
   width: 100%;
-  background-color: var(--color-maroon, #2D0B12); /* Deep burgundy/maroon */
+  background-color: var(--color-maroon, #2D0B12);
   padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 4vw, 4rem);
-  color: var(--color-cream, #E6DCCD); /* Sand/Cream text */
+  color: var(--color-cream, #E6DCCD);
 }
 
 .innerContainer {
@@ -28,7 +28,6 @@
   align-items: center;
 }
 
-/* Image styling */
 .imageWrapper {
   position: relative;
   width: 100%;
@@ -41,7 +40,6 @@
   object-fit: cover;
 }
 
-/* Features Stack */
 .featuresColumn {
   display: flex;
   flex-direction: column;
@@ -71,7 +69,6 @@
   opacity: 0.85;
 }
 
-/* Thin hairline divider matching design */
 .divider {
   width: 100%;
   height: 1px;
@@ -81,7 +78,6 @@
   margin-bottom: 1.5rem;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 900px) {
   .contentGrid {
     grid-template-columns: 1fr;

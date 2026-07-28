@@ -25,7 +25,7 @@ export default function Hero(): JSX.Element {
   return (
     <>
       <section className={styles.heroSection}>
-        {/* Header Navigation */}
+
         <header className={styles.header}>
           <div className={styles.logo}>STUDIO&amp;SET</div>
           <nav className={styles.navRight}>
@@ -43,7 +43,6 @@ export default function Hero(): JSX.Element {
           </nav>
         </header>
 
-        {/* Hero Central Content Area */}
         <div className={styles.contentArea}>
           <span className={styles.subtitle}>CREW &amp; EQUIPMENT HIRE SPECIALISTS</span>
           <h1 className={styles.title}>
@@ -55,7 +54,6 @@ export default function Hero(): JSX.Element {
           </div>
         </div>
 
-        {/* Footer Brand Logo Bar */}
         <footer className={styles.logoFooter}>
           <div className={styles.divider} />
           <div className={styles.logoRow}>
@@ -67,7 +65,6 @@ export default function Hero(): JSX.Element {
         </footer>
       </section>
 
-      {/* Animated Dropdown Menu Overlay */}
       {isMenuOpen && (
         <div 
           className={`${styles.menuOverlay} ${isMenuAnimating ? styles.menuVisible : ''}`}

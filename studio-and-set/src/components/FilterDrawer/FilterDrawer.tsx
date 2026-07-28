@@ -117,7 +117,6 @@ export default function FilterDrawer({
             </div>
           </div>
 
-          {/* Section: Gender */}
           <div className={styles.filterSection}>
             <span className={styles.sectionLabel}>Gender:</span>
             <div className={styles.optionsFlex}>

@@ -1,6 +1,6 @@
 .section {
   width: 100%;
-  background-color: var(--color-cream, #E6DCCD); /* Sand background */
+  background-color: var(--color-cream, #E6DCCD);
   padding: clamp(4rem, 7vw, 7rem) clamp(1.5rem, 4vw, 4rem);
 }
 
@@ -66,7 +66,6 @@
   opacity: 0.85;
 }
 
-/* Mobile responsiveness */
 @media (max-width: 868px) {
   .grid {
     grid-template-columns: 1fr;
@@ -74,7 +73,7 @@
   }
 }.section {
   width: 100%;
-  background-color: var(--color-cream, #E6DCCD); /* Sand background */
+  background-color: var(--color-cream, #E6DCCD);
   padding: clamp(4rem, 7vw, 7rem) clamp(1.5rem, 4vw, 4rem);
 }
 
@@ -140,7 +139,6 @@
   opacity: 0.85;
 }
 
-/* Mobile responsiveness */
 @media (max-width: 868px) {
   .grid {
     grid-template-columns: 1fr;

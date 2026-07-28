@@ -9,18 +9,15 @@ export default function HowItWorks() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        
-        {/* Section Heading */}
+
         <h2 className={styles.heading}>
           How It Works
         </h2>
 
-        {/* 3-Column Grid */}
         <div className={styles.grid}>
           {howItWorksSteps.map((step) => (
             <div key={step.id} className={styles.card}>
-              
-              {/* Icon Container */}
+
               <div className={styles.iconWrapper}>
                 <Image
                   src={step.iconSrc}
@@ -31,7 +28,6 @@ export default function HowItWorks() {
                 />
               </div>
 
-              {/* Title & Body */}
               <h3 className={styles.stepTitle}>
                 {step.title}
               </h3>

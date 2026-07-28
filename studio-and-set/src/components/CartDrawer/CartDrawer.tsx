@@ -85,8 +85,8 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             <button 
               className={styles.checkoutButton}
               onClick={() => {
-                onClose(); // Automatically tuck the drawer away
-                router.push('/checkout'); // Route straight to the checkout page
+                onClose();
+                router.push('/checkout');
               }}
             >
               Proceed to Secure Checkout

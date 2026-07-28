@@ -14,7 +14,6 @@
   box-sizing: border-box;
 }
 
-/* --- Header Styling --- */
 .header {
   display: flex;
   justify-content: space-between;
@@ -57,7 +56,7 @@
   font-family: var(--font-support, sans-serif);
   font-size: 0.9rem;
   font-weight: 500;
-  background-color: #3d0c1e; /* Dark Maroon */
+  background-color: var(--color-maroon); 
   color: var(--color-cream, #e2d2be);
   padding: 0.65rem 2.5rem;
   border-radius: 9999px;
@@ -71,7 +70,6 @@
   transform: translateY(-1px);
 }
 
-/* --- Main Content Area --- */
 .contentArea {
   display: flex;
   flex-direction: column;
@@ -135,7 +133,6 @@
   opacity: 0.95;
 }
 
-/* --- Footer Logo Bar --- */
 .logoFooter {
   width: 100%;
   z-index: 10;
@@ -181,7 +178,6 @@
   opacity: 0.9;
 }
 
-/* --- Animated Fullscreen Overlay Menu --- */
 .menuOverlay {
   position: fixed;
   inset: 0;
@@ -240,7 +236,6 @@
   transform: translateY(-2px);
 }
 
-/* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
   .heroSection {
     padding: 1.5rem;
