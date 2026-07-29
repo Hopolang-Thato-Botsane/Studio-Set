@@ -2,7 +2,7 @@ import React from 'react';
 import StoreHero from '@/components/StoreHero/StoreHero';
 import styles from './store.module.css';
 import ProductGrid from '@/components/ProductGrid/ProductGrid'
-// import StoreFooter from '@/components/StoreFooter/StoreFooter'
+import StoreFooter from '@/components/StoreFooter/StoreFooter'
 
 export default function StorePage() {
   return (
@@ -12,8 +12,8 @@ export default function StorePage() {
       <section className={styles.productGridSection}>
         <ProductGrid />
       </section>
-{/* 
-      <StoreFooter/> */}
+
+      <StoreFooter/>
     </main>
   );
 }

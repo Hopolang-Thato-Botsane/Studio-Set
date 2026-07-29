@@ -1,4 +1,3 @@
-// ScoutAI.tsx
 'use client';
 
 import React, { useRef, useState } from 'react';
@@ -27,8 +26,8 @@ export default function ScoutAI() {
         <video
           ref={videoRef}
           className={styles.videoElement}
-          src="/assets/videos/scout-ai.mp4" /* future video / gif file */
-          poster="/assets/images/scout-poster.jpg" /* A clean dark placeholder image */
+          src="/assets/images/gaffer-ai.jpg"
+          poster="/assets/images/gaffer-ai.jpg"
           playsInline
           loop
           muted
