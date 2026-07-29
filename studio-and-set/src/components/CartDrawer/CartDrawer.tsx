@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import { useRouter } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
-import styles from './cartDrawer.module.css';
+import styles from './CartDrawer.module.css'
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -10,13 +10,13 @@ interface CartDrawerProps {
 }
 
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
+  const router = useRouter();
   const { cart, updateQuantity, removeFromCart, cartTotal, clearCart } = useCart();
 
   if (!isOpen) return null;
 
   return (
     <div className={styles.overlay} onClick={onClose}>
-
       <div className={styles.drawerContainer} onClick={(e) => e.stopPropagation()}>
         
         <div className={styles.drawerHeader}>
@@ -81,9 +81,17 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               <span>Subtotal</span>
               <span className={styles.totalPriceAmount}>R {cartTotal}</span>
             </div>
-            <button className={styles.checkoutButton}>
+            
+            <button 
+              className={styles.checkoutButton}
+              onClick={() => {
+                onClose();
+                router.push('/checkout');
+              }}
+            >
               Proceed to Secure Checkout
             </button>
+            
             <button className={styles.clearAllButton} onClick={clearCart}>
               Clear Basket
             </button>

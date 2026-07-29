@@ -1,164 +1,107 @@
-.heroContainer {
+.heroSection {
   position: relative;
   width: 100%;
   height: 100vh;
-  background-color: #16181D;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
+  min-height: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 clamp(2rem, 6vw, 6rem) clamp(4rem, 8vh, 6rem);
+  overflow: hidden; 
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
-.darkOverlay {
+.imageOverlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(18, 20, 25, 0.45);
+  background-image: 
+    linear-gradient(to bottom, rgba(22, 24, 29, 0.4) 0%, rgba(22, 24, 29, 0.1) 40%, rgba(22, 24, 29, 0.8) 100%),
+    url('/assets/images/storehero-bg.jpg');
+  background-size: cover;
+  background-position: center;
   z-index: 1;
 }
 
-.navHeader {
-  position: absolute;
-  top: 0;
-  left: 0;
+.navbar {
+  position: relative;
+  z-index: 10;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.navContainer {
+  width: 100%;
+  height: 90px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2.5rem 3rem;
-  z-index: 10;
 }
 
-.logoText {
-  color: #ffffff;
-  font-size: 1.25rem;
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 800;
+  color: var(--color-cream);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.accountBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-maroon);
+  color: var(--color-cream);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.75rem 2.25rem;
+  border-radius: 9999px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.accountBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.navDivider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(209, 192, 165, 0.25);
+}
+
+.contentContainer {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: auto;
+}
+
+.heading {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
   font-weight: 600;
+  color: #ffffff;
+  line-height: 1.15;
   letter-spacing: -0.02em;
 }
 
-.burgerButton {
-  background: none;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-.burgerLine {
-  width: 24px;
-  height: 1.5px;
-  background-color: #ffffff;
-}
-
-.contentOverlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 6rem 4rem;
-  z-index: 5;
-}
-
-.textContainer {
-  max-width: 850px;
-  width: 100%;
-}
-
-.heroTitle {
+.subtext {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
   color: #ffffff;
-  font-size: 3.5rem;
-  font-weight: 600;
-  margin: 0 0 1.5rem 0;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  line-height: 1.1;
-}
-
-.heroSubtitle {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1.05rem;
   line-height: 1.6;
-  margin-bottom: 2.5rem;
-  max-width: 750px;
-}
-
-.catalogueButton {
-  background: none;
-  border: 1px solid #ffffff;
-  color: #ffffff;
-  padding: 0.85rem 2rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.catalogueButton:hover {
-  background-color: #ffffff;
-  color: #16181D;
-}
-
-/* OVERLAY MENU */
-.menuOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #16181D;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.menuOpen {
-  opacity: 1;
-  visibility: visible;
-}
-
-.closeButton {
-  position: absolute;
-  top: 2.5rem;
-  right: 3.5rem;
-  background: none;
-  border: none;
-  color: #ffffff;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.overlayNav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2.5rem;
-}
-
-.navLink {
-  color: #ffffff;
-  font-size: 2rem;
-  font-weight: 500;
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  transition: opacity 0.2s ease;
-}
-
-.navLink:hover {
-  opacity: 0.7;
-}
-
-@media (max-width: 768px) {
-  .heroTitle { font-size: 2.5rem; }
-  .contentOverlay { padding: 4rem 2rem; }
-  .navHeader { padding: 2rem; }
+  opacity: 0.85;
+  max-width: 580px;
 }

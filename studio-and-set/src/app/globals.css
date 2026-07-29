@@ -1,12 +1,9 @@
 :root {
-  --color-gold: #D4AF37;
-  --color-mutegold: #C5A880;
+  --color-cream: #D1C0A5;
+  --color-maroon: #3C0016;
   --color-bg: #16181D;
-  --color-text-main: #FFFFFF;
-  --color-text-muted: #A3A3A3;
-  --color-text-footer: #FFFFFF;
   --font-main: 'Syne', sans-serif;
-  --font-support: 'Plus Jakarta Sans', sans-serif;
+  --font-support: 'Inter', sans-serif;
 }
 
 * {

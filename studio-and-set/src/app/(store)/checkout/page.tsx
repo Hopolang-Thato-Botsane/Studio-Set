@@ -1,222 +1,190 @@
 'use client';
 
-import { useCart } from '@/context/CartContext';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import Footer from '@/components/Footer/Footer';
+import { useCart } from '@/context/CartContext';
 import styles from './Checkout.module.css';
 
 export default function CheckoutPage() {
+  const { cart, updateQuantity, cartTotal, cartCount } = useCart();
+  const [paymentMethod, setPaymentMethod] = useState<'card' | 'gpay' | 'applepay'>('card');
 
-  const { cartItems, getCartTotal } = useCart() as any;
-  const [deliveryMethod, setDeliveryMethod] = useState('standard');
-  const subtotal = getCartTotal ? getCartTotal() : 1650;
-  const discount = 0;
-  const shippingCost = deliveryMethod === 'standard' ? 0 : deliveryMethod === 'express' ? 80 : 150;
-  const totalAmount = subtotal + shippingCost;
+  const handleCheckoutSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert('Mock Purchase Successful! Your order has been placed.');s
+    window.location.href = '/';
+  };
 
   return (
-    <div className={styles.pageWrapper}>
-      <div className={styles.checkoutMainContainer}>
-        
-        <div className={styles.leftColumn}>
-          <h1 className={styles.mainTitle}>CHECKOUT</h1>
-          <p className={styles.loginPrompt}>
-            Have an account? <Link href="/auth" className={styles.inlineLink}>Login</Link>
-          </p>
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <h1 className={styles.title}>Checkout</h1>
+        <Link href="/" className={styles.closeButton} aria-label="Go back to store">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </Link>
+      </header>
 
-          <form onSubmit={(e) => e.preventDefault()} className={styles.formStructure}>
-            <h3 className={styles.formGroupHeading}>INFORMATION</h3>
-            <h4 className={styles.subSectionLabel}>Personal Information</h4>
-            <div className={styles.inputRow}>
-              <div className={styles.inputWrapper}>
-                <input type="text" placeholder="First Name" className={styles.textInput} required />
+      <div className={styles.mainLayout}>
+        <section className={styles.cartSection}>
+          <div>
+            <h2 className={styles.sectionTitle}>In Cart</h2>
+            
+            {cart.length === 0 ? (
+              <div className="py-12 text-center opacity-60">
+                Your cart is empty. Please add items from the store first!
               </div>
-              <div className={styles.inputWrapper}>
-                <input type="text" placeholder="Last Name" className={styles.textInput} required />
-              </div>
-            </div>
-            <div className={styles.inputRow}>
-              <div className={styles.inputWrapper}>
-                <input type="tel" placeholder="Number" className={styles.textInput} required />
-              </div>
-              <div className={styles.inputWrapper}>
-                <input type="email" placeholder="Email Address" className={styles.textInput} required />
-              </div>
-            </div>
-
-            {/* SHIPPING DATA BLOCK */}
-            <h4 className={styles.subSectionLabel}>Shipping information</h4>
-            <div className={styles.inputRow}>
-              <div className={styles.inputWrapper}>
-                <input type="text" placeholder="Country" className={styles.textInput} required />
-              </div>
-              <div className={styles.inputWrapper}>
-                <input type="text" placeholder="City" className={styles.textInput} required />
-              </div>
-            </div>
-            <div className={styles.inputRow}>
-              <div className={styles.inputWrapper}>
-                <input type="text" placeholder="Address" className={styles.textInput} required />
-              </div>
-              <div className={styles.inputWrapper}>
-                <input type="text" placeholder="Zip/Postal Code" className={styles.textInput} required />
-              </div>
-            </div>
-
-            {/* DELIVERY SPEED METHOD SELECTION BLOCK */}
-            <h4 className={styles.subSectionLabel}>Delivery</h4>
-            <div className={styles.shippingSelectorStack}>
-              <label className={`${styles.shippingLabel} ${deliveryMethod === 'standard' ? styles.activeRadio : ''}`}>
-                <div className={styles.radioInputWrapper}>
-                  <input 
-                    type="radio" 
-                    name="delivery" 
-                    checked={deliveryMethod === 'standard'} 
-                    onChange={() => setDeliveryMethod('standard')} 
-                  />
-                  <div>
-                    <span className={styles.optionTitle}>Standard Shipping</span>
-                    <span className={styles.optionSubtitle}>(Within 7 Days)</span>
+            ) : (
+              <div className={styles.itemsList}>
+                {cart.map((item) => (
+                  <div key={`${item.id}-${item.size}`} className={styles.cartItem}>
+                    <div className={styles.imagePlaceholder}>
+                      {item.imageUrl && (
+                        <img 
+                          src={item.imageUrl} 
+                          alt={item.title} 
+                          className={styles.productImage}
+                        />
+                      )}
+                    </div>
+                    
+                    <div className={styles.itemDetails}>
+                      <h3 className={styles.itemName}>{item.title}</h3>
+                      <p className={styles.itemMeta}>Size: {item.size}</p>
+                      <p className={styles.itemMeta}>Brand: {item.brand}</p>
+                      
+                      <div className={styles.quantityControl}>
+                        <button 
+                          type="button" 
+                          onClick={() => updateQuantity(item.id, item.size, -1)} 
+                          className={styles.qtyBtn}
+                        >
+                          -
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button 
+                          type="button" 
+                          onClick={() => updateQuantity(item.id, item.size, 1)} 
+                          className={styles.qtyBtn}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <div className={styles.itemPrice}>R {item.price * item.quantity}</div>
                   </div>
-                </div>
-                <span className={styles.optionPrice}>Free</span>
-              </label>
-
-              <label className={`${styles.shippingLabel} ${deliveryMethod === 'express' ? styles.activeRadio : ''}`}>
-                <div className={styles.radioInputWrapper}>
-                  <input 
-                    type="radio" 
-                    name="delivery" 
-                    checked={deliveryMethod === 'express'} 
-                    onChange={() => setDeliveryMethod('express')} 
-                  />
-                  <div>
-                    <span className={styles.optionTitle}>Express</span>
-                    <span className={styles.optionSubtitle}>(Within 3 Business Days)</span>
-                  </div>
-                </div>
-                <span className={styles.optionPrice}>R 80</span>
-              </label>
-
-              <label className={`${styles.shippingLabel} ${deliveryMethod === 'nextday' ? styles.activeRadio : ''}`}>
-                <div className={styles.radioInputWrapper}>
-                  <input 
-                    type="radio" 
-                    name="delivery" 
-                    checked={deliveryMethod === 'nextday'} 
-                    onChange={() => setDeliveryMethod('nextday')} 
-                  />
-                  <div>
-                    <span className={styles.optionTitle}>Next Day</span>
-                    <span className={styles.optionSubtitle}>(Next Business Day)</span>
-                  </div>
-                </div>
-                <span className={styles.optionPrice}>R 150</span>
-              </label>
-            </div>
-
-            {/* PAYMENT INFORMATION */}
-            <h3 className={styles.formGroupHeading} style={{ marginTop: '3rem' }}>PAYMENT</h3>
-            <div className={styles.paymentSelectorTabs}>
-              <span className={styles.activeTab}>Bank Card</span>
-              <span className={styles.disabledTab}>Apple Pay</span>
-              <span className={styles.disabledTab}>Google Pay</span>
-            </div>
-
-            <div className={styles.inputRow}>
-              <div className={styles.inputWrapper}>
-                <input 
-                  type="text" 
-                  placeholder="Card Number" 
-                  className={styles.textInput} 
-                  autoComplete="off"
-                  data-lpignore="true"
-                  required 
-                />
+                ))}
               </div>
-              <div className={styles.inputWrapper}>
-                <input 
-                  type="text" 
-                  placeholder="Cardholder Name" 
-                  className={styles.textInput} 
-                  autoComplete="off"
-                  data-lpignore="true"
-                  required 
-                />
-              </div>
-            </div>
-            <div className={styles.inputRow}>
-              <div className={styles.inputWrapper}>
-                <input 
-                  type="text" 
-                  placeholder="Expiration Date (MM/YY)" 
-                  className={styles.textInput} 
-                  autoComplete="off"
-                  data-lpignore="true"
-                  required 
-                />
-              </div>
-              <div className={styles.inputWrapper}>
-                <input 
-                  type="text" 
-                  placeholder="CVV Number" 
-                  className={styles.textInput} 
-                  autoComplete="off"
-                  data-lpignore="true"
-                  required 
-                />
-              </div>
-            </div>
-          </form>
-        </div>
-
-
-        <div className={styles.rightColumn}>
-          <h2 className={styles.sidebarHeading}>Shopping Cart</h2>
-          
-          <div className={styles.cartItemsScrollContainer}>
-            {(cartItems && cartItems.length > 0 ? cartItems : [1, 2, 3]).map((item: any, idx: number) => (
-              <div key={item._id || idx} className={styles.checkoutProductCard}>
-                <div className={styles.imagePlaceholderBox} />
-                <div className={styles.productDetailsMetadata}>
-                  <span className={styles.itemBrand}>{item.brand || "Studio & Set"}</span>
-                  <span className={styles.itemTitle}>{item.title || "Soft Touch Hoodie"}</span>
-                  <span className={styles.itemSize}>Medium</span>
-                  <span className={styles.itemPrice}>R {item.price || 550}</span>
-                </div>
-              </div>
-            ))}
+            )}
           </div>
 
-          <div className={styles.financialSummaryTable}>
-            <div className={styles.summaryLine}>
-              <span>Subtotal:</span>
-              <span>R {subtotal}</span>
-            </div>
-            <div className={styles.summaryLine}>
-              <span>Discount:</span>
-              <span>R {discount.toFixed(2).replace('.', ',')}</span>
-            </div>
-            <div className={styles.summaryLine} style={{ borderBottom: '1px solid #000000', paddingBottom: '1.5rem' }}>
-              <span>Shipping:</span>
-              <span>R {shippingCost}</span>
-            </div>
+          <div className={styles.footerRow}>
+            <span className={styles.itemCount}>{cartCount} items in total</span>
+            <span className={styles.totalAmount}>R {cartTotal}</span>
+          </div>
+        </section>
 
-            <div className={styles.totalDueAmountRow}>
-              <span>Total Amount:</span>
-              <span>R {totalAmount}</span>
-            </div>
+        <form onSubmit={handleCheckoutSubmit} className={styles.infoSidebar}>
+          <h2 className={styles.sidebarTitle}>Information</h2>
 
-            <button type="submit" className={styles.completeOrderButton}>
-              Complete Payment of R {totalAmount}
+          {paymentMethod === 'card' && (
+            <>
+              <h3 className={styles.formGroupTitle}>Personal Information</h3>
+              <input type="text" placeholder="Thabang" className={styles.inputField} required />
+              <input type="text" placeholder="Mofokeng" className={styles.inputField} required />
+              <input type="tel" placeholder="08X XXX XXXX" className={styles.inputField} required />
+              <input type="email" placeholder="thabang@checkout.co.za" className={styles.inputField} required />
+
+              <h3 className={styles.formGroupTitle}>Shipping Information</h3>
+              <input type="text" placeholder="South Africa" className={styles.inputField} required />
+              <input type="text" placeholder="Gauteng" className={styles.inputField} required />
+              <input type="text" placeholder="Ntini Street, Soweto" className={styles.inputField} required />
+              <input type="text" placeholder="1818" className={styles.inputField} required />
+            </>
+          )}
+
+          <h3 className={styles.formGroupTitle}>Payment Method</h3>
+          <div className="space-y-4">
+
+            <label className={styles.radioOption}>
+              <input 
+                type="radio" 
+                name="payment" 
+                value="card" 
+                checked={paymentMethod === 'card'} 
+                onChange={() => setPaymentMethod('card')} 
+                className={styles.radioInput}
+              />
+              <span>Credit Card</span>
+            </label>
+
+            {paymentMethod === 'card' && (
+              <div className={styles.creditCardFields}>
+                <input type="text" placeholder="XXXX XXXX XXXX" className={styles.inputField} required />
+                <input type="text" placeholder="Thabang Mofokeng" className={styles.inputField} required />
+                <div className={styles.inputRow}>
+                  <input type="text" placeholder="12/26" className={styles.inputField} required />
+                  <input type="text" placeholder="XXX" className={styles.inputField} required />
+                </div>
+              </div>
+            )}
+
+            {/* Google Pay Choice */}
+            <label className={styles.radioOption}>
+              <input 
+                type="radio" 
+                name="payment" 
+                value="gpay" 
+                checked={paymentMethod === 'gpay'} 
+                onChange={() => setPaymentMethod('gpay')} 
+                className={styles.radioInput}
+              />
+              <span>Google Pay</span>
+            </label>
+
+            {paymentMethod === 'gpay' && (
+              <div className={styles.walletButtonContainer}>
+                <button type="submit" className={styles.gpayBtn} disabled={cart.length === 0}>
+                  <span>Pay with</span>
+                  <svg width="41" height="17" viewBox="0 0 41 17" fill="currentColor">
+                    <path d="M5.4 3.1c1-.1 1.9.3 2.6.9L9.1 2C8.1.9 6.7.3 5.2.3 2.7.3.6 2.1.1 4.5c-.1.5-.1 1.1 0 1.6C.6 8.5 2.7 10.3 5.2 10.3c1.5 0 2.9-.6 3.9-1.7l-1.1-1.1c-.7.7-1.7 1.1-2.8 1-1.6 0-3-1-3.4-2.4-.1-.4-.1-.9 0-1.3.4-1.5 1.8-2.5 3.4-2.5" />
+                    <path d="M12.9 3.5c0-.4 0-.8-.1-1.2H6.7v2.3h3.5c-.1.8-.6 1.5-1.3 2v1.6h2.2c1.3-1.2 2-3 2-4.7" fill="#4285F4" />
+                  </svg>
+                </button>
+              </div>
+            )}
+
+            <label className={styles.radioOption}>
+              <input 
+                type="radio" 
+                name="payment" 
+                value="applepay" 
+                checked={paymentMethod === 'applepay'} 
+                onChange={() => setPaymentMethod('applepay')} 
+                className={styles.radioInput}
+              />
+              <span>Apple Pay</span>
+            </label>
+
+            {paymentMethod === 'applepay' && (
+              <div className={styles.walletButtonContainer}>
+                <button type="submit" className={styles.applePayBtn} disabled={cart.length === 0}>
+                  <span className={styles.appleLogo}></span> Pay
+                </button>
+              </div>
+            )}
+          </div>
+
+          {paymentMethod === 'card' && (
+            <button type="submit" className={styles.completeBtn} disabled={cart.length === 0}>
+              Complete Purchase
             </button>
-          </div>
-        </div>
-
+          )}
+        </form>
       </div>
-
-      <Footer variant="store" data={undefined} />
     </div>
   );
 }

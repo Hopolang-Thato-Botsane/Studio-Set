@@ -1,12 +1,23 @@
-// src/app/layout.tsx
-
-import type { Metadata } from 'next';
-import { CartProvider } from '@/context/CartContext';
+import React from 'react';
+import { CartProvider, useCart } from '@/context/CartContext';
+import { Syne, Inter } from 'next/font/google';
 import './globals.css';
 
-export const metadata: Metadata = {
+const syne = Syne({
+  subsets: ['latin'],
+  weight: ['700', '800'], 
+  variable: '--font-main',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-support',
+});
+
+export const metadata = {
   title: 'Studio & Set',
-  description: 'Inventory for the Unforgiving',
+  description: 'Built for the Crew. Not the Runway.',
 };
 
 export default function RootLayout({
@@ -15,10 +26,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${syne.variable} ${inter.variable}`}>
       <body>
         <CartProvider>
-          {children}
+        {children}
         </CartProvider>
       </body>
     </html>
