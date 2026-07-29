@@ -10,18 +10,15 @@ export default function WhyUs() {
     <section className={styles.section}>
       <div className={styles.innerContainer}>
         
-        {/* Section Heading */}
         <h2 className={styles.sectionHeading}>
           Built to Eliminate Production Friction.
         </h2>
 
-        {/* Content Grid */}
         <div className={styles.contentGrid}>
           
-          {/* Left Column: Camera Image */}
           <div className={styles.imageWrapper}>
             <Image
-              src="/images/camera-tripod.jpg" // Swap with your image path
+              src="/assets/images/why-us-tripod.jpg"
               alt="Professional camera on tripod in studio"
               fill
               className={styles.image}
@@ -29,7 +26,6 @@ export default function WhyUs() {
             />
           </div>
 
-          {/* Right Column: Stacked Features with Hairline Dividers */}
           <div className={styles.featuresColumn}>
             {features.map((feature, idx) => (
               <div key={feature.id} className={styles.featureBlock}>

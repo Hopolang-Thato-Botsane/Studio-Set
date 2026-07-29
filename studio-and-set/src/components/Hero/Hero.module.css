@@ -7,7 +7,7 @@
   justify-content: space-between;
   background: 
     linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%),
-    url('/assets/images/gafferAI.jpg') no-repeat center center;
+    url('/assets/images/hero-bg.jpg') no-repeat center center;
   background-size: cover;
   padding: 2.5rem 4rem;
   overflow: hidden;
