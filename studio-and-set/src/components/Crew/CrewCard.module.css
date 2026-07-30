@@ -1,0 +1,273 @@
+/* Container Layout */
+.crew-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 42rem;
+  font-family: var(--font-support);
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .crew-card-wrapper {
+    flex-direction: row;
+  }
+}
+
+/* Expanded Left Details Panel */
+.crew-details-panel {
+  flex: 1;
+  background-color: var(--color-cream);
+  color: var(--color-maroon);
+  padding: 1.25rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(60, 0, 22, 0.15);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  animation: slideInRight 0.3s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(60, 0, 22, 0.2);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.panel-name {
+  font-family: var(--font-main);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+
+.panel-subtext {
+  font-family: var(--font-support);
+  font-size: 0.75rem;
+  color: rgba(60, 0, 22, 0.8);
+  font-weight: 500;
+}
+
+.panel-icon-btn,
+.banner-icon-btn {
+  background: transparent;
+  border: none;
+  padding: 0.375rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-maroon);
+  transition: background-color 0.2s ease;
+}
+
+.panel-icon-btn:hover,
+.banner-icon-btn:hover {
+  background-color: rgba(60, 0, 22, 0.1);
+}
+
+.panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 0.75rem;
+}
+
+.panel-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  font-family: var(--font-main);
+  font-weight: 700;
+  color: var(--color-maroon);
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.section-body {
+  font-family: var(--font-support);
+  color: rgba(60, 0, 22, 0.9);
+}
+
+.experience-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: rgba(60, 0, 22, 0.9);
+  font-family: var(--font-support);
+}
+
+.panel-footer {
+  margin-top: 1.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(60, 0, 22, 0.15);
+}
+
+.rate-value {
+  font-family: var(--font-support);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-maroon);
+}
+
+/* Main Right Image / Summary Card */
+.crew-main-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: var(--color-maroon);
+  border: 1px solid rgba(209, 192, 165, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.875rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 768px) {
+  .crew-main-card {
+    width: 320px;
+  }
+}
+
+.card-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+}
+
+.badge-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  background-color: var(--color-cream);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--color-maroon);
+  font-family: var(--font-support);
+}
+
+.badge-divider {
+  opacity: 0.4;
+}
+
+.message-btn {
+  padding: 0.5rem;
+  background-color: var(--color-maroon);
+  color: var(--color-cream);
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.message-btn:hover {
+  background-color: rgba(60, 0, 22, 0.85);
+  transform: scale(1.05);
+}
+
+/* Image Wrapper and Effects */
+.card-image-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.card-image {
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(100%) contrast(125%);
+  opacity: 0.9;
+  transition: transform 0.5s ease;
+}
+
+.crew-main-card:hover .card-image {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(22, 24, 29, 0.7), transparent 50%, rgba(22, 24, 29, 0.3));
+}
+
+/* Bottom Banner Trigger */
+.card-bottom-banner {
+  position: relative;
+  z-index: 10;
+  background-color: var(--color-cream);
+  color: var(--color-maroon);
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.card-bottom-banner:hover {
+  background-color: rgba(209, 192, 165, 0.95);
+}
+
+.banner-name {
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.25;
+}
+
+.banner-subtext {
+  font-family: var(--font-support);
+  font-size: 0.6875rem;
+  color: rgba(60, 0, 22, 0.8);
+  font-weight: 500;
+}
+
+/* SVGs */
+.icon-svg {
+  fill: currentColor;
+}
+
+.paper-plane {
+  width: 1rem;
+  height: 1rem;
+  transform: rotate(45deg);
+}

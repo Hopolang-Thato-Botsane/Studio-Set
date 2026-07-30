@@ -2,6 +2,7 @@
   --color-cream: #D1C0A5;
   --color-maroon: #3C0016;
   --color-bg: #16181D;
+  --color-text-main: #D1C0A5; /* Added so body text resolves properly */
   --font-main: 'Syne', sans-serif;
   --font-support: 'Inter', sans-serif;
 }
@@ -10,6 +11,17 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  font-family: var(--font-support);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-main);
 }
 
 main {
@@ -29,19 +41,16 @@ footer,
   scroll-snap-stop: always;
 }
 
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text-main);
-  font-family: var(--font-support);
-  -webkit-font-smoothing: antialiased;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-main);
-}
-
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
+}
+
+svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  max-width: 100%;
+  display: inline-block;
+  flex-shrink: 0;
 }
