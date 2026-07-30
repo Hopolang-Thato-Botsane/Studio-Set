@@ -39,7 +39,6 @@ export const CrewDirectory: React.FC = () => {
           </p>
         </header>
 
-        {/* Filter Bar */}
         <CrewFilterBar
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
@@ -50,7 +49,6 @@ export const CrewDirectory: React.FC = () => {
           resultsCount={filteredCrew.length}
         />
 
-        {/* Cards Grid or Empty State */}
         {filteredCrew.length > 0 ? (
           <div className="crew-directory__grid">
             {filteredCrew.map((crew) => (

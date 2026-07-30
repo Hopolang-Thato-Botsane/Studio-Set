@@ -1,7 +1,7 @@
 .crew-directory {
   min-height: 100vh;
-  background-color: #020617; /* Slate 950 */
-  color: #f1f5f9; /* Slate 100 */
+  background-color: #020617;
+  color: #f1f5f9;
   padding: 1.5rem;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .crew-directory__container {
-  max-width: 80rem; /* max-w-7xl */
+  max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -30,12 +30,11 @@
 }
 
 .crew-directory__subtitle {
-  color: #94a3b8; /* Slate 400 */
+  color: #94a3b8;
   font-size: 0.875rem;
   margin-top: 0.25rem;
 }
 
-/* Grid Layout */
 .crew-directory__grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -54,14 +53,13 @@
   }
 }
 
-/* Empty State */
 .crew-directory__empty-state {
   text-align: center;
   padding-top: 4rem;
   padding-bottom: 4rem;
-  background-color: rgba(15, 23, 42, 0.5); /* Slate 900 w/ opacity */
+  background-color: rgba(15, 23, 42, 0.5);
   border-radius: 1rem;
-  border: 1px solid #1e293b; /* Slate 800 */
+  border: 1px solid #1e293b;
 }
 
 .crew-directory__empty-message {
@@ -72,7 +70,7 @@
 .crew-directory__reset-button {
   margin-top: 0.75rem;
   font-size: 0.75rem;
-  color: #f59e0b; /* Amber 500 */
+  color: #f59e0b;
   background: transparent;
   border: none;
   cursor: pointer;

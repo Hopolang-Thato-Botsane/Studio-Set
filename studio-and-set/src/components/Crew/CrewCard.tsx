@@ -24,7 +24,6 @@ export const CrewCard: React.FC<CrewCardProps> = ({
           : 'border-slate-800 hover:border-slate-700'
       }`}
     >
-      {/* Upper Card Header */}
       <div className="p-5 flex items-start gap-4">
         <img
           src={crew.imageUrl}
@@ -57,7 +56,6 @@ export const CrewCard: React.FC<CrewCardProps> = ({
         </div>
       </div>
 
-      {/* Expandable Section Header */}
       <button
         type="button"
         onClick={() => setIsExpanded(!isExpanded)}
@@ -67,7 +65,6 @@ export const CrewCard: React.FC<CrewCardProps> = ({
         <span className="text-slate-400">{isExpanded ? '▲ Hide' : '▼ View Details'}</span>
       </button>
 
-      {/* Expanded Accordion Body */}
       {isExpanded && (
         <div className="p-5 bg-slate-950/40 text-xs space-y-3 border-b border-slate-800/80">
           <div>
@@ -88,9 +85,7 @@ export const CrewCard: React.FC<CrewCardProps> = ({
         </div>
       )}
 
-      {/* Footer Controls */}
       <div className="p-4 bg-slate-900 flex items-center justify-between gap-3">
-        {/* Select / Shortlist Toggle */}
         <button
           type="button"
           onClick={() => onToggleSelect?.(crew.id)}
@@ -103,7 +98,6 @@ export const CrewCard: React.FC<CrewCardProps> = ({
           {isSelected ? '✓ Selected' : '+ Add to Roster'}
         </button>
 
-        {/* Action Button */}
         {crew.isFinalized && (
           <button
             type="button"

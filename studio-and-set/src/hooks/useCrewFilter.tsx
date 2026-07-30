@@ -11,7 +11,6 @@ export function useCrewFilter(initialCrew: CrewMember[]) {
     const query = searchQuery.toLowerCase().trim();
 
     return initialCrew.filter((crew) => {
-      // 1. Text Search Across Multiple Fields
       const matchesSearch =
         !query ||
         crew.name.toLowerCase().includes(query) ||
@@ -19,11 +18,9 @@ export function useCrewFilter(initialCrew: CrewMember[]) {
         crew.education.toLowerCase().includes(query) ||
         crew.workExperience.some((exp) => exp.toLowerCase().includes(query));
 
-      // 2. Location Filtering
       const matchesLocation =
         selectedLocation === 'All' || crew.location === selectedLocation;
 
-      // 3. Finalized Status Filtering
       const matchesFinalized = !showFinalizedOnly || crew.isFinalized;
 
       return matchesSearch && matchesLocation && matchesFinalized;

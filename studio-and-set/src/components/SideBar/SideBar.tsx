@@ -22,9 +22,7 @@ export default function Sidebar() {
         isExpanded ? styles.expanded : styles.collapsed
       }`}
     >
-      {/* Top Section */}
       <div className={styles.topSection}>
-        {/* Header / Toggle */}
         <div className={styles.headerRow}>
           {isExpanded && <span className={styles.brandTitle}>Studio&Set</span>}
           <button
@@ -40,7 +38,6 @@ export default function Sidebar() {
           </button>
         </div>
 
-        {/* Primary Navigation */}
         <nav className={styles.navList}>
           <button className={styles.navItem}>
             <MessageSquare size={20} />
@@ -60,7 +57,6 @@ export default function Sidebar() {
 
         <hr className={styles.divider} />
 
-        {/* Projects Section */}
         <div className={styles.navList}>
           <button className={styles.navItem}>
             <Plus size={20} />
@@ -74,7 +70,6 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Bottom Profile Section */}
       <div className={styles.bottomSection}>
         <div className={styles.profileRow}>
           <div className={styles.profileInfo}>

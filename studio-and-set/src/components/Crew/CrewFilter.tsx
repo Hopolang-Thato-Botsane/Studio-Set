@@ -24,7 +24,6 @@ export const CrewFilterBar: React.FC<CrewFilterBarProps> = ({
 }) => {
   return (
     <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 mb-6 text-white space-y-4 md:space-y-0 md:flex md:items-center md:justify-between md:gap-4">
-      {/* Search Input */}
       <div className="flex-1 relative">
         <input
           type="text"
@@ -43,7 +42,6 @@ export const CrewFilterBar: React.FC<CrewFilterBarProps> = ({
         )}
       </div>
 
-      {/* Location Selector */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0">
         {locations.map((loc) => (
           <button
@@ -60,7 +58,6 @@ export const CrewFilterBar: React.FC<CrewFilterBarProps> = ({
         ))}
       </div>
 
-      {/* Finalized Toggle & Results Count */}
       <div className="flex items-center justify-between md:justify-end gap-4 border-t md:border-t-0 border-slate-800 pt-3 md:pt-0">
         <label className="flex items-center gap-2 text-xs text-slate-300 cursor-pointer select-none">
           <input

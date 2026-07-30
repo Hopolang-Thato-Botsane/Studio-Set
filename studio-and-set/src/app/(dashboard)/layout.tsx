@@ -8,10 +8,8 @@ export default function DashboardLayout({
 }) {
   return (
     <div className={styles.container}>
-      {/* 1. Sidebar */}
       <Sidebar />
 
-      {/* 2. Main Body */}
       <main className={styles.mainContent}>
         {children}
       </main>

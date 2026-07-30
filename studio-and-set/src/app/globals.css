@@ -2,7 +2,7 @@
   --color-cream: #D1C0A5;
   --color-maroon: #3C0016;
   --color-bg: #16181D;
-  --color-text-main: #D1C0A5; /* Added so body text resolves properly */
+  --color-text-main: #D1C0A5;
   --font-main: 'Syne', sans-serif;
   --font-support: 'Inter', sans-serif;
 }

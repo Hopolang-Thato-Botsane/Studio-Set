@@ -21,8 +21,8 @@ export interface ProductionKit {
   productionType: string;
   tier: string;
   brandEcosystem: string;
-  brand?: string;           // Alias for brandEcosystem if referenced in code
-  badge?: string;           // Optional badge
+  brand?: string;
+  badge?: string;
   isBestSeller: boolean;
   isAutoSelectDefault: boolean;
   itemsCount: number;
@@ -31,7 +31,7 @@ export interface ProductionKit {
   tags: string[];
   coverImageUrl: string;
   isAvailable: boolean;
-  isSelected?: boolean;     // Optional UI state flag
+  isSelected?: boolean; 
 }
 
 export const productionKitsData: ProductionKit[] = [

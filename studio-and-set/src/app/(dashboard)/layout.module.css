@@ -3,7 +3,6 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  /* Override global dark background using your cream variable */
   background-color: var(--color-cream);
   color: var(--color-maroon);
 }
@@ -12,6 +11,5 @@
   flex: 1;
   height: 100%;
   overflow-y: auto;
-  /* Disable snap scrolling from globals.css inside the dashboard body */
   scroll-snap-type: none !important;
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import crewData from '@/data/crewData';
+import crewData from '@/data/crewData/';
 import { CrewMember, LocationFilter } from '@/types/crew';
 import { CrewCard } from '@/components/Crew/CrewCard';
 import { CrewFilterBar } from '@/components/Crew/CrewFilter';
@@ -11,7 +11,6 @@ export default function CrewFinderPage() {
   const [selectedLocation, setSelectedLocation] = useState<LocationFilter>('All');
   const [showFinalizedOnly, setShowFinalizedOnly] = useState(false);
 
-  // Real-time Search & Filter Logic
   const filteredCrew = useMemo(() => {
     return (crewData as CrewMember[]).filter((crew) => {
       const matchesSearch =
@@ -29,13 +28,12 @@ export default function CrewFinderPage() {
   }, [searchQuery, selectedLocation, showFinalizedOnly]);
 
   const handleDirectMessage = (id: string) => {
-    // Navigates or opens direct communication channel for finalized crew
     console.log(`Opening direct contact channel for crew ID: ${id}`);
   };
 
   return (
     <div className="p-6 md:p-10 max-w-7xl mx-auto min-h-screen">
-      {/* Header */}
+
       <div className="mb-8">
         <h1 className="text-3xl font-extrabold text-[#3B1219] tracking-tight">Crew Finder</h1>
         <p className="text-sm text-[#3B1219]/70 mt-1">
