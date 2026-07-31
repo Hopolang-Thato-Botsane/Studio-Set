@@ -31,12 +31,8 @@
 //   );
 // }
 
-import { ProductionSummaryView } from '@/components/Dashboard/ProductionSummaryView';
+import { DashboardContainer } from "@/components/Dashboard/DashboardContainer";
 
 export default function DashboardPage() {
-  return (
-    <div>
-      <ProductionSummaryView />
-    </div>
-  );
+  return <DashboardContainer />;
 }

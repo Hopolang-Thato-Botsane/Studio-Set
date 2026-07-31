@@ -4,14 +4,31 @@ import React, { useState } from 'react';
 import styles from './ProductionSummaryView.module.css';
 import { productionSummaryData, Candidate, ProductionKit } from './ProductionSummaryData';
 
-export function ProductionSummaryView() {
+export interface ProductionSummaryViewProps {
+  onConfirmAndBook?: (selectedData?: {
+    selectedCrew: Record<string, string>;
+    selectedKitId: string;
+  }) => void;
+}
+
+export function ProductionSummaryView({ onConfirmAndBook }: ProductionSummaryViewProps) {
   const { searchMeta, categories, productionKits, costBreakdown } = productionSummaryData;
 
   const [selectedCrew, setSelectedCrew] = useState<Record<string, string>>({});
   const [selectedKitId, setSelectedKitId] = useState<string>(productionKits[0]?.id || '');
+  
+  // State for slide-over drawer modal
+  const [isRegenerateOpen, setIsRegenerateOpen] = useState(false);
 
   const handleSelectCrew = (categoryTitle: string, candidateId: string) => {
     setSelectedCrew((prev) => ({ ...prev, [categoryTitle]: candidateId }));
+  };
+
+  const handleConfirmAndBook = () => {
+    onConfirmAndBook?.({
+      selectedCrew,
+      selectedKitId,
+    });
   };
 
   const formatZAR = (val: number) =>
@@ -19,7 +36,7 @@ export function ProductionSummaryView() {
 
   return (
     <div className={styles.container}>
-        
+      {/* Top Meta Header */}
       <header className={styles.metaBar}>
         <div>
           <span className={styles.metaLabel}>Project Search</span>
@@ -34,10 +51,11 @@ export function ProductionSummaryView() {
         </div>
       </header>
 
+      {/* Main Layout Grid */}
       <div className={styles.layoutGrid}>
-
+        {/* Left Main Content */}
         <main className={styles.mainContent}>
-
+          {/* Crew Sections */}
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>Crew Selection</h2>
 
@@ -70,6 +88,7 @@ export function ProductionSummaryView() {
             ))}
           </section>
 
+          {/* Production Kits */}
           <section className={styles.section}>
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>Production Kits</h2>
@@ -91,6 +110,7 @@ export function ProductionSummaryView() {
           </section>
         </main>
 
+        {/* Right Sticky Sidebar: Cost Breakdown */}
         <aside className={styles.sidebar}>
           <div className={styles.costCard}>
             <h3 className={styles.costTitle}>Cost Breakdown</h3>
@@ -138,15 +158,70 @@ export function ProductionSummaryView() {
               </span>
             </div>
 
-            <button type="button" className={styles.btnPrimary}>Confirm & Book</button>
-            <button type="button" className={styles.btnSecondary}>Regenerate Proposal</button>
+            <button 
+              type="button" 
+              className={styles.btnPrimary}
+              onClick={handleConfirmAndBook}
+            >
+              Confirm & Book
+            </button>
+            <button
+              type="button"
+              className={styles.btnSecondary}
+              onClick={() => setIsRegenerateOpen(true)}
+            >
+              Regenerate Proposal
+            </button>
           </div>
         </aside>
       </div>
+
+      {/* Backdrop Overlay */}
+      <div
+        className={`${styles.modalOverlay} ${isRegenerateOpen ? styles.overlayVisible : ''}`}
+        onClick={() => setIsRegenerateOpen(false)}
+      />
+
+      {/* Right Slide-over Drawer Modal */}
+      <aside
+        className={`${styles.modalDrawer} ${isRegenerateOpen ? styles.drawerVisible : ''}`}
+        aria-hidden={!isRegenerateOpen}
+      >
+        <div className={styles.modalHeader}>
+          <span className={styles.modalHeaderTitle}>Results</span>
+          <button
+            type="button"
+            className={styles.closeBtn}
+            onClick={() => setIsRegenerateOpen(false)}
+            aria-label="Close modal"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div className={styles.modalBody}>
+          <h2 className={styles.modalHeadline}>Roster Curation Complete</h2>
+          <p className={styles.modalDescription}>
+            These are the top-tier candidates matching your technical specifications. Roster availability is exclusively locked to your project dates.
+          </p>
+        </div>
+
+        <div className={styles.modalFooter}>
+          <h3 className={styles.footerTitle}>Initiate Project With Recommended?</h3>
+          <button
+            type="button"
+            className={styles.modalProceedBtn}
+            onClick={() => setIsRegenerateOpen(false)}
+          >
+            Proceed
+          </button>
+        </div>
+      </aside>
     </div>
   );
 }
 
+/* Candidate Card Sub-Component */
 function CandidateCard({
   candidate,
   isSelected,
@@ -276,6 +351,7 @@ function CandidateCard({
   );
 }
 
+/* Kit Card Sub-Component */
 function KitCard({
   kit,
   isSelected,

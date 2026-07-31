@@ -66,6 +66,124 @@
   align-items: start;
 }
 
+/* Modal Overlay & Slide-over Drawer */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.overlayVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modalDrawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 480px;
+  background-color: #d1c1b1; /* Warm beige matching the mockup frame */
+  color: var(--color-maroon, #3c0016);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 1.5rem;
+}
+
+.drawerVisible {
+  transform: translateX(0);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+
+.modalHeaderTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-maroon, #3c0016);
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--color-maroon, #3c0016);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+}
+
+.modalBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  padding-right: 1rem;
+}
+
+.modalHeadline {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-maroon, #3c0016);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.modalDescription {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-maroon, #3c0016);
+  opacity: 0.9;
+  margin: 0;
+}
+
+.modalFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1.5rem;
+}
+
+.footerTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-maroon, #3c0016);
+  margin: 0;
+}
+
+.modalProceedBtn {
+  width: 100%;
+  background-color: var(--color-maroon, #3c0016);
+  color: var(--color-cream, #e8dfd8);
+  border: none;
+  border-radius: 4px;
+  padding: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.modalProceedBtn:hover {
+  opacity: 0.95;
+}
+
 @media (min-width: 1024px) {
   .layoutGrid {
     grid-template-columns: 1fr 340px;
