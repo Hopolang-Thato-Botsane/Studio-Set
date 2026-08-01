@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ActiveProductionView.module.css';
+import { MessagesDrawer } from '../MessageDrawer/MessageDrawer';
 
 export interface ActiveCrewMember {
   id: string;
@@ -10,7 +11,10 @@ export interface ActiveCrewMember {
   yearsExperience: number;
   location: string;
   pickTag?: string;
-  image?: string | { src: string } | any;
+  image?: string | { src: string };
+  education?: string;
+  workExperience?: string[];
+  rate?: number;
 }
 
 export interface ActiveKit {
@@ -18,7 +22,8 @@ export interface ActiveKit {
   name: string;
   brandTag: string;
   pickTag?: string;
-  image?: string | { src: string } | any;
+  image?: string | { src: string };
+  price?: number;
 }
 
 export interface ActiveProductionDetails {
@@ -42,9 +47,21 @@ export function ActiveProductionView({
   onContactCrew,
   onUpdateProduction,
 }: ActiveProductionViewProps) {
+  const [isMessagesOpen, setIsMessagesOpen] = useState(false);
+  const [selectedCrewId, setSelectedCrewId] = useState<string | null>(null);
+
+  const handleContactClick = (crewId: string) => {
+    console.log('[ActiveProductionView] Contact Button Clicked! Crew ID:', crewId);
+    setSelectedCrewId(crewId);
+    setIsMessagesOpen(true);
+    if (onContactCrew) {
+      onContactCrew(crewId);
+    }
+  };
+
   return (
     <div className={styles.container}>
-      {/* Header Section */}
+      
       <section className={styles.headerSection}>
         <h1 className={styles.title}>Production Details</h1>
         <p className={styles.statusLabel}>
@@ -63,18 +80,17 @@ export function ActiveProductionView({
           </div>
 
           <div className={styles.metaField}>
-            <span className={styles.fieldLabel}>Production Start:</span>
+            <span className={styles.fieldLabel}>Production Start</span>
             <div className={styles.fieldValue}>{production.startDate}</div>
           </div>
 
           <div className={styles.metaField}>
-            <span className={styles.fieldLabel}>Production End:</span>
+            <span className={styles.fieldLabel}>Production End</span>
             <div className={styles.fieldValue}>{production.endDate}</div>
           </div>
         </div>
       </section>
 
-      {/* Selected Crew Section */}
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>The Crew</h2>
         <div className={styles.crewGrid}>
@@ -82,13 +98,12 @@ export function ActiveProductionView({
             <CrewCard
               key={member.id}
               member={member}
-              onContact={() => onContactCrew?.(member.id)}
+              onContact={() => handleContactClick(member.id)}
             />
           ))}
         </div>
       </section>
 
-      {/* Production Kit Section */}
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Production Kit</h2>
         <div className={styles.kitWrapper}>
@@ -98,7 +113,6 @@ export function ActiveProductionView({
 
       <hr className={styles.divider} />
 
-      {/* Update Production Section */}
       <section className={styles.updateSection}>
         <h3 className={styles.updateTitle}>Update Production Schedule</h3>
         <p className={styles.updateText}>
@@ -112,6 +126,15 @@ export function ActiveProductionView({
           Update Production
         </button>
       </section>
+
+      <MessagesDrawer
+        isOpen={isMessagesOpen}
+        onClose={() => {
+          console.log('[ActiveProductionView] Closing drawer');
+          setIsMessagesOpen(false);
+        }}
+        crewId={selectedCrewId}
+      />
     </div>
   );
 }
@@ -123,14 +146,37 @@ function CrewCard({
   member: ActiveCrewMember;
   onContact: () => void;
 }) {
-  // Extract image path cleanly whether passed as a string or static import object
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const imageSrc =
     typeof member.image === 'object' && member.image !== null
-      ? (member.image as { src?: string }).src || ''
+      ? member.image.src
       : member.image;
+
+  const toggleExpand = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsExpanded((prev) => !prev);
+  };
+
+  const handleContactBtnClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('[CrewCard] Paperplane icon clicked for:', member.id);
+    onContact();
+  };
+
+  const formatZA_p_d = (val?: number) =>
+    val ? `R ${val.toLocaleString('en-ZA')} p/d` : 'R 3 500 p/d';
 
   return (
     <div className={styles.card}>
+      {imageSrc ? (
+        <img src={imageSrc} alt={member.name} className={styles.cardMedia} />
+      ) : (
+        <div className={styles.cardMediaFallback}>{member.name.charAt(0)}</div>
+      )}
+      <div className={styles.cardMediaOverlay} />
+
       <div className={styles.cardBadgesTop}>
         {member.pickTag && <span className={styles.pickLabel}>{member.pickTag}</span>}
         <span className={styles.locationTag}>{member.location}</span>
@@ -139,10 +185,7 @@ function CrewCard({
       <button
         type="button"
         className={styles.contactBtn}
-        onClick={(e) => {
-          e.stopPropagation();
-          onContact();
-        }}
+        onClick={handleContactBtnClick}
         aria-label={`Contact ${member.name}`}
       >
         <svg
@@ -160,25 +203,72 @@ function CrewCard({
         </svg>
       </button>
 
-      {imageSrc ? (
-        <img src={imageSrc} alt={member.name} className={styles.cardMedia} />
-      ) : (
-        <div className={styles.cardMediaFallback}>{member.name.charAt(0)}</div>
-      )}
-
-      <div className={styles.cardMediaOverlay} />
-
       <div className={styles.cardBottomBar}>
         <div className={styles.cardMainInfo}>
           <h4 className={styles.cardTitle}>{member.name}</h4>
           <p className={styles.cardSubtitle}>
-            {member.role}/ {member.yearsExperience}+ Years
+            {member.role} / {member.yearsExperience}+ Years
           </p>
         </div>
-        <button type="button" className={styles.arrowBtn} aria-label="Toggle details">
-          <span className={styles.arrowUp} />
+        <button
+          type="button"
+          aria-expanded={isExpanded}
+          className={styles.arrowBtn}
+          onClick={toggleExpand}
+        >
+          <span className={isExpanded ? styles.arrowDown : styles.arrowUp} />
         </button>
       </div>
+
+      {isExpanded && (
+        <div className={styles.expandedDrawer}>
+          <div className={styles.drawerHeader}>
+            <div className={styles.cardMainInfo}>
+              <h4 className={styles.cardTitle}>{member.name}</h4>
+              <p className={styles.cardSubtitle}>
+                {member.role} / {member.yearsExperience}+ Years
+              </p>
+            </div>
+            <button
+              type="button"
+              className={styles.arrowBtn}
+              onClick={toggleExpand}
+            >
+              <span className={styles.arrowDown} />
+            </button>
+          </div>
+
+          <hr className={styles.drawerDivider} />
+
+          <div className={styles.drawerBody}>
+            <div className={styles.infoSection}>
+              <h5 className={styles.infoLabel}>Education</h5>
+              <p className={styles.infoText}>
+                {member.education || 'UCT Degree in Film & Television'}
+              </p>
+            </div>
+
+            <div className={styles.infoSection}>
+              <h5 className={styles.infoLabel}>Work Experience</h5>
+              <div className={styles.expList}>
+                {(member.workExperience || [
+                  '2+ Years at Soul Fire Studios',
+                  '3 Years at Fire Mind Studios',
+                ]).map((exp: string, idx: number) => (
+                  <p key={idx} className={styles.infoText}>
+                    {exp}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.infoSection}>
+              <h5 className={styles.infoLabel}>Rate</h5>
+              <p className={styles.rateText}>{formatZA_p_d(member.rate)}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -186,16 +276,11 @@ function CrewCard({
 function KitCard({ kit }: { kit: ActiveKit }) {
   const imageSrc =
     typeof kit.image === 'object' && kit.image !== null
-      ? (kit.image as { src?: string }).src || ''
+      ? kit.image.src
       : kit.image;
 
   return (
     <div className={`${styles.card} ${styles.kitCard}`}>
-      <div className={styles.cardBadgesTop}>
-        {kit.pickTag && <span className={styles.pickLabel}>{kit.pickTag}</span>}
-        <span className={styles.brandBadge}>{kit.brandTag}</span>
-      </div>
-
       {imageSrc ? (
         <img src={imageSrc} alt={kit.name} className={styles.cardMedia} />
       ) : (
@@ -204,11 +289,13 @@ function KitCard({ kit }: { kit: ActiveKit }) {
 
       <div className={styles.cardMediaOverlay} />
 
+      <div className={styles.cardBadgesTop}>
+        {kit.pickTag && <span className={styles.pickLabel}>{kit.pickTag}</span>}
+        <span className={styles.brandBadge}>{kit.brandTag}</span>
+      </div>
+
       <div className={styles.cardBottomBar}>
         <h4 className={styles.cardTitle}>{kit.name}</h4>
-        <button type="button" className={styles.arrowBtn} aria-label="Toggle details">
-          <span className={styles.arrowUp} />
-        </button>
       </div>
     </div>
   );
