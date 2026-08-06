@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./auth.module.css";
 
-export default function AuthLayout({ children }: { children: React.ReactNode }) {
+interface AuthLayoutProps {
+  children: React.ReactNode;
+}
+
+export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className={styles.splitLayout}>
       <div className={styles.leftPanel}>

@@ -2,6 +2,7 @@
 
 import { use } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { notFound } from "next/navigation";
 import { registerConfigs, UserRole } from "../registerConfig";
 import styles from "../../auth.module.css";
@@ -13,12 +14,20 @@ export default function RegisterRolePage({
 }) {
   const resolvedParams = use(params);
   const role = resolvedParams.role.toLowerCase() as UserRole;
+  const router = useRouter();
 
   const config = registerConfigs[role];
 
   if (!config) {
     notFound();
   }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (role === "crew") {
+      router.push("/register/crew/profile");
+    }
+  };
 
   return (
     <div>
@@ -30,8 +39,8 @@ export default function RegisterRolePage({
       {config.showSocials && (
         <>
           <div className={styles.socialButtons}>
-            <button className={styles.socialButton}>☁</button>
-            <button className={styles.socialButton}>G</button>
+            <button type="button" className={styles.socialButton}>☁</button>
+            <button type="button" className={styles.socialButton}>G</button>
           </div>
 
           <div className={styles.divider}>
@@ -42,7 +51,7 @@ export default function RegisterRolePage({
         </>
       )}
 
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={handleSubmit}>
         {config.fields.showNameFields && (
           <div className={styles.formGridTwoCol}>
             <div className={styles.formGroup}>

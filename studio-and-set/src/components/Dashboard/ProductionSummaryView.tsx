@@ -16,8 +16,6 @@ export function ProductionSummaryView({ onConfirmAndBook }: ProductionSummaryVie
 
   const [selectedCrew, setSelectedCrew] = useState<Record<string, string>>({});
   const [selectedKitId, setSelectedKitId] = useState<string>(productionKits[0]?.id || '');
-  
-  // State for slide-over drawer modal
   const [isRegenerateOpen, setIsRegenerateOpen] = useState(false);
 
   const handleSelectCrew = (categoryTitle: string, candidateId: string) => {
@@ -36,7 +34,6 @@ export function ProductionSummaryView({ onConfirmAndBook }: ProductionSummaryVie
 
   return (
     <div className={styles.container}>
-      {/* Top Meta Header */}
       <header className={styles.metaBar}>
         <div>
           <span className={styles.metaLabel}>Project Search</span>
@@ -51,11 +48,9 @@ export function ProductionSummaryView({ onConfirmAndBook }: ProductionSummaryVie
         </div>
       </header>
 
-      {/* Main Layout Grid */}
       <div className={styles.layoutGrid}>
-        {/* Left Main Content */}
         <main className={styles.mainContent}>
-          {/* Crew Sections */}
+
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>Crew Selection</h2>
 
@@ -88,7 +83,6 @@ export function ProductionSummaryView({ onConfirmAndBook }: ProductionSummaryVie
             ))}
           </section>
 
-          {/* Production Kits */}
           <section className={styles.section}>
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>Production Kits</h2>
@@ -110,7 +104,6 @@ export function ProductionSummaryView({ onConfirmAndBook }: ProductionSummaryVie
           </section>
         </main>
 
-        {/* Right Sticky Sidebar: Cost Breakdown */}
         <aside className={styles.sidebar}>
           <div className={styles.costCard}>
             <h3 className={styles.costTitle}>Cost Breakdown</h3>
@@ -176,13 +169,11 @@ export function ProductionSummaryView({ onConfirmAndBook }: ProductionSummaryVie
         </aside>
       </div>
 
-      {/* Backdrop Overlay */}
       <div
         className={`${styles.modalOverlay} ${isRegenerateOpen ? styles.overlayVisible : ''}`}
         onClick={() => setIsRegenerateOpen(false)}
       />
 
-      {/* Right Slide-over Drawer Modal */}
       <aside
         className={`${styles.modalDrawer} ${isRegenerateOpen ? styles.drawerVisible : ''}`}
         aria-hidden={!isRegenerateOpen}
@@ -221,7 +212,6 @@ export function ProductionSummaryView({ onConfirmAndBook }: ProductionSummaryVie
   );
 }
 
-/* Candidate Card Sub-Component */
 function CandidateCard({
   candidate,
   isSelected,
