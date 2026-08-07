@@ -1,0 +1,164 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: var(--color-cream);
+  color: var(--color-maroon);
+  border-right: 1px solid rgba(60, 0, 22, 0.2);
+  transition: width 0.3s ease-in-out;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.sidebar.expanded {
+  width: 256px;
+  padding: 16px;
+}
+
+.sidebar.collapsed {
+  width: 64px;
+  padding: 16px 8px;
+  align-items: center;
+}
+
+.sidebar svg {
+  width: 20px !important;
+  height: 20px !important;
+  fill: none;
+  stroke: currentColor;
+}
+
+.topSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 32px;
+}
+
+.sidebar.expanded .headerRow {
+  justify-content: space-between;
+}
+
+.sidebar.collapsed .headerRow {
+  justify-content: center;
+}
+
+.brandTitle {
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--color-maroon);
+  white-space: nowrap;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  color: var(--color-maroon);
+  font-family: var(--font-support);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar.collapsed .navItem {
+  justify-content: center;
+}
+
+.navItem:hover,
+.iconButton:hover {
+  background-color: rgba(60, 0, 22, 0.1);
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: var(--color-maroon);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid rgba(60, 0, 22, 0.2);
+  margin: 4px 0;
+}
+
+.label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bottomSection {
+  width: 100%;
+  padding-top: 16px;
+  border-top: 1px solid rgba(60, 0, 22, 0.2);
+}
+
+.profileRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.sidebar.expanded .profileRow {
+  justify-content: space-between;
+}
+
+.sidebar.collapsed .profileRow {
+  justify-content: center;
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-maroon);
+  flex-shrink: 0;
+}
+
+.companyName {
+  font-family: var(--font-support);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-maroon);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}

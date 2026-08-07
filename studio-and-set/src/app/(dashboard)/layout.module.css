@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--color-cream);
+  color: var(--color-maroon);
+}
+
+.mainContent {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  scroll-snap-type: none !important;
+}

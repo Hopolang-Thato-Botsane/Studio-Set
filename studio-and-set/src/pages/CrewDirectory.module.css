@@ -1,0 +1,82 @@
+.crew-directory {
+  min-height: 100vh;
+  background-color: #020617;
+  color: #f1f5f9;
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .crew-directory {
+    padding: 2.5rem;
+  }
+}
+
+.crew-directory__container {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.crew-directory__header {
+  margin-bottom: 2rem;
+}
+
+.crew-directory__title {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+
+.crew-directory__subtitle {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.crew-directory__grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .crew-directory__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .crew-directory__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.crew-directory__empty-state {
+  text-align: center;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: rgba(15, 23, 42, 0.5);
+  border-radius: 1rem;
+  border: 1px solid #1e293b;
+}
+
+.crew-directory__empty-message {
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+.crew-directory__reset-button {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: #f59e0b;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: text-decoration 0.2s ease;
+}
+
+.crew-directory__reset-button:hover {
+  text-decoration: underline;
+}

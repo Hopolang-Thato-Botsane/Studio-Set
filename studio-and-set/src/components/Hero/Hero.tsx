@@ -25,9 +25,11 @@ export default function Hero(): JSX.Element {
   return (
     <>
       <section className={styles.heroSection}>
-
         <header className={styles.header}>
-          <div className={styles.logo}>STUDIO&amp;SET</div>
+          <Link href="/" className={styles.logo}>
+            STUDIO&amp;SET
+          </Link>
+
           <nav className={styles.navRight}>
             <Link href="/store" className={`${styles.storeLink} ${styles.desktopOnly}`}>
               STORE
@@ -48,9 +50,14 @@ export default function Hero(): JSX.Element {
           <h1 className={styles.title}>
             The premier choice for production crews and curated film equipment rentals in Southern Africa, featuring AI-driven search
           </h1>
+
           <div className={styles.buttonGroup}>
-            <button className={styles.btnPrimary}>Register as crew</button>
-            <button className={styles.btnSecondary}>Register as studio</button>
+            <Link href="/register/crew" className={styles.btnPrimary}>
+              Register as crew
+            </Link>
+            <Link href="/register/studio" className={styles.btnSecondary}>
+              Register as studio
+            </Link>
           </div>
         </div>
 
@@ -77,12 +84,23 @@ export default function Hero(): JSX.Element {
           >
             &#x2715;
           </button>
+
           <nav className={styles.overlayNav}>
-            <Link href="/register/crew" onClick={closeMenu}>Register as Crew</Link>
-            <Link href="/register/studio" onClick={closeMenu}>Register as Studio</Link>
-            <Link href="/login/crew" onClick={closeMenu}>Login as Crew</Link>
-            <Link href="/login/studio" onClick={closeMenu}>Login as Studio</Link>
-            <Link href="/store" onClick={closeMenu}>Go To Store</Link>
+            <Link href="/register/crew" onClick={closeMenu}>
+              Register as Crew
+            </Link>
+            <Link href="/register/studio" onClick={closeMenu}>
+              Register as Studio
+            </Link>
+            <Link href="/login/crew" onClick={closeMenu}>
+              Login as Crew
+            </Link>
+            <Link href="/login/studio" onClick={closeMenu}>
+              Login as Studio
+            </Link>
+            <Link href="/store" onClick={closeMenu}>
+              Go To Store
+            </Link>
           </nav>
         </div>
       )}

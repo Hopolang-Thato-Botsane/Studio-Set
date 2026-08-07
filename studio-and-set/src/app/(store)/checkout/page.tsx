@@ -11,7 +11,7 @@ export default function CheckoutPage() {
 
   const handleCheckoutSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Mock Purchase Successful! Your order has been placed.');s
+    alert('Mock Purchase Successful! Your order has been placed.');
     window.location.href = '/';
   };
 
