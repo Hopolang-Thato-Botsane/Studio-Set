@@ -341,7 +341,6 @@ function CandidateCard({
   );
 }
 
-/* Kit Card Sub-Component */
 function KitCard({
   kit,
   isSelected,

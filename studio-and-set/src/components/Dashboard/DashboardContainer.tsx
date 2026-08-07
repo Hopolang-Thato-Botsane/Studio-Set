@@ -8,7 +8,6 @@ import { productionSummaryData } from './ProductionSummaryData';
 export function DashboardContainer() {
   const [currentView, setCurrentView] = useState<'summary' | 'active'>('summary');
 
-  // Pull candidates and kit directly from your real data source
   const firstCategoryCrew = productionSummaryData.categories.map((cat) => cat.candidates[0]).filter(Boolean);
   const defaultKit = productionSummaryData.productionKits[0];
 
@@ -41,7 +40,6 @@ export function DashboardContainer() {
     selectedKitId?: string;
   }) => {
     if (selectedData?.selectedCrew || selectedData?.selectedKitId) {
-      // Map user selections to actual candidates
       const chosenCrew = productionSummaryData.categories.map((cat) => {
         const selectedId = selectedData.selectedCrew?.[cat.title];
         return (
