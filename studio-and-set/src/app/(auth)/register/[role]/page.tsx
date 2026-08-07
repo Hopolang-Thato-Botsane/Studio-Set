@@ -26,6 +26,8 @@ export default function RegisterRolePage({
     e.preventDefault();
     if (role === "crew") {
       router.push("/register/crew/profile");
+    } else if (role === "studio") {
+      router.push("/register/studio/profile");
     }
   };
 
