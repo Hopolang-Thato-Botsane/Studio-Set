@@ -1,18 +1,18 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { products, Product } from '@/components/ProductCard/ProductsData';
+import { products } from '@/components/ProductCard/ProductsData';
 import FilterDrawer from '@/components/FilterDrawer/FilterDrawer';
 import { FilterState } from '@/components/FilterDrawer/Types';
 import ProductCard from '@/components/ProductCard/ProductCard';
-import ProductDetailsDrawer, { CartItem } from '@/components/ProductDetailsDrawer/ProductsDetailsDrawer'; 
+import ProductDetailsDrawer, { DrawerCartItem } from '@/components/ProductDetailsDrawer/ProductsDetailsDrawer';
 import styles from './ProductGrid.module.css';
 
 export default function ProductGrid() {
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
   const [drawerState, setDrawerState] = useState<'closed' | 'details' | 'cart'>('closed');
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<DrawerCartItem[]>([]);
 
   const [filters, setFilters] = useState<FilterState>({
     gender: null,
@@ -31,30 +31,31 @@ export default function ProductGrid() {
     setDrawerState('details');
   };
 
-  const handleAddToCart = (newItem: Omit<CartItem, 'id'>) => {
-    setCartItems((prevItems) => {
+  const handleAddToCart = ({ product, selectedSize }: { product: any; selectedSize: string }) => {
+    if (!product) return;
 
-      const existingItemIndex = prevItems.findIndex(
-        (item) =>
-          item.product.id === newItem.product.id &&
-          item.selectedSize === newItem.selectedSize &&
-          item.selectedColor === newItem.selectedColor &&
-          item.selectedGender === newItem.selectedGender
+    setCartItems((prevItems) => {
+      const existingIndex = prevItems.findIndex(
+        (item) => item.id === product.id && item.size === selectedSize
       );
 
-      if (existingItemIndex > -1) {
+      if (existingIndex > -1) {
         const updated = [...prevItems];
-        updated[existingItemIndex].quantity += newItem.quantity;
+        updated[existingIndex].quantity += 1;
         return updated;
       }
 
-      return [
-        ...prevItems,
-        {
-          ...newItem,
-          id: `${newItem.product.id}-${newItem.selectedSize}-${newItem.selectedColor}-${Date.now()}`,
-        },
-      ];
+      const newItem: DrawerCartItem = {
+        id: product.id,
+        title: product.title,
+        brand: product.brand || 'Studio & Set',
+        price: product.price,
+        imageUrl: product.imageUrl,
+        size: selectedSize,
+        quantity: 1,
+      };
+
+      return [...prevItems, newItem];
     });
   };
 

@@ -38,17 +38,14 @@ export default function ProductDetailsDrawer({
   const router = useRouter();
   const [selectedSize, setSelectedSize] = React.useState<string>('');
 
-  // 1. Hook declared at the top level unconditionally
   React.useEffect(() => {
     if (product && product.sizes && product.sizes.length > 0 && !selectedSize) {
       setSelectedSize(product.sizes[0]);
     }
   }, [product, selectedSize]);
 
-  // 2. Early return must ALWAYS come AFTER all hook declarations
   if (drawerState === 'closed') return null;
 
-  // Calculate totals safely
   const cartTotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
