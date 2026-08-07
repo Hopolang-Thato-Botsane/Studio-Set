@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import crewData from '@/data/crewData';
+import { crewMembers as crewData } from '@/data/crewData';
 import { CrewMember, LocationFilter } from '@/types/crew';
 import { CrewCard } from '@/components/Crew/CrewCard';
 import { CrewFilterBar } from '@/components/Crew/CrewFilter';
@@ -27,8 +27,8 @@ export default function CrewFinderPage() {
     });
   }, [searchQuery, selectedLocation, showFinalizedOnly]);
 
-  const handleDirectMessage = (id: string) => {
-    console.log(`Opening direct contact channel for crew ID: ${id}`);
+  const handleDirectMessage = (crew: CrewMember) => {
+    console.log(`Opening direct contact channel for crew ID: ${crew.id}`);
   };
 
   return (
@@ -44,11 +44,12 @@ export default function CrewFinderPage() {
       {/* Filter Controls */}
       <CrewFilterBar
         searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
+        onSearchChange={setSearchQuery}
         selectedLocation={selectedLocation}
-        setSelectedLocation={setSelectedLocation}
+        onLocationChange={setSelectedLocation}
         showFinalizedOnly={showFinalizedOnly}
-        setShowFinalizedOnly={setShowFinalizedOnly}
+        onFinalizedToggle={setShowFinalizedOnly}
+        resultsCount={filteredCrew.length}
       />
 
       {/* Grid View */}
