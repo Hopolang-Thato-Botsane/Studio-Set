@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Product } from './ProductsData';
 import styles from './ProductCard.module.css';
 
@@ -16,7 +17,13 @@ export default function ProductCard({ product, onOpenDetailsModal }: ProductCard
       onClick={() => onOpenDetailsModal(product.id)}
     >
       <div className={styles.imageContainer}>
-        <div className={styles.placeholderImg} />
+        <Image
+          src={product.image}
+          alt={product.name}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          className={styles.productImg}
+        />
       </div>
 
       <h3 className={styles.productTitle}>{product.name}</h3>

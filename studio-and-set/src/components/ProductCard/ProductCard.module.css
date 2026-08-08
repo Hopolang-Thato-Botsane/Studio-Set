@@ -10,13 +10,12 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1.1 / 1;
-  background-color: #d1d1d1;
   overflow: hidden;
 }
 
-.placeholderImg {
-  width: 100%;
-  height: 100%;
+.productImg {
+  object-fit: contain;
+  transform: scale(0.75);
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -50,8 +49,8 @@
   content: "R " attr(data-price);
 }
 
-.productCard:hover .placeholderImg {
-  transform: scale(1.04);
+.productCard:hover .productImg {
+  transform: scale(0.79);
 }
 
 .productCard:hover .actionButton {

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #cbb489;
+  background-color: var(--color-cream);
   scroll-snap-type: y proximity; 
   overflow-y: auto;
 }
