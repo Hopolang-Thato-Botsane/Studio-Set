@@ -1,8 +1,8 @@
 .container {
   height: 100vh;
   height: 100dvh;
-  background-color: #D3C2A9;
-  color: #370B14;
+  background-color: var(--color-cream);
+  color: var(--color-maroon);
   padding: 2.5rem;
   display: flex;
   flex-direction: column;

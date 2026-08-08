@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import styles from './ProductDetailsDrawer.module.css';
 
@@ -48,6 +49,10 @@ export default function ProductDetailsDrawer({
 
   const cartTotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
+  // Fallbacks for data property naming (image vs imageUrl, name vs title)
+  const imageSrc = product?.image || product?.imageUrl;
+  const productTitle = product?.name || product?.title;
+
   return (
     <div className={styles.backdrop} onClick={onClose}>
       <div className={styles.drawer} onClick={(e) => e.stopPropagation()}>
@@ -64,15 +69,20 @@ export default function ProductDetailsDrawer({
         {drawerState === 'details' && product ? (
           <div className={styles.scrollableContent}>
             <div className={styles.heroImageContainer}>
-              <img 
-                src={product.imageUrl} 
-                alt={product.title} 
-                className={styles.heroImage} 
-              />
+              {imageSrc && (
+                <Image 
+                  src={imageSrc} 
+                  alt={productTitle || 'Product Image'} 
+                  fill
+                  sizes="480px"
+                  className={styles.heroImage}
+                  priority
+                />
+              )}
             </div>
             <div className={styles.detailsContent}>
               <span className={styles.label}>{product.brand || 'Studio & Set'}</span>
-              <h3 className={styles.productName}>{product.title}</h3>
+              <h3 className={styles.productName}>{productTitle}</h3>
               <p className={styles.taxNotice}>{product.description}</p>
               <span className={styles.price}>R {product.price}</span>
 
