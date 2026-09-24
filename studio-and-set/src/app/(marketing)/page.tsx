@@ -6,8 +6,6 @@ import Footer from '@/components/Footer/Footer';
 import HowItWorks from '@/components/HowItWorks/HowItWorks';
 import Faq from '@/components/FAQs/Faq';
 import FeaturedProductions from '@/components/FeaturedProductions/FeaturedProductions'
-import { Familjen_Grotesk } from 'next/font/google';
-
 
 export default async function Home() {
 
