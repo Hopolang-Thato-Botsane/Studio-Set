@@ -1,0 +1,179 @@
+.section {
+  width: 100%;
+  background-color: var(--color-black, #121212);
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 4vw, 4rem);
+  color: var(--color-white, #ffffff);
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1250px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  font-family: var(--font-main);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-white, #ffffff);
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+
+/* --- Infinite Auto-Scroll Logo Marquee --- */
+.marqueeWrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+  padding: 1rem 0;
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  gap: clamp(3rem, 5vw, 6rem);
+  animation: scrollMarquee 25s linear infinite;
+}
+
+.marqueeWrapper:hover .marqueeTrack {
+  animation-play-state: paused; /* Optional: pauses on hover */
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.logoItem:hover {
+  opacity: 1;
+}
+
+.logoPlaceholder {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-white, #ffffff);
+}
+
+/* --- Divider Line --- */
+.horizontalDivider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.15);
+  margin: 2rem 0 clamp(3rem, 5vw, 4.5rem) 0;
+}
+
+/* --- 3-Column Reviews Grid with Vertical Borders --- */
+.reviewsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  position: relative;
+}
+
+.reviewCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  gap: 3rem;
+}
+
+.reviewCard:first-child {
+  padding-left: 0;
+}
+
+.reviewCard:last-child {
+  padding-right: 0;
+  border-right: none; /* Removes last right border */
+}
+
+.quoteText {
+  font-family: var(--font-support);
+  font-size: clamp(0.9rem, 1.05vw, 1rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 300;
+}
+
+.authorMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.authorName {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-white, #ffffff);
+}
+
+.authorRole {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.authorLogo {
+  margin-top: 0.25rem;
+}
+
+.logoPlaceholderSmall {
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* --- Responsive Breakpoints --- */
+@media (max-width: 900px) {
+  .reviewsGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .reviewCard {
+    padding: 0 0 2.5rem 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .reviewCard:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
