@@ -5,6 +5,7 @@ import Footer from '@/components/Footer/Footer';
 import HowItWorks from '@/components/HowItWorks/HowItWorks';
 import Faq from '@/components/FAQs/Faq';
 import FeaturedProductions from '@/components/FeaturedProductions/FeaturedProductions'
+import DualCTA from '@/components/DuelCTA/DualCTA';
 
 
 export default async function Home() {
@@ -13,6 +14,7 @@ export default async function Home() {
     <div className={styles.homeViewportContainer}>
       <Hero/>
       <HowItWorks/>
+      <DualCTA/>
       <FeaturedProductions/>
       <Reviews/>
       <Faq/>
