@@ -14,19 +14,7 @@ export default function Footer() {
 
   return (
     <footer className={styles.section}>
-      {/* Top Ticker Bar wrapped in Link */}
-      <div className={styles.tickerBar}>
-        <Link 
-          href="/store" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className={styles.tickerLink}
-        >
-          NEW RELEASE — ON-SET APPAREL & CREW GEAR NOW AVAILABLE IN STORE
-        </Link>
-      </div>
 
-      {/* CTA Banner */}
       <div className={styles.ctaWrapper}>
         <div className={styles.ctaBanner}>
           <h2 className={styles.ctaHeading}>Stop chasing crews. Stop bundling gear.</h2>
@@ -43,7 +31,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Directory Container */}
       <div className={styles.directoryContainer}>
         <div className={styles.linksGrid}>
           <div className={styles.column}>
