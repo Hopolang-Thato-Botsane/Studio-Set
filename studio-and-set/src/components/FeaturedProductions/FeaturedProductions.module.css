@@ -1,116 +1,220 @@
 .section {
   width: 100%;
-  padding: 3rem 0;
-  background-color: var(--color-cream);
-  overflow: hidden;
+  height: 220vh;
+  position: relative;
+  background-color: var(--color-black, #121212);
+  color: var(--color-white, #ffffff);
 }
 
-.header {
-  padding: 0 clamp(1rem, 4vw, 4rem);
-  margin-bottom: 1.5rem;
-}
-
-.title {
-  font-family: var(--font-main);
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
-  font-weight: 500;
-  color: var(--color-maroon);
-  letter-spacing: -0.01em;
-}
-
-/* Mobile: Horizontal scroll container */
-.scrollContainer {
+.clippedFrame {
+  position: sticky;
+  top: 0;
   width: 100%;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  padding-bottom: 1rem;
-}
-
-.scrollContainer::-webkit-scrollbar {
-  display: none;
-}
-
-.track {
-  display: flex;
-  gap: 1.5rem;
-  padding: 0 clamp(1rem, 4vw, 4rem);
-  width: max-content;
-}
-
-.card {
-  flex: 0 0 260px;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+}
+
+.pillTag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  background-color: var(--color-white, #ffffff);
+  color: var(--color-black, #121212);
+  font-family: var(--font-main, sans-serif);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 1.25rem;
+  border-radius: 999px;
+  z-index: 20;
+  flex-shrink: 0;
+}
+
+.slidingTrack {
+  width: 100%;
+  max-width: 1400px;
+  height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+.quoteFrame {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.quoteText {
+  font-family: var(--font-main, sans-serif);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.25rem;
+  color: #ffffff;
+  max-width: 800px;
+}
+
+.quoteAuthor {
+  font-family: var(--font-support, sans-serif);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: normal;
+}
+
+.dvdFrame {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shelfRack {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  max-height: 520px;
+  align-items: stretch;
+}
+
+.dvdCard {
+  flex: 1;
+  min-width: 50px;
+  height: 100%;
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  transition: flex 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
   cursor: pointer;
 }
 
-.imageWrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  background-color: var(--color-maroon);
-  overflow: hidden;
-  margin-bottom: 0.85rem;
+.dvdCard.active {
+  flex: 5.5;
+  border-color: #ffffff;
 }
 
-.posterImage {
+.spineView {
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.dvdCard.active .spineView {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.yearText {
+  font-family: var(--font-main, sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}
+
+.titleText {
+  font-family: var(--font-main, sans-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.logoSlot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 36px;
+  height: 28px;
+}
+
+.logoImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.dvdLogo {
+  font-family: var(--font-main, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 800;
+  border: 1px solid #ffffff;
+  padding: 0.2rem 0.4rem;
+  border-radius: 2px;
+  color: #ffffff;
+}
+
+.coverView {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease-in-out;
+}
+
+.dvdCard.active .coverView {
+  opacity: 1;
+}
+
+.coverImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.35s ease;
 }
 
-.card:hover .posterImage {
-  transform: scale(1.03);
-}
-
-.details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.movieTitle {
-  font-family: var(--font-main);
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--color-maroon);
-  line-height: 1.2;
-}
-
-.movieType {
-  font-family: var(--font-support);
-  font-size: 0.88rem;
-  color: rgba(43, 3, 14, 0.75);
-}
-
-.movieYear {
-  font-family: var(--font-support);
-  font-size: 0.85rem;
-  color: rgba(43, 3, 14, 0.5);
-}
-
-/* Desktop & Tablet Breakpoint: Switch to 3x2 Grid */
-@media (min-width: 768px) {
-  .scrollContainer {
-    overflow-x: visible;
-    padding-bottom: 0;
+@media (max-width: 768px) {
+  .shelfRack {
+    flex-direction: column;
   }
 
-  .track {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem 1.5rem;
+  .dvdCard {
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 clamp(1rem, 4vw, 4rem);
+    height: 70px;
+    flex: none;
   }
 
-  .card {
-    flex: initial;
-    width: 100%;
+  .dvdCard.active {
+    height: 420px;
+    flex: none;
+  }
+
+  .spineView {
+    flex-direction: row;
+    padding: 0 1.5rem;
+  }
+
+  .yearText,
+  .titleText {
+    writing-mode: horizontal-tb;
+    transform: none;
   }
 }
