@@ -4,7 +4,19 @@ import { JSX } from 'react';
 import Link from 'next/link';
 import styles from './DualCTA.module.css';
 
-export default function DualCTA(): JSX.Element {
+interface DualCTAProps {
+  studioHref?: string;
+  crewHref?: string;
+  studioButtonText?: string;
+  crewButtonText?: string;
+}
+
+export default function DualCTA({
+  studioHref = '/register/studio',
+  crewHref = '/register/crew',
+  studioButtonText = 'Launch Gaffer AI',
+  crewButtonText = 'Join The Roster',
+}: DualCTAProps): JSX.Element {
   return (
     <section className={styles.section}>
       <div className={`${styles.card} ${styles.studioCard}`}>
@@ -19,8 +31,8 @@ export default function DualCTA(): JSX.Element {
               Build your call sheet, book vetted department heads, and pull gear packages in minutes.
             </p>
           </div>
-          <Link href="/studio" className={styles.ctaButton}>
-            Launch Gaffer AI
+          <Link href={studioHref} className={styles.ctaButton}>
+            {studioButtonText}
           </Link>
         </div>
       </div>
@@ -37,8 +49,8 @@ export default function DualCTA(): JSX.Element {
               List your inventory, set custom day rates, and lock in escrow-protected bookings.
             </p>
           </div>
-          <Link href="/crew" className={styles.ctaButton}>
-            Join The Roster
+          <Link href={crewHref} className={styles.ctaButton}>
+            {crewButtonText}
           </Link>
         </div>
       </div>
