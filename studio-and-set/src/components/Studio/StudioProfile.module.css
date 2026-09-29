@@ -1,0 +1,371 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  background-color: #0d0d0d;
+  color: #ffffff;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dashboardBadge {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: #a1a1a1;
+  font-weight: 600;
+  display: block;
+}
+
+.pageTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.25rem 0 0 0;
+}
+
+.editToggleBtn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.editToggleBtn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.editingActive {
+  background: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+}
+
+.layoutGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 900px) {
+  .layoutGrid {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+  }
+}
+
+.leftColumn,
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.logoCard {
+  position: relative;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #12181b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logoImage {
+  object-fit: contain;
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.uploadOverlayLabel {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+.sidebarCard {
+  background: #ffffff;
+  color: #000000;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.sidebarTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem 0;
+}
+
+.cardDivider {
+  height: 1px;
+  background-color: #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+.detailLabel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #333333;
+  margin-top: 0.75rem;
+}
+
+.detailVal {
+  font-size: 0.9rem;
+  color: #555555;
+  margin: 0.2rem 0 0 0;
+  word-break: break-word;
+}
+
+.managersList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.managerRow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.avatarCircle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #e2e8f0;
+}
+
+.managerName {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.managerRole {
+  font-size: 0.8rem;
+  color: #666666;
+  margin: 0.1rem 0 0 0;
+}
+
+.tabBar {
+  display: flex;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 0.4rem;
+  gap: 0.4rem;
+  overflow-x: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.tabBtn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 0.85rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #444444;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.activeTab {
+  background: #0d0d0d;
+  color: #ffffff;
+}
+
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.contentCard {
+  background: #ffffff;
+  color: #000000;
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.sectionTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 0.85rem 0;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666666;
+  margin-bottom: 0.25rem;
+}
+
+.fieldValue {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #111111;
+  margin: 0;
+  word-break: break-word;
+}
+
+.dispatcherCard {
+  background: #ffffff;
+  color: #000000;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.dispatcherHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.dispatcherName {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.dispatcherTag {
+  font-size: 0.85rem;
+  color: #666666;
+  margin: 0.2rem 0 0 0;
+}
+
+.uploadDropzone {
+  background: #ffffff;
+  border: 2px dashed #cccccc;
+  border-radius: 12px;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #333333;
+  text-align: center;
+}
+
+.uploadDropzone:hover {
+  border-color: #000000;
+  background: #fdfdfd;
+}
+
+.uploadIcon {
+  font-size: 2rem;
+}
+
+.uploadText {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.fileNameBadge {
+  background: #e2e8f0;
+  color: #0f172a;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inputLight {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.inputLight:focus {
+  outline: none;
+  border-color: #0d0d0d;
+}
+
+.primaryBtn {
+  background: #0d0d0d;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1.25rem 1rem;
+  }
+}
