@@ -1,0 +1,151 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #ffffff;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.heading {
+  font-size: 2.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.subheading {
+  font-size: 0.95rem;
+  color: #a1a1aa;
+  max-width: 600px;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 9999px;
+  padding: 2px;
+  background: linear-gradient(135deg, #c084fc, #a855f7);
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+  margin-bottom: 1.5rem;
+}
+
+.inputWrapper:hover {
+  box-shadow: 0 0 20px rgba(192, 132, 252, 0.4);
+}
+
+.innerBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 9999px;
+  padding: 0.5rem 0.75rem 0.5rem 1.5rem;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  color: #18181b;
+  z-index: 2;
+}
+
+.input::placeholder {
+  color: #a1a1aa;
+  transition: opacity 0.2s ease;
+}
+
+.hoverHint {
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 0.95rem;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 120px);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.inputWrapper:hover .hoverHint {
+  opacity: 1;
+}
+
+.actionGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.micButton,
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  border-radius: 9999px;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.micButton {
+  background: transparent;
+  color: #18181b;
+  padding: 0.5rem;
+  font-size: 1.125rem;
+}
+
+.micButton:hover {
+  opacity: 0.7;
+}
+
+.submitButton {
+  background-color: #c084fc;
+  color: #ffffff;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.submitButton:hover {
+  transform: scale(1.05);
+  background-color: #a855f7;
+}
+
+.chipGroup {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chip {
+  background-color: #c084fc;
+  color: #ffffff;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.chip:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
