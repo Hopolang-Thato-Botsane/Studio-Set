@@ -97,7 +97,7 @@ const formattedCrewCategories = [
 
 function WorkflowContent() {
   const searchParams = useSearchParams();
-  const urlView = searchParams.get('view') as WorkflowView | null;
+  const urlView = (searchParams?.get('view') ?? null) as WorkflowView | null;
 
   const [currentView, setCurrentView] = useState<WorkflowView>('dashboard');
   const [selectedProductionId, setSelectedProductionId] = useState<string | null>(null);

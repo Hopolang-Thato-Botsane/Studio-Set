@@ -68,7 +68,6 @@ export default function Hero(): JSX.Element {
 
   return (
     <>
-<<<<<<< HEAD
       <section ref={sectionRef} className={styles.scrollWrapper}>
         <div className={styles.stickyContainer}>
           <header className={styles.header}>
@@ -81,17 +80,6 @@ export default function Hero(): JSX.Element {
                 className={styles.logoImage}
                 priority
               />
-=======
-      <section className={styles.heroSection}>
-        <header className={styles.header}>
-          <Link href="/" className={styles.logo}>
-            STUDIO&amp;SET
-          </Link>
-
-          <nav className={styles.navRight}>
-            <Link href="/store" className={`${styles.storeLink} ${styles.desktopOnly}`}>
-              STORE
->>>>>>> e91ca4fbe9acc89c90eed43c1829fc496b844c68
             </Link>
 
             <button
@@ -105,7 +93,6 @@ export default function Hero(): JSX.Element {
             </button>
           </header>
 
-<<<<<<< HEAD
           <div
             className={`${styles.interactiveStage} ${
               activeStep === 4 ? styles.stageHidden : ''
@@ -185,21 +172,6 @@ export default function Hero(): JSX.Element {
               <div className={styles.wheel} />
             </div>
             <span>Scroll Down</span>
-=======
-        <div className={styles.contentArea}>
-          <span className={styles.subtitle}>CREW &amp; EQUIPMENT HIRE SPECIALISTS</span>
-          <h1 className={styles.title}>
-            The premier choice for production crews and curated film equipment rentals in Southern Africa, featuring AI-driven search
-          </h1>
-
-          <div className={styles.buttonGroup}>
-            <Link href="/register/crew" className={styles.btnPrimary}>
-              Register as crew
-            </Link>
-            <Link href="/register/studio" className={styles.btnSecondary}>
-              Register as studio
-            </Link>
->>>>>>> e91ca4fbe9acc89c90eed43c1829fc496b844c68
           </div>
         </div>
       </section>
@@ -220,30 +192,15 @@ export default function Hero(): JSX.Element {
           </button>
 
           <nav className={styles.overlayNav}>
-<<<<<<< HEAD
             <Link href="/register" onClick={closeMenu}>
               Register
             </Link>
-=======
->>>>>>> e91ca4fbe9acc89c90eed43c1829fc496b844c68
             <Link href="/register/crew" onClick={closeMenu}>
               Register as Crew
             </Link>
             <Link href="/register/studio" onClick={closeMenu}>
               Register as Studio
             </Link>
-<<<<<<< HEAD
-=======
-            <Link href="/login/crew" onClick={closeMenu}>
-              Login as Crew
-            </Link>
-            <Link href="/login/studio" onClick={closeMenu}>
-              Login as Studio
-            </Link>
-            <Link href="/store" onClick={closeMenu}>
-              Go To Store
-            </Link>
->>>>>>> e91ca4fbe9acc89c90eed43c1829fc496b844c68
           </nav>
         </div>
       )}

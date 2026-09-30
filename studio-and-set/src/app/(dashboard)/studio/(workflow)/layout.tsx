@@ -73,7 +73,7 @@ const navItems = [
 function StudioLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const currentView = searchParams.get('view');
+  const currentView = searchParams ? searchParams.get('view') : null;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
