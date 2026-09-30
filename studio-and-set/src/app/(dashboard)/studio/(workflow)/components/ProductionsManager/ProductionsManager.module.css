@@ -1,0 +1,329 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0d0d0d;
+  color: #ffffff;
+  padding: 2.5rem 1.5rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.notification {
+  background-color: #22c55e;
+  color: #000000;
+  font-weight: 600;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.closeNotif {
+  background: none;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  color: #000000;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: #ffffff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  position: relative;
+  background-color: #141414;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  border-color: #3f3f46;
+  transform: translateY(-2px);
+}
+
+.cardMedia {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.locationBadge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background-color: #eab308;
+  color: #000000;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.625rem;
+  border-radius: 0.25rem;
+}
+
+.cardContent {
+  padding: 1rem 1.25rem;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.cardTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.cardStatus {
+  font-size: 0.75rem;
+  color: #52525b;
+}
+
+.backButton {
+  background-color: #27272a;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+.heroMedia {
+  width: 100%;
+  max-height: 420px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detailHeader {
+  margin-bottom: 2rem;
+}
+
+.detailTitle {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.detailSubtitle {
+  font-size: 0.875rem;
+  color: #a1a1aa;
+  margin-top: 0.25rem;
+}
+
+.subGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.miniCard {
+  background-color: #18181b;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.miniImage {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.miniFooter {
+  padding: 0.75rem;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.miniTitle {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.miniSub {
+  font-size: 0.75rem;
+  color: #52525b;
+}
+
+.financialBox {
+  border-top: 1px solid #27272a;
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+}
+
+.burnRate {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.timeline {
+  font-size: 0.875rem;
+  color: #a1a1aa;
+  margin-bottom: 1.25rem;
+}
+
+.editBtn {
+  background-color: #c084fc;
+  color: #000000;
+  font-weight: 700;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.editBtn:hover {
+  opacity: 0.9;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.modal {
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 0.75rem;
+  max-width: 680px;
+  width: 100%;
+  padding: 2rem;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.closeModal {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.calendarControls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #3f3f46;
+}
+
+.input {
+  border: 1px solid #d4d4d8;
+  padding: 0.625rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.summaryBox {
+  background-color: #f4f4f5;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.summaryText {
+  font-size: 0.875rem;
+  color: #18181b;
+  margin-bottom: 0.25rem;
+}
+
+.actionsGroup {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.downloadBtn {
+  background-color: #c084fc;
+  color: #000000;
+  font-weight: 700;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.endBtn {
+  background-color: #ef4444;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}

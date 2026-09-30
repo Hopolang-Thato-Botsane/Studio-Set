@@ -1,9 +1,7 @@
 :root {
-  --color-cream: #D1C0A5;
-  --color-maroon: #3C0016;
-  --color-bg: #16181D;
-  --color-text-main: #D1C0A5;
-  --color-highveld-gold: #C5A880;
+  --color-white: #FFFFFF;
+  --color-black: #121212;
+  --color-purple: #C994DF;
   --font-main: 'Syne', sans-serif;
   --font-support: 'Inter', sans-serif;
 }

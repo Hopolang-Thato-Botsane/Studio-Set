@@ -1,0 +1,173 @@
+.section {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  background-color: #121212;
+  position: relative;
+  overflow: hidden;
+}
+
+.card {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5rem 3rem;
+  box-sizing: border-box;
+  background-color: #121212;
+  transition: flex 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.bgImage {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.studioCard .bgImage {
+  background-image: url('/assets/images/studio-bg.jpg');
+}
+
+.crewCard .bgImage {
+  background-image: url('/assets/images/crew-bg.jpg');
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 18, 18, 0.65) 0%,
+    rgba(18, 18, 18, 0.4) 50%,
+    rgba(18, 18, 18, 0.75) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+@media (min-width: 769px) {
+  .card:hover {
+    flex: 1.15;
+  }
+
+  .card:hover .bgImage {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .card:hover .overlay {
+    opacity: 1;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 440px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.categoryTag {
+  font-family: var(--font-main, sans-serif);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.textGroup {
+  margin: auto 0;
+  padding: 2rem 0;
+}
+
+.heading {
+  font-family: var(--font-main, sans-serif);
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.description {
+  font-family: var(--font-support, sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+
+.ctaButton {
+  font-family: var(--font-support, sans-serif);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background-color: #ffffff;
+  color: #121212;
+  padding: 0.85rem 2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  transition: 
+    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s ease;
+}
+
+.ctaButton:hover {
+  background-color: var(--color-purple, #bf94e4);
+  color: #121212;
+  border-radius: 9999px;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .section {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .card {
+    min-height: 480px;
+    padding: 4rem 1.5rem;
+  }
+
+  .bgImage {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .overlay {
+    opacity: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(18, 18, 18, 0.7) 0%,
+      rgba(18, 18, 18, 0.5) 50%,
+      rgba(18, 18, 18, 0.8) 100%
+    );
+  }
+
+  .heading {
+    font-size: 1.6rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+}

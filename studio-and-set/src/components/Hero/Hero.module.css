@@ -1,188 +1,245 @@
-.heroSection {
+.scrollWrapper {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  height: 500vh;
+  background-color: #0d0d0d;
+}
+
+.stickyContainer {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 2.5rem 3.5rem;
+  box-sizing: border-box;
   background: 
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%),
+    linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)),
     url('/assets/images/hero-bg.jpg') no-repeat center center;
   background-size: cover;
-  padding: 2.5rem 4rem;
-  overflow: hidden;
-  box-sizing: border-box;
 }
 
 .header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  z-index: 10;
+  z-index: 20;
 }
 
-.logo {
-  font-family: var(--font-main, sans-serif);
-  font-weight: 800;
-  font-size: clamp(1.2rem, 1.5vw, 1.6rem);
-  text-transform: uppercase;
-  letter-spacing: -0.03em;
-  color: var(--color-cream, #e2d2be);
-}
-
-.navRight {
+.logoLink {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  text-decoration: none;
 }
 
-.storeLink {
+.logoImage {
+  object-fit: contain;
+  width: auto;
+  height: 36px;
+}
+
+.menuToggleButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  padding: 0;
+  z-index: 30;
+}
+
+.hamburgerLine {
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  display: block;
+}
+
+.interactiveStage {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.stageHidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.hotspotAnchor {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hotspotActive {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.shutterIcon {
+  width: 38px;
+  height: 38px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #000000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.infoCard {
+  position: absolute;
+  width: 280px;
+  background: #ffffff;
+  color: #121212;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+  animation: fadeInCard 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.top-right {
+  top: 100%;
+  left: 100%;
+  margin-top: 0.75rem;
+  margin-left: 0.75rem;
+}
+
+.cardTitle {
+  font-family: var(--font-main, sans-serif);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  color: #121212;
+}
+
+.cardDescription {
+  font-family: var(--font-support, sans-serif);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #4a4a4a;
+}
+
+.finalHeroContent {
+  position: absolute;
+  bottom: 8rem;
+  left: 3.5rem;
+  max-width: 520px;
+  z-index: 20;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.heroVisible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.eyebrow {
+  font-family: var(--font-support, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.mainHeading {
+  font-family: var(--font-main, sans-serif);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 500;
+  line-height: 1.3;
+  color: #ffffff;
+  margin-bottom: 1.75rem;
+}
+
+.buildManifestBtn {
   font-family: var(--font-support, sans-serif);
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--color-cream, #e2d2be);
-  text-decoration: none;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  transition: opacity 0.2s ease;
-}
-
-.storeLink:hover {
-  opacity: 0.8;
-}
-
-.menuButton {
-  font-family: var(--font-support, sans-serif);
-  font-size: 0.9rem;
-  font-weight: 500;
-  background-color: var(--color-maroon); 
-  color: var(--color-cream, #e2d2be);
-  padding: 0.65rem 2.5rem;
-  border-radius: 9999px;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.15s ease;
-}
-
-.menuButton:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-.contentArea {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  max-width: 900px;
-  margin: auto;
-  z-index: 10;
-  padding: 2rem 0;
-}
-
-.subtitle {
-  font-family: var(--font-support, sans-serif);
-  font-size: clamp(0.7rem, 0.8vw, 0.85rem);
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--color-cream, #e2d2be);
-  margin-bottom: 1.5rem;
-  opacity: 0.9;
-}
-
-.title {
-  font-family: var(--font-main, sans-serif);
-  font-size: clamp(1.8rem, 2.5vw, 2.75rem);
-  font-weight: 400;
-  line-height: 1.35;
-  color: var(--color-cream, #e2d2be);
-  margin-bottom: 2.5rem;
-}
-
-.buttonGroup {
-  display: flex;
-  gap: 1.25rem;
-}
-
-.btnPrimary, .btnSecondary {
-  font-family: var(--font-support, sans-serif);
-  font-size: 0.9rem;
-  font-weight: 500;
+  background-color: #ffffff;
+  color: #121212;
   padding: 0.85rem 2.25rem;
-  text-decoration: none;
-  border-radius: 9999px;
+  border-radius: 5px;
   border: none;
   cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition: 
+    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s ease;
 }
 
-.btnPrimary {
-  background-color: #3d0c1e;
-  color: var(--color-cream, #e2d2be);
-}
-
-.btnSecondary {
-  background-color: #c0aa98;
-  color: #23120b;
-}
-
-.btnPrimary:hover, .btnSecondary:hover {
+.buildManifestBtn:hover {
+  background-color: var(--color-purple, #bf94e4);
+  color: #121212;
+  border-radius: 9999px;
   transform: translateY(-2px);
-  opacity: 0.95;
 }
 
-.logoFooter {
+.scrollIndicator {
   width: 100%;
-  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.4rem;
+  z-index: 20;
 }
 
-.divider {
-  width: 100%;
-  height: 1px;
-  background-color: var(--color-cream, #e2d2be);
-  opacity: 0.4;
-  margin-bottom: 2rem;
-}
-
-.logoRow {
+.mousePill {
+  width: 18px;
+  height: 28px;
+  border: 2px solid #ffffff;
+  border-radius: 12px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 1rem;
+  justify-content: center;
+  padding-top: 4px;
 }
 
-.brandText {
+.wheel {
+  width: 3px;
+  height: 6px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+.scrollIndicator span {
   font-family: var(--font-support, sans-serif);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-cream, #e2d2be);
-  letter-spacing: 0.08em;
-}
-
-.arriText {
-  color: #0072ce;
-}
-
-.moreCount {
-  font-family: var(--font-support, sans-serif);
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: var(--color-cream, #e2d2be);
-  opacity: 0.9;
+  font-size: 0.75rem;
+  color: #ffffff;
+  letter-spacing: 0.05em;
 }
 
 .menuOverlay {
   position: fixed;
   inset: 0;
-  background-color: #3d0c1e;
+  background-color: #0d0d0d;
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -204,16 +261,9 @@
   right: 3.5rem;
   background: transparent;
   border: none;
-  color: var(--color-cream, #e2d2be);
+  color: #ffffff;
   font-size: 2rem;
   cursor: pointer;
-  opacity: 0.85;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.closeButton:hover {
-  opacity: 1;
-  transform: scale(1.1);
 }
 
 .overlayNav {
@@ -226,47 +276,33 @@
 .overlayNav a {
   font-family: var(--font-main, sans-serif);
   font-size: clamp(1.4rem, 2vw, 2.2rem);
-  color: var(--color-cream, #e2d2be);
+  color: #ffffff;
   text-decoration: none;
-  font-weight: 400;
-  transition: opacity 0.2s ease, transform 0.15s ease;
 }
 
-.overlayNav a:hover {
-  opacity: 0.75;
-  transform: translateY(-2px);
+@keyframes fadeInCard {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {
-  .heroSection {
+  .interactiveStage {
+    display: none !important;
+  }
+
+  .stickyContainer {
     padding: 1.5rem;
   }
-  
-  .desktopOnly {
-    display: none;
-  }
 
-  .navRight {
-    gap: 0;
-  }
-
-  .menuButton {
-    padding: 0.55rem 1.75rem;
-  }
-
-  .buttonGroup {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .logoRow {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-  }
-
-  .closeButton {
-    top: 1.5rem;
+  .finalHeroContent {
+    left: 1.5rem;
     right: 1.5rem;
+    bottom: 6rem;
   }
 }

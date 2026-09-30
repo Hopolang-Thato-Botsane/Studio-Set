@@ -2,31 +2,12 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import styles from './Footer.module.css';
 
 export default function Footer() {
-  const router = useRouter();
-
-  const handleRegisterClick = () => {
-    router.push('/register');
-  };
-
   return (
     <footer className={styles.section}>
-      {/* Top Ticker Bar wrapped in Link */}
-      <div className={styles.tickerBar}>
-        <Link 
-          href="/store" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className={styles.tickerLink}
-        >
-          NEW RELEASE — ON-SET APPAREL & CREW GEAR NOW AVAILABLE IN STORE
-        </Link>
-      </div>
 
-      {/* CTA Banner */}
       <div className={styles.ctaWrapper}>
         <div className={styles.ctaBanner}>
           <h2 className={styles.ctaHeading}>Stop chasing crews. Stop bundling gear.</h2>
@@ -34,16 +15,15 @@ export default function Footer() {
             Access our authenticated filmmaker catalogue and instantly deploy engineered equipment packages 
             tailored exactly to your shoot parameters.
           </p>
-          <button 
+          <Link 
+            href="/register" 
             className={styles.ctaButton}
-            onClick={handleRegisterClick}
           >
             Register
-          </button>
+          </Link>
         </div>
       </div>
 
-      {/* Directory Container */}
       <div className={styles.directoryContainer}>
         <div className={styles.linksGrid}>
           <div className={styles.column}>
