@@ -12,6 +12,17 @@
   margin: 0;
 }
 
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  font-family: var(--font-support);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-main);
+}
+
 main {
   scroll-snap-type: y mandatory;
   width: 100%;
@@ -29,19 +40,16 @@ footer,
   scroll-snap-stop: always;
 }
 
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text-main);
-  font-family: var(--font-support);
-  -webkit-font-smoothing: antialiased;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-main);
-}
-
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
+}
+
+svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  max-width: 100%;
+  display: inline-block;
+  flex-shrink: 0;
 }

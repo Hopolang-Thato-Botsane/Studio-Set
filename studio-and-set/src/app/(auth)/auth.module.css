@@ -1,0 +1,200 @@
+.splitLayout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  font-family: inherit;
+}
+
+.leftPanel {
+  display: flex;
+  width: 50%;
+  background-color: #2D0B1E;
+  color: #ffffff;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4rem;
+}
+
+.leftPanel p {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  max-width: 28rem;
+  color: #d6d3d1;
+}
+
+.brandTitle {
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.rightPanel {
+  display: flex;
+  width: 50%;
+  background-color: #D1C3B2;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 28rem;
+  color: #2D0B1E;
+}
+
+.selectionWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.selectionTitle {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #2D0B1E;
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.underlineLink {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #2D0B1E;
+  text-decoration: none;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid #2D0B1E;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.solidButton {
+  background-color: #2D0B1E;
+  color: #ffffff;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.headerText {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.headerText h2 {
+  font-size: 1.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.headerText p {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.socialButtons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.socialButton {
+  background-color: #2D0B1E;
+  color: #ffffff;
+  padding: 0.5rem 2rem;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.dividerLine {
+  flex: 1;
+  border-top: 1px solid #2D0B1E;
+}
+
+.dividerText {
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.formGridTwoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.formLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.lineInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #2D0B1E;
+  padding-bottom: 0.25rem;
+  font-size: 0.875rem;
+  color: #2D0B1E;
+  outline: none;
+}
+
+.passwordNote {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.submitButton {
+  width: 100%;
+  background-color: #2D0B1E;
+  color: #ffffff;
+  padding: 0.75rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.footerLink {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.footerLink a {
+  font-weight: 700;
+  color: #2D0B1E;
+}
