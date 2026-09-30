@@ -1,0 +1,357 @@
+.pageWrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.promptContainer {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 48px 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background-color: rgba(147, 51, 234, 0.1);
+  border: 1px solid rgba(147, 51, 234, 0.25);
+  color: #c084fc;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.heading {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px 0;
+}
+
+.subheading {
+  font-size: 13px;
+  color: #a1a1aa;
+  line-height: 1.6;
+  margin: 0 0 28px 0;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  background-color: #171717;
+  border: 1px solid #3f3f46;
+  border-radius: 16px;
+  padding: 16px 110px 16px 20px;
+  font-size: 14px;
+  color: #ffffff;
+  outline: none;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.15s ease;
+}
+
+.input:focus {
+  border-color: #9333ea;
+}
+
+.inputActions {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  color: #a1a1aa;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconBtn:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.submitBtn {
+  background-color: #9333ea;
+  color: #ffffff;
+  border: none;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease;
+}
+
+.submitBtn:hover {
+  background-color: #7e22ce;
+}
+
+.submitBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.chipsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.chip {
+  background-color: #18181b;
+  border: 1px solid #27272a;
+  color: #d4d4d8;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.chip:hover {
+  background-color: #27272a;
+  border-color: #3f3f46;
+  color: #ffffff;
+}
+
+.loadingBox {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #27272a;
+  background-color: #141414;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingHero {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  filter: blur(4px);
+}
+
+.loadingOverlay {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: rgba(147, 51, 234, 0.2);
+  border: 1px solid rgba(147, 51, 234, 0.4);
+  color: #c084fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px auto;
+}
+
+.manifestSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.manifestHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #27272a;
+  padding-bottom: 20px;
+}
+
+.tagline {
+  font-size: 10px;
+  font-family: monospace;
+  text-transform: uppercase;
+  color: #c084fc;
+  letter-spacing: 0.1em;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 4px 0;
+}
+
+.meta {
+  font-size: 12px;
+  color: #a1a1aa;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background-color: #141414;
+  border: 1px solid #27272a;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.card:hover {
+  border-color: rgba(147, 51, 234, 0.6);
+}
+
+.cardImageWrapper {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: #f59e0b;
+  color: #000000;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.cardBody {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardTitle {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cardSub {
+  font-size: 12px;
+  color: #a1a1aa;
+  margin: 2px 0 0 0;
+}
+
+.financialCard {
+  background-color: rgba(20, 20, 20, 0.6);
+  border: 1px solid #27272a;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.financialHeader {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: monospace;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.financialRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #27272a;
+}
+
+.primaryActionBtn {
+  background-color: #9333ea;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.overlayBackdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modalDrawer {
+  width: 100%;
+  max-width: 540px;
+  height: 100%;
+  background-color: #141414;
+  border-left: 1px solid #27272a;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #27272a;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: #a1a1aa;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.drawerFooter {
+  padding-top: 16px;
+  border-top: 1px solid #27272a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
