@@ -16,12 +16,56 @@ export interface KitCategoryGroup {
 }
 
 interface ProductionKitsViewProps {
-  initialCategories: KitCategoryGroup[];
+  initialCategories?: KitCategoryGroup[];
+  initialKits?: any[];
   onSelectKit?: (kit: KitItem) => void;
 }
 
+const DEFAULT_KIT_CATEGORIES: KitCategoryGroup[] = [
+  {
+    categoryId: 'camera-kits',
+    title: 'Camera & Optics',
+    kits: [
+      {
+        id: 'k1',
+        brand: 'ARRI Alexa Mini LF',
+        subCategory: 'Full Frame Cinema Package',
+        pickTag: 'Gaffer Pick',
+        image: 'https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?w=600&auto=format&fit=crop'
+      },
+      {
+        id: 'k2',
+        brand: 'RED V-Raptor 8K',
+        subCategory: 'VV Cinema Package',
+        pickTag: 'Popular',
+        image: 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=600&auto=format&fit=crop'
+      }
+    ]
+  },
+  {
+    categoryId: 'lighting-kits',
+    title: 'Lighting & Grip',
+    kits: [
+      {
+        id: 'k3',
+        brand: 'Aputure 1200d Pro',
+        subCategory: 'Daylight LED Package',
+        pickTag: 'High Output',
+        image: 'https://images.unsplash.com/photo-1527011046414-4781f1f94f8c?w=600&auto=format&fit=crop'
+      },
+      {
+        id: 'k4',
+        brand: 'Astera Titan Tubes',
+        subCategory: '8-Light Wireless Kit',
+        pickTag: 'Versatile',
+        image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop'
+      }
+    ]
+  }
+];
+
 export const ProductionKitsView: React.FC<ProductionKitsViewProps> = ({
-  initialCategories,
+  initialCategories = DEFAULT_KIT_CATEGORIES,
   onSelectKit,
 }) => {
   const [selectedType, setSelectedType] = useState<string>('All');

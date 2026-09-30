@@ -1,7 +1,8 @@
 'use client';
-import React, { useState } from 'react';
+
+import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import styles from './studio.module.css';
 
 const SparklesIcon = () => (
@@ -63,14 +64,16 @@ const ClapperboardIcon = () => (
 );
 
 const navItems = [
-  { name: 'Start A Production', href: '/studio/dashboard', icon: SparklesIcon },
-  { name: 'Productions', href: '/studio/productions', icon: FolderIcon },
-  { name: 'Find A Crew', href: '/studio/crew', icon: UsersIcon },
-  { name: 'Search Kits', href: '/studio/kits', icon: BoxIcon },
+  { name: 'Start A Production', view: null, href: '/studio', icon: SparklesIcon },
+  { name: 'Productions', view: 'productions', href: '/studio?view=productions', icon: FolderIcon },
+  { name: 'Find A Crew', view: 'crew', href: '/studio?view=crew', icon: UsersIcon },
+  { name: 'Search Kits', view: 'kits', href: '/studio?view=kits', icon: BoxIcon },
 ];
 
-export default function StudioDashboardLayout({ children }: { children: React.ReactNode }) {
+function StudioLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentView = searchParams.get('view');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -102,7 +105,11 @@ export default function StudioDashboardLayout({ children }: { children: React.Re
           <nav className={styles.navList}>
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = pathname === item.href;
+              
+              const isActive = item.view 
+                ? pathname === '/studio' && currentView === item.view
+                : pathname === '/studio' && !currentView;
+
               return (
                 <Link
                   key={item.name}
@@ -119,7 +126,11 @@ export default function StudioDashboardLayout({ children }: { children: React.Re
         </div>
 
         <div className={styles.bottomSection}>
-          <Link href="/studio/settings" className={styles.navItem}>
+          <Link 
+            href="/profile" 
+            className={`${styles.navItem} ${pathname === '/profile' ? styles.activeNavItem : ''}`}
+            onClick={() => setMobileMenuOpen(false)}
+          >
             <SettingsIcon />
             <span>Settings</span>
           </Link>
@@ -138,5 +149,13 @@ export default function StudioDashboardLayout({ children }: { children: React.Re
         {children}
       </main>
     </div>
+  );
+}
+
+export default function StudioDashboardLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={null}>
+      <StudioLayoutContent>{children}</StudioLayoutContent>
+    </Suspense>
   );
 }

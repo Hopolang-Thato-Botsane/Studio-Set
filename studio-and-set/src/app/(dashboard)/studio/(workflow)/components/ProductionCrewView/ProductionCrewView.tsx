@@ -19,12 +19,58 @@ export interface CategoryGroup {
 }
 
 interface CrewSearchProps {
-  initialCategories: CategoryGroup[];
+  initialCategories?: CategoryGroup[];
+  initialMembers?: any[];
   onSelectMember?: (member: CrewMember) => void;
 }
 
+const DEFAULT_CREW_CATEGORIES: CategoryGroup[] = [
+  {
+    categoryId: 'camera-dept',
+    title: 'Camera Department',
+    members: [
+      {
+        id: 'c1',
+        name: 'Sarah Jenkins',
+        role: 'Director of Photography',
+        pickTag: 'Top Rated',
+        yearsExp: '12 Yrs Exp',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop',
+        specialization: 'Narrative & Commercials',
+        tags: ['DOP', 'Cinematographer', 'ARRI']
+      },
+      {
+        id: 'c2',
+        name: 'Marcus Vance',
+        role: '1st AC',
+        pickTag: 'Verified Pro',
+        yearsExp: '8 Yrs Exp',
+        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop',
+        specialization: 'Focus Pulling',
+        tags: ['Camera Operator', 'Focus Puller']
+      }
+    ]
+  },
+  {
+    categoryId: 'lighting-dept',
+    title: 'Lighting & Grip',
+    members: [
+      {
+        id: 'c3',
+        name: 'David Koster',
+        role: 'Gaffer',
+        pickTag: 'Featured',
+        yearsExp: '15 Yrs Exp',
+        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop',
+        specialization: 'Studio Lighting & DMX',
+        tags: ['Gaffer', 'Lighting', 'DMX']
+      }
+    ]
+  }
+];
+
 export const ProductionCrewView: React.FC<CrewSearchProps> = ({
-  initialCategories,
+  initialCategories = DEFAULT_CREW_CATEGORIES,
   onSelectMember,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');

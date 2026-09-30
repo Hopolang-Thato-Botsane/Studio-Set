@@ -186,7 +186,6 @@
   flex-shrink: 0;
 }
 
-/* Empty State */
 .emptyState {
   display: flex;
   flex-direction: column;
