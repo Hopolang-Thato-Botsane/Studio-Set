@@ -1,7 +1,7 @@
 'use client';
 
 import AuthLayout from '@/components/Auth/AuthLayout';
-import styles from '@/components/auth/AuthLayout.module.css';
+import styles from '@/components/Auth/AuthLayout.module.css';
 
 export default function CrewRegisterPage() {
   return (
