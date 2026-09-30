@@ -1,12 +1,27 @@
+'use client';
+
 import React, { useState } from 'react';
-import { INITIAL_PRODUCTIONS, ProductionItem } from "@/components/ProductionsView/ProductionsData";
+
+import { INITIAL_PRODUCTIONS, ProductionItem } from './ProductionsData';
 import styles from './ProductionsManager.module.css';
 
-export const ProductionsManager: React.FC = () => {
+interface ProductionsManagerProps {
+  initialProductionId?: string | null;
+  onBackToDashboard?: () => void;
+}
+
+export const ProductionsManager: React.FC<ProductionsManagerProps> = ({
+  initialProductionId = null,
+  onBackToDashboard,
+}) => {
   const [productions, setProductions] = useState<ProductionItem[]>(INITIAL_PRODUCTIONS);
-  const [selectedProductionId, setSelectedProductionId] = useState<string | null>(null);
+  const [selectedProductionId, setSelectedProductionId] = useState<string | null>(
+    initialProductionId
+  );
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [notification, setNotification] = useState<string | null>(null);
+
+  // Form State for Production Extension
   const [newEndDate, setNewEndDate] = useState<string>('');
 
   const activeProduction = productions.find((p) => p.id === selectedProductionId);
@@ -27,6 +42,7 @@ export const ProductionsManager: React.FC = () => {
     setSelectedProductionId(null);
   };
 
+  // Extension calculation logic
   const calculateExtension = () => {
     if (!activeProduction || !newEndDate) {
       return { days: 0, cost: 0, deposit: 0 };
@@ -44,6 +60,14 @@ export const ProductionsManager: React.FC = () => {
 
   const extensionStats = calculateExtension();
 
+  const handleBack = () => {
+    if (selectedProductionId) {
+      setSelectedProductionId(null);
+    } else if (onBackToDashboard) {
+      onBackToDashboard();
+    }
+  };
+
   const activeList = productions.filter((p) => p.status === 'In Production');
   const pendingList = productions.filter((p) => p.status !== 'In Production');
 
@@ -59,7 +83,16 @@ export const ProductionsManager: React.FC = () => {
       )}
 
       {!selectedProductionId ? (
+        /* Overview Dashboard */
         <>
+          <div style={{ marginBottom: '1.5rem' }}>
+            {onBackToDashboard && (
+              <button className={styles.backButton} onClick={onBackToDashboard}>
+                ← Back to Dashboard
+              </button>
+            )}
+          </div>
+
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>Active Productions</h2>
             <div className={styles.grid}>
@@ -105,10 +138,10 @@ export const ProductionsManager: React.FC = () => {
           </section>
         </>
       ) : (
-
+        /* Detail View */
         activeProduction && (
           <div>
-            <button className={styles.backButton} onClick={() => setSelectedProductionId(null)}>
+            <button className={styles.backButton} onClick={handleBack}>
               ← Back to Productions
             </button>
 
@@ -181,6 +214,7 @@ export const ProductionsManager: React.FC = () => {
         )
       )}
 
+      {/* Edit Modal */}
       {isEditModalOpen && activeProduction && (
         <div className={styles.overlay}>
           <div className={styles.modal}>
