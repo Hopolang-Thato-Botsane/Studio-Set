@@ -2,16 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import styles from './Footer.module.css';
 
 export default function Footer() {
-  const router = useRouter();
-
-  const handleRegisterClick = () => {
-    router.push('/register');
-  };
-
   return (
     <footer className={styles.section}>
 
@@ -22,12 +15,12 @@ export default function Footer() {
             Access our authenticated filmmaker catalogue and instantly deploy engineered equipment packages 
             tailored exactly to your shoot parameters.
           </p>
-          <button 
+          <Link 
+            href="/register" 
             className={styles.ctaButton}
-            onClick={handleRegisterClick}
           >
             Register
-          </button>
+          </Link>
         </div>
       </div>
 

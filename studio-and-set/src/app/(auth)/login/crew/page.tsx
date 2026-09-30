@@ -8,7 +8,7 @@ export default function CrewLoginPage() {
     <AuthLayout
       title="Login"
       subtitle="Re-authenticate your operational account. Secure access to upcoming productions and be available for your dream roles."
-      bgImageUrl="/assets/images/crew-bg.jpg"
+      bgImageUrl="/assets/images/auth-bg.jpg"
       footerText="Don't have an account?"
       footerLinkText="Register"
       footerLinkHref="/register/crew"

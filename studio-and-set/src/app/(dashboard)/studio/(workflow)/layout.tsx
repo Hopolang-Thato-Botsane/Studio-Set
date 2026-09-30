@@ -127,7 +127,7 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
 
         <div className={styles.bottomSection}>
           <Link 
-            href="/profile" 
+            href="/studio/profile"
             className={`${styles.navItem} ${pathname === '/profile' ? styles.activeNavItem : ''}`}
             onClick={() => setMobileMenuOpen(false)}
           >

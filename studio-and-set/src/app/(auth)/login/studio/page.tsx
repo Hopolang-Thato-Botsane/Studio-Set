@@ -8,7 +8,7 @@ export default function StudioLoginPage() {
     <AuthLayout
       title="Login"
       subtitle="Re-authenticate your operational account. Secure access to locked equipment manifests and live dispatch schedules."
-      bgImageUrl="/assets/images/studio-bg.jpg"
+      bgImageUrl="/assets/images/auth-bg.jpg"
       footerText="Don't have an account?"
       footerLinkText="Register"
       footerLinkHref="/register/studio"

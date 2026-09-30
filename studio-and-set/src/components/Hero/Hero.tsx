@@ -58,6 +58,14 @@ export default function Hero(): JSX.Element {
     }, 400);
   };
 
+  const toggleMenu = (): void => {
+    if (isMenuOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  };
+
   return (
     <>
       <section ref={sectionRef} className={styles.scrollWrapper}>
@@ -65,7 +73,7 @@ export default function Hero(): JSX.Element {
           <header className={styles.header}>
             <Link href="/" className={styles.logoLink}>
               <Image
-                src="/assets/images/logo.svg"
+                src="/assets/logo/Logo.png"
                 alt="Studio & Set"
                 width={140}
                 height={40}
@@ -74,19 +82,15 @@ export default function Hero(): JSX.Element {
               />
             </Link>
 
-            <nav className={styles.navRight}>
-              <Link href="/studio" className={styles.navLink}>
-                Studio
-              </Link>
-              <span className={styles.navDot}>•</span>
-              <Link href="/crew" className={styles.navLink}>
-                Crew
-              </Link>
-              <span className={styles.navDot}>•</span>
-              <button className={styles.registerBtn} onClick={openMenu}>
-                Register
-              </button>
-            </nav>
+            <button
+              className={styles.menuToggleButton}
+              onClick={toggleMenu}
+              aria-label="Toggle navigation menu"
+            >
+              <span className={styles.hamburgerLine} />
+              <span className={styles.hamburgerLine} />
+              <span className={styles.hamburgerLine} />
+            </button>
           </header>
 
           <div
@@ -158,7 +162,9 @@ export default function Hero(): JSX.Element {
               A streamlined engine for verified crew, cinema gear, and AI-driven
               production staging.
             </h1>
-            <button className={styles.buildManifestBtn}>Build Manifest</button>
+            <Link href="/studio" className={styles.buildManifestBtn}>
+              Build Manifest
+            </Link>
           </div>
 
           <div className={styles.scrollIndicator}>
@@ -185,20 +191,14 @@ export default function Hero(): JSX.Element {
             &#x2715;
           </button>
           <nav className={styles.overlayNav}>
+            <Link href="/register" onClick={closeMenu}>
+              Register
+            </Link>
             <Link href="/register/crew" onClick={closeMenu}>
               Register as Crew
             </Link>
             <Link href="/register/studio" onClick={closeMenu}>
               Register as Studio
-            </Link>
-            <Link href="/login/crew" onClick={closeMenu}>
-              Login as Crew
-            </Link>
-            <Link href="/login/studio" onClick={closeMenu}>
-              Login as Studio
-            </Link>
-            <Link href="/store" onClick={closeMenu}>
-              Go To Store
             </Link>
           </nav>
         </div>

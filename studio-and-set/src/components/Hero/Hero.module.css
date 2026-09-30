@@ -42,34 +42,25 @@
   height: 36px;
 }
 
-.navRight {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-}
-
-.navLink {
-  font-family: var(--font-support, sans-serif);
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #ffffff;
-  text-decoration: none;
-  opacity: 0.9;
-}
-
-.navDot {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.75rem;
-}
-
-.registerBtn {
-  font-family: var(--font-support, sans-serif);
-  font-size: 0.95rem;
-  font-weight: 600;
+.menuToggleButton {
   background: transparent;
-  color: #ffffff;
   border: none;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  padding: 0;
+  z-index: 30;
+}
+
+.hamburgerLine {
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  display: block;
 }
 
 .interactiveStage {
@@ -248,7 +239,7 @@
 .menuOverlay {
   position: fixed;
   inset: 0;
-  background-color: #3d0c1e;
+  background-color: #0d0d0d;
   z-index: 100;
   display: flex;
   flex-direction: column;

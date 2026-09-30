@@ -8,7 +8,7 @@ export default function CrewRegisterPage() {
     <AuthLayout
       title="Sign Up Now"
       subtitle="Join an elite network of production captains. Gain instant access to automated gear staging, protected rate cards, and verified crew rosters."
-      bgImageUrl="/assets/images/crew-bg.jpg"
+      bgImageUrl="/assets/images/auth-bg.jpg"
       footerText="Already registered?"
       footerLinkText="Login"
       footerLinkHref="/login/crew"
