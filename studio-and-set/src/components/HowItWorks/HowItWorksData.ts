@@ -25,20 +25,20 @@ export const HOW_IT_WORKS_STEPS: StepItem[] = [
     stepNumber: 'Step Three',
     description:
       'Fine-tune camera, lighting, and grip packages optimized for your specific shoot parameters. Gaffer AI cross-checks lens mounts, power requirements, and accessory compatibility to prevent on-set bottlenecks.',
-    imageSrc: '/assets/images/gafferAI/image-3.png'
+    imageSrc: '/assets/images/gafferAI/image-3.jpg'
   },
   {
     id: 'step-4',
     stepNumber: 'Step Four',
     description:
       'Collaborate seamlessly across active productions with real-time messaging, document sharing, and instant crew broadcast updates to keep every department aligned.',
-    imageSrc: '/assets/images/gafferAI/image-4.png'
+    imageSrc: '/assets/images/gafferAI/image-4.jpg'
   },
   {
     id: 'step-5',
     stepNumber: 'Step Five',
     description:
       'Access live technical assistance throughout your shoot window. Get immediate troubleshooting for gear queries, emergency equipment swap-outs, or quick crew additions directly through your production workspace.',
-    imageSrc: '/assets/images/gafferAI/image-5.png'
+    imageSrc: '/assets/images/gafferAI/image-5.jpg'
   },
 ];

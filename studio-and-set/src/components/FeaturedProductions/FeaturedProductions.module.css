@@ -9,7 +9,6 @@
 .clippedFrame {
   position: sticky;
   top: 0;
-
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -193,30 +192,103 @@
 }
 
 @media (max-width: 768px) {
-  .shelfRack {
-    flex-direction: column;
-
+  .section {
+    height: auto;
+    padding: 2.5rem 0;
   }
 
-  .dvdCard {
+  .clippedFrame {
+    position: relative;
+    height: auto;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .slidingTrack {
+    height: auto;
+    transform: none !important;
+  }
+
+  .quoteFrame {
+    padding: 1rem 1.5rem 2rem 1.5rem;
+  }
+
+  .dvdFrame {
+    height: auto;
     width: 100%;
-    height: 70px;
-    flex: none;
   }
 
-  .dvdCard.active {
-    height: 420px;
-    flex: none;
-  }
-
-  .spineView {
+  .shelfRack {
+    display: flex;
     flex-direction: row;
-    padding: 0 1.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding: 0 1.5rem 1rem 1.5rem;
+    width: 100%;
+    max-height: none;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .shelfRack::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dvdCard,
+  .dvdCard.active {
+    flex: 0 0 260px;
+    height: 380px;
+    scroll-snap-align: center;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .coverView {
+    position: absolute;
+    inset: 0;
+    opacity: 0.9;
+    z-index: 1;
+  }
+
+  .coverView::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(18, 18, 18, 0.1) 0%,
+      rgba(18, 18, 18, 0.4) 60%,
+      rgba(18, 18, 18, 0.95) 100%
+    );
+  }
+
+  .spineView,
+  .dvdCard.active .spineView {
+    position: relative;
+    z-index: 2;
+    opacity: 1;
+    pointer-events: auto;
+    flex-direction: row;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: space-between;
   }
 
   .yearText,
   .titleText {
     writing-mode: horizontal-tb;
     transform: none;
+  }
+
+  .titleText {
+    font-size: 1.15rem;
+  }
+
+  .yearText {
+    font-size: 0.85rem;
+    opacity: 0.8;
   }
 }
