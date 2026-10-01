@@ -1,21 +1,17 @@
-// src/app/layout.tsx
-
 import type { Metadata } from 'next';
 import { Syne, Inter } from 'next/font/google';
-import '../globals.css'; // This targets your global stylesheet
+import '../globals.css';
 
-// 1. Configure the Syne font for headings
-const syne = Syne({
+export const syne = Syne({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-main',
 });
 
-// 2. Configure the Inter font for regular body text
-const inter = Inter({
+export const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-support',
+  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
