@@ -59,8 +59,8 @@ export const FEATURED_PRODUCTIONS: ProductionItem[] = [
     title: 'Echo Chambers',
     year: '2025',
     link: 'https://github.com',
-    spineImg: '/assets/images/posters/Movie-6.jpg',
-    coverImg: '/assets/images/posters/Movie-6.jpg',
+    spineImg: '/assets/images/posters/Movie-6.png',
+    coverImg: '/assets/images/posters/Movie-6.png',
     dvdLogoImg: '/assets/icons/dvd-logo.png',
   },
   {
@@ -68,8 +68,8 @@ export const FEATURED_PRODUCTIONS: ProductionItem[] = [
     title: 'Aperture',
     year: '2022',
     link: 'https://github.com',
-    spineImg: '/assets/images/posters/Movie-7.jpg',
-    coverImg: '/assets/images/posters/Movie-7.jpg',
+    spineImg: '/assets/images/posters/Movie-7.png',
+    coverImg: '/assets/images/posters/Movie-7.png',
     dvdLogoImg: '/assets/icons/dvd-logo.png',
   },
   {
@@ -86,8 +86,8 @@ export const FEATURED_PRODUCTIONS: ProductionItem[] = [
     title: 'Velocity',
     year: '2024',
     link: 'https://github.com',
-    spineImg: '/assets/images/posters/Movie-9.jpg',
-    coverImg: '/assets/images/posters/Movie-9.jpg',
+    spineImg: '/assets/images/posters/Movie-9.png',
+    coverImg: '/assets/images/posters/Movie-9.png',
     dvdLogoImg: '/assets/icons/dvd-logo.png',
   },
   {
