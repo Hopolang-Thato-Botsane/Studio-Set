@@ -115,14 +115,17 @@ export const ProductionKitsView: React.FC<ProductionKitsViewProps> = ({
 
       {filteredCategories.length > 0 ? (
         <div className={styles.sectionList}>
-          {filteredCategories.map((category) => (
-            <section key={category.categoryId} className={styles.kitSection}>
+          {filteredCategories.map((category, catIdx) => (
+            <section 
+              key={category.categoryId || `category-${catIdx}`} 
+              className={styles.kitSection}
+            >
               <h2 className={styles.sectionTitle}>{category.title}</h2>
 
               <div className={styles.grid}>
-                {category.kits.map((kit) => (
+                {category.kits.map((kit, kitIdx) => (
                   <div
-                    key={kit.id}
+                    key={kit.id || `kit-${catIdx}-${kitIdx}`}
                     onClick={() => onSelectKit?.(kit)}
                     className={styles.card}
                   >
