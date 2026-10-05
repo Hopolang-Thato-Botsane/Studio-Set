@@ -1,4 +1,4 @@
-import StudioProfile from '@/components/Studio/StudioProfile';
+import StudioProfile from "@/components/Studio/StudioProfile"
 
 export default function ProfilePage() {
   return (
